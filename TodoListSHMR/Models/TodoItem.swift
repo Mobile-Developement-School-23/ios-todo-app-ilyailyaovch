@@ -107,12 +107,89 @@ extension TodoItem {
         jsonDict["id"] = id
         jsonDict["text"] = text
         if importancy != .common { jsonDict["importancy"] = importancy.rawValue }
-        if deadline != nil { jsonDict["deadline"] = deadline}
+        if deadline != nil { jsonDict["deadline"] = deadline?.timeIntervalSince1970}
         jsonDict["isComplited"] = isComplited
         jsonDict["dateCreated"] = dateCreated.timeIntervalSince1970
-        jsonDict["dateModified"] = dateCreated.timeIntervalSince1970
+        if dateModified != nil { jsonDict["dateModified"] = dateModified?.timeIntervalSince1970}
         return jsonDict
     }
-
 }
 
+/* TodoItem, parsing csv
+〉Реализовать расширение TodoItem для разбора формата СSV
+〉Содержит функцию (static func parse(csv: String) -> TodoItem?) для разбора CSV
+〉Содержит вычислимое свойство (var csv: String) для формирования CSV
+〉Не сохранять в csv важность, если она "обычная"
+〉Не сохранять в csv сложные объекты (Date), переводить в более простой формат
+〉Сохранять deadline только если он задан
+ */
+
+extension TodoItem {
+ 
+    // Разбор csv
+    static func parse(csv: String) -> TodoItem?{
+        
+        let csvArr : [String] = csv.components(separatedBy: ";")
+        
+        let id = csvArr[0]
+        
+        let text = csvArr[1]
+        
+        let importancyString = csvArr[2]
+        var importancy: Importancy = Importancy.common
+        if let rightcase = Importancy(rawValue: importancyString){
+            importancy = rightcase
+        }
+        
+        var deadline: Date?
+        let deadlineString = csvArr[3]
+        if let deadlineDouble = Double(deadlineString){
+            deadline = Date(timeIntervalSince1970: deadlineDouble)
+        }
+        
+        guard
+            let isCompleted = Bool(String(csvArr[4]))
+        else {return nil}
+        
+        guard
+            let dateCreatedDouble = Double(csvArr[5])
+        else {return nil}
+        let dateCreated = Date(timeIntervalSince1970: dateCreatedDouble)
+        
+        var dateModified: Date?
+        let dateModifiedString = String(csvArr[6])
+        if let dateModifiedDouble = Double(dateModifiedString){
+            dateModified = Date(timeIntervalSince1970: dateModifiedDouble)
+        }
+
+        return TodoItem(
+            id: id,
+            text: text,
+            importancy: importancy,
+            deadline: deadline,
+            isComplited: isCompleted,
+            dateCreated: dateCreated,
+            dateModified: dateModified
+        )
+    }
+    
+    // Формирования csv
+    var csv: String {
+        var csvString: String = ""
+        csvString.append(self.id)
+        csvString.append(";")
+        csvString.append(self.text)
+        csvString.append(";")
+        csvString.append(self.importancy == .common ? "" : self.importancy.rawValue)
+        csvString.append(";")
+        csvString.append(self.deadline != nil ? "\(String(describing: self.deadline?.timeIntervalSince1970))" : "")
+        csvString.append(";")
+        csvString.append(String(self.isComplited))
+        csvString.append(";")
+        csvString.append("\(String(describing: self.dateCreated.timeIntervalSince1970))")
+        csvString.append(";")
+        csvString.append(self.dateModified != nil ? "\(String(describing: self.dateModified?.timeIntervalSince1970))" : "")
+        csvString.append("\n")
+        return csvString
+    }
+}
