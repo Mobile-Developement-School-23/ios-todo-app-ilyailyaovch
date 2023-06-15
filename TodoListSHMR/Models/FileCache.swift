@@ -24,6 +24,7 @@ enum FileCacheErrors: Error {
     case itemAlreadyExist
     case itemDoesntExist
     case itemCannotChange
+    case CSVError
 }
 
 class FileCache {
@@ -113,4 +114,47 @@ class FileCache {
         todoItems = jsonArray.compactMap { TodoItem.parse(json: $0)}
         }
     
+}
+
+extension FileCache {
+    
+    // Загрузка всех дел из файла
+    func loadItemsCSV(from file: String) throws {
+        
+        // формируем путь до файла
+        guard
+            let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+        else { throw FileCacheErrors.wrongDirectory }
+        let pathWithFilename = path.appendingPathComponent(file)
+        
+        // получаем text по заданному пути
+        let textData = try String(contentsOf: pathWithFilename, encoding: .utf8)
+        var textArr = textData.split(separator: "\n")
+        textArr.remove(at: 0)
+
+        todoItems = textArr.compactMap { TodoItem.parse(csv: String($0))}
+    }
+    
+    // Сохранение всех дел в файл (applicationSupportDirectory)
+    func saveItemsCSV(to file: String) throws {
+        
+        // формируем путь до файла
+        guard
+            let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+        else { throw FileCacheErrors.wrongDirectory }
+        let pathWithFilename = path.appendingPathComponent(file)
+        
+        var csvLine = "id;text;importancy;deadline;isComplited;dateCreated;dateModified\n"
+        do {
+            for item in todoItems {
+                let itemStr = item.csv
+                csvLine.append(itemStr)
+            }
+            try csvLine.write(to: pathWithFilename, atomically: true, encoding: .utf8)
+            
+        } catch {
+            print(FileCacheErrors.saveItemsError)
+        }
+        
+    }
 }

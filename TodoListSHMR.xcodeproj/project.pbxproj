@@ -16,7 +16,6 @@
 		09FFF56B2A33A4BC00CFDCD1 /* TodoListSHMRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF56A2A33A4BC00CFDCD1 /* TodoListSHMRUITests.swift */; };
 		09FFF56D2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF56C2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift */; };
 		09FFF57D2A33A75F00CFDCD1 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF57C2A33A75F00CFDCD1 /* TodoItem.swift */; };
-		09FFF5802A344DD200CFDCD1 /* TestInput.json in Resources */ = {isa = PBXBuildFile; fileRef = 09FFF57F2A344DD200CFDCD1 /* TestInput.json */; };
 		09FFF5972A34F6EB00CFDCD1 /* TestFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5962A34F6EB00CFDCD1 /* TestFunction.swift */; };
 		09FFF5992A34F91900CFDCD1 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5982A34F91900CFDCD1 /* FileCache.swift */; };
 /* End PBXBuildFile section */
@@ -52,7 +51,6 @@
 		09FFF56A2A33A4BC00CFDCD1 /* TodoListSHMRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRUITests.swift; sourceTree = "<group>"; };
 		09FFF56C2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		09FFF57C2A33A75F00CFDCD1 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
-		09FFF57F2A344DD200CFDCD1 /* TestInput.json */ = {isa = PBXFileReference; lastKnownFileType = text.json; path = TestInput.json; sourceTree = "<group>"; };
 		09FFF5962A34F6EB00CFDCD1 /* TestFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFunction.swift; sourceTree = "<group>"; };
 		09FFF5982A34F91900CFDCD1 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FileCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -121,7 +119,6 @@
 				09FFF5572A33A4BC00CFDCD1 /* Info.plist */,
 				09FFF5522A33A4BC00CFDCD1 /* Assets.xcassets */,
 				09FFF5542A33A4BC00CFDCD1 /* LaunchScreen.storyboard */,
-				09FFF57F2A344DD200CFDCD1 /* TestInput.json */,
 			);
 			path = TodoListSHMR;
 			sourceTree = "<group>";
@@ -258,7 +255,6 @@
 			files = (
 				09FFF5562A33A4BC00CFDCD1 /* LaunchScreen.storyboard in Resources */,
 				09FFF5532A33A4BC00CFDCD1 /* Assets.xcassets in Resources */,
-				09FFF5802A344DD200CFDCD1 /* TestInput.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
