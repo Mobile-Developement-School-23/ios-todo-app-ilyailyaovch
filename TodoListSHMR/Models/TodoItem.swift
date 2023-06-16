@@ -176,19 +176,19 @@ extension TodoItem {
     // Формирования csv
     var csv: String {
         var csvString: String = ""
-        csvString.append(self.id)
-        csvString.append(";")
-        csvString.append(self.text)
-        csvString.append(";")
+        csvString.append(self.id + ";")
+        csvString.append(self.text + ";")
         csvString.append(self.importancy == .common ? "" : self.importancy.rawValue)
         csvString.append(";")
-        csvString.append(self.deadline != nil ? "\(String(describing: self.deadline?.timeIntervalSince1970))" : "")
+        csvString.append(self.deadline != nil ?
+                         "\(String(describing: self.deadline?.timeIntervalSince1970))" : "")
         csvString.append(";")
         csvString.append(String(self.isComplited))
         csvString.append(";")
         csvString.append("\(String(describing: self.dateCreated.timeIntervalSince1970))")
         csvString.append(";")
-        csvString.append(self.dateModified != nil ? "\(String(describing: self.dateModified?.timeIntervalSince1970))" : "")
+        csvString.append(self.dateModified != nil ?
+                         "\(String(describing: self.dateModified?.timeIntervalSince1970))" : "")
         csvString.append("\n")
         return csvString
     }
