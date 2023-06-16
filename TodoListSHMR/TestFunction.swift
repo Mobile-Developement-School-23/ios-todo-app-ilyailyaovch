@@ -38,7 +38,7 @@ func testFunction () {
 //        try fileCash.remove(id: item1.id)
 //        try fileCash.saveItems(to: "TestInput.json")
 //        try fileCash2.loadItems(from: "TestInput.json")
-        try fileCash.saveItemsCSV(to: "TestInput.csv")
+        try fileCash.saveItemsCSV(to: fileCash.getFileName())
         try fileCash2.loadItemsCSV(from: "TestInput.csv")
     } catch {
         print ("error in add")

@@ -48,6 +48,11 @@ class FileCache {
         }
     }
     
+    // Доступ к имени файла
+    func getFileName() -> (String) {
+        return self.fileName
+    }
+    
     // Удаление задачи (на основе id)
     func remove(id: String) throws {
         guard
@@ -144,6 +149,7 @@ extension FileCache {
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent(file)
         
+        // записываем построчно элементы
         var csvLine = "id;text;importancy;deadline;isComplited;dateCreated;dateModified\n"
         do {
             for item in todoItems {
