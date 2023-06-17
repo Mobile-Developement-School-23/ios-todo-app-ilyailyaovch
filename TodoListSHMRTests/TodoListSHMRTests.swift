@@ -10,32 +10,49 @@ import XCTest
 
 final class TodoListSHMRTests: XCTestCase {
 
-    func testToDoItemParseJSON1() throws {
-        let j: [String: Any] = ["id": "12345",
-                                "text": "Сделать домашнее задание",
-                                "importancy": "important",
-                                "deadline": 2022.0,
-                                "isComplited": false,
-                                "dateCreated": 2022.0,
-                                "dateModified": 2022.0]
+    func testTodoItemInit1(){
         
-        let id = "12345";
-        let text = "Сделать домашнее задание";
-        let isComplited = false;
-        let importancy: Importancy = .important
-        let deadline = Date(timeIntervalSince1970: 2022.0)
-        let dateCreated = Date(timeIntervalSince1970: 2022.0)
-        let dateModified = Date(timeIntervalSince1970: 2022.0)
+        let item1: TodoItem = TodoItem(
+            text: "Lol",
+            importancy: .important,
+            dateCreated: Date(timeIntervalSince1970: 2023.0)
+        )
         
-        let item: TodoItem = TodoItem.parse(json: j)!
-    
-        XCTAssertEqual(item.id, id)
-        XCTAssertEqual(item.text, text)
-        XCTAssertEqual(item.importancy, importancy)
-        XCTAssertEqual(item.deadline, deadline)
-        XCTAssertEqual(item.isComplited, isComplited)
-        XCTAssertEqual(item.dateCreated, dateCreated)
-        XCTAssertEqual(item.dateModified, dateModified)
+        let text = "Lol"
+        let importancy = Importancy.important
+        let dateCreated = Date(timeIntervalSince1970: 2023.0)
+        
+        XCTAssertNotNil(item1.id)
+        XCTAssertEqual(item1.text, text)
+        XCTAssertEqual(item1.importancy, importancy)
+        XCTAssertEqual(item1.dateCreated, dateCreated)
+        XCTAssertNil(item1.deadline)
+        XCTAssertNil(item1.dateModified)
     }
-
+    
+    func testTodoItemInit2(){
+        
+        let item2: TodoItem = TodoItem(
+            id: "111111111122222",
+            text: "text",
+            importancy: .important,
+            deadline: Date(timeIntervalSince1970: 2023.0),
+            isCompleted: false,
+            dateCreated: Date(timeIntervalSince1970: 2023.0),
+            dateModified: nil
+        )
+        
+        let id = "111111111122222"
+        let text = "text"
+        let importancy = Importancy.important
+        let deadline = Date(timeIntervalSince1970: 2023.0)
+        let dateCreated = Date(timeIntervalSince1970: 2023.0)
+        
+        XCTAssertEqual(item2.id, id)
+        XCTAssertEqual(item2.text, text)
+        XCTAssertEqual(item2.importancy, importancy)
+        XCTAssertEqual(item2.deadline, deadline)
+        XCTAssertEqual(item2.dateCreated, dateCreated)
+        XCTAssertNil(item2.dateModified)
+    }
 }

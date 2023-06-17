@@ -29,7 +29,7 @@ struct TodoItem {
     let text:           String
     let importancy:     Importancy
     let deadline:       Date?
-    let isComplited:    Bool
+    let isCompleted:    Bool
     let dateCreated:    Date
     let dateModified:   Date?
     
@@ -37,14 +37,14 @@ struct TodoItem {
          text: String,
          importancy: Importancy = Importancy.normal,
          deadline: Date? = nil,
-         isComplited: Bool = false,
+         isCompleted: Bool = false,
          dateCreated: Date = Date(),
          dateModified: Date? = nil) {
         self.id = id
         self.text = text
         self.importancy = importancy
         self.deadline = deadline
-        self.isComplited = isComplited
+        self.isCompleted = isCompleted
         self.dateCreated = dateCreated
         self.dateModified = dateModified
     }
@@ -69,7 +69,7 @@ extension TodoItem {
             let id = jsonObject["id"] as? String,
             let text = jsonObject["text"] as? String,
             let importancyString = jsonObject["importancy"] as? String,
-            let isCompleted = jsonObject["isComplited"] as? Bool,
+            let isCompleted = jsonObject["isCompleted"] as? Bool,
             let dateCreatedDouble = jsonObject["dateCreated"] as? Double
         else { return nil }
         
@@ -95,7 +95,7 @@ extension TodoItem {
             text: text,
             importancy: importancy,
             deadline: deadline,
-            isComplited: isCompleted,
+            isCompleted: isCompleted,
             dateCreated: dateCreated,
             dateModified: dateModified
         )
@@ -104,13 +104,13 @@ extension TodoItem {
     // Формирования json
     var json: Any {
         var jsonDict: [String: Any] = [:]
-        jsonDict["id"] = id
-        jsonDict["text"] = text
+        jsonDict["id"] = self.id
+        jsonDict["text"] = self.text
         if importancy != .normal { jsonDict["importancy"] = importancy.rawValue }
-        if deadline != nil { jsonDict["deadline"] = deadline?.timeIntervalSince1970}
-        jsonDict["isComplited"] = isComplited
-        jsonDict["dateCreated"] = dateCreated.timeIntervalSince1970
-        if dateModified != nil { jsonDict["dateModified"] = dateModified?.timeIntervalSince1970}
+        if let deadline = self.deadline { jsonDict["deadline"] = Int(deadline.timeIntervalSince1970)}
+        jsonDict["isCompleted"] = self.isCompleted
+        jsonDict["dateCreated"] = Int(dateCreated.timeIntervalSince1970)
+        if let dateModified = self.dateModified { jsonDict["dateModified"] = Int(dateModified.timeIntervalSince1970)}
         return jsonDict
     }
 }
@@ -132,8 +132,10 @@ extension TodoItem {
         let csvArr : [String] = csv.components(separatedBy: ";")
         
         let id = csvArr[0]
+        if id == "" { return nil }
         
         let text = csvArr[1]
+        if text == "" { return nil }
         
         let importancyString = csvArr[2]
         var importancy: Importancy = Importancy.normal
@@ -167,7 +169,7 @@ extension TodoItem {
             text: text,
             importancy: importancy,
             deadline: deadline,
-            isComplited: isCompleted,
+            isCompleted: isCompleted,
             dateCreated: dateCreated,
             dateModified: dateModified
         )
@@ -183,7 +185,7 @@ extension TodoItem {
         csvString.append(self.deadline != nil ?
                          "\(String(describing: self.deadline?.timeIntervalSince1970))" : "")
         csvString.append(";")
-        csvString.append(String(self.isComplited))
+        csvString.append(String(self.isCompleted))
         csvString.append(";")
         csvString.append("\(String(describing: self.dateCreated.timeIntervalSince1970))")
         csvString.append(";")
