@@ -178,7 +178,7 @@ extension TodoItem {
         var csvString: String = ""
         csvString.append(self.id + ";")
         csvString.append(self.text + ";")
-        csvString.append(self.importancy == .common ? "" : self.importancy.rawValue)
+        csvString.append(self.importancy == .normal ? "" : self.importancy.rawValue)
         csvString.append(";")
         csvString.append(self.deadline != nil ?
                          "\(String(describing: self.deadline?.timeIntervalSince1970))" : "")
