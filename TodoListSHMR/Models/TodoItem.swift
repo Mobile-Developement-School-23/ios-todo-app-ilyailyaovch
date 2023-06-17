@@ -19,23 +19,23 @@ import Foundation
 
 enum Importancy: String {
     case important
-    case common
-    case unImportant
+    case normal
+    case low
 }
 
 struct TodoItem {
     
     let id:             String
     let text:           String
-    var importancy:     Importancy
+    let importancy:     Importancy
     let deadline:       Date?
-    var isComplited:    Bool
+    let isComplited:    Bool
     let dateCreated:    Date
     let dateModified:   Date?
     
     init(id: String = UUID().uuidString,
          text: String,
-         importancy: Importancy = Importancy.common,
+         importancy: Importancy = Importancy.normal,
          deadline: Date? = nil,
          isComplited: Bool = false,
          dateCreated: Date = Date(),
@@ -73,7 +73,7 @@ extension TodoItem {
             let dateCreatedDouble = jsonObject["dateCreated"] as? Double
         else { return nil }
         
-        var importancy: Importancy = Importancy.common
+        var importancy: Importancy = Importancy.normal
         if let rightcase = Importancy(rawValue: importancyString){
             importancy = rightcase
         }
@@ -106,7 +106,7 @@ extension TodoItem {
         var jsonDict: [String: Any] = [:]
         jsonDict["id"] = id
         jsonDict["text"] = text
-        if importancy != .common { jsonDict["importancy"] = importancy.rawValue }
+        if importancy != .normal { jsonDict["importancy"] = importancy.rawValue }
         if deadline != nil { jsonDict["deadline"] = deadline?.timeIntervalSince1970}
         jsonDict["isComplited"] = isComplited
         jsonDict["dateCreated"] = dateCreated.timeIntervalSince1970
@@ -136,7 +136,7 @@ extension TodoItem {
         let text = csvArr[1]
         
         let importancyString = csvArr[2]
-        var importancy: Importancy = Importancy.common
+        var importancy: Importancy = Importancy.normal
         if let rightcase = Importancy(rawValue: importancyString){
             importancy = rightcase
         }
@@ -180,7 +180,7 @@ extension TodoItem {
         csvString.append(";")
         csvString.append(self.text)
         csvString.append(";")
-        csvString.append(self.importancy == .common ? "" : self.importancy.rawValue)
+        csvString.append(self.importancy == .normal ? "" : self.importancy.rawValue)
         csvString.append(";")
         csvString.append(self.deadline != nil ? "\(String(describing: self.deadline?.timeIntervalSince1970))" : "")
         csvString.append(";")
