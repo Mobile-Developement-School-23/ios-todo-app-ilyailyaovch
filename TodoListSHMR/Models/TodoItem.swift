@@ -23,6 +23,14 @@ enum Importancy: String {
     case low
 }
 
+private let kId = "id"
+private let kText = "text"
+private let kImportancy = "importancy"
+private let kDeadline = "deadline"
+private let kIsCompleted = "isCompleted"
+private let kDateCreated = "dateCreated"
+private let kDdateModified = "dateModified"
+
 struct TodoItem {
     
     let id:             String
@@ -66,24 +74,24 @@ extension TodoItem {
     static func parse(json: Any) -> TodoItem?{
         guard let jsonObject = json as? [String: Any] else { return nil }
         guard
-            let id = jsonObject["id"] as? String,
-            let text = jsonObject["text"] as? String,
-            let dateCreated = (jsonObject["dateCreated"] as? Double)
+            let id = jsonObject[kId] as? String,
+            let text = jsonObject[kText] as? String,
+            let dateCreated = (jsonObject[kDateCreated] as? Double)
                 .flatMap ({ Date(timeIntervalSince1970: TimeInterval($0)) })
         else { return nil }
         
-        let importancy = (jsonObject["importancy"] as? String)
+        let importancy = (jsonObject[kImportancy] as? String)
             .flatMap(Importancy.init(rawValue:)) ?? .normal
         
-        let isCompleted = (jsonObject["isCompleted"] as? Bool) ?? false
+        let isCompleted = (jsonObject[kIsCompleted] as? Bool) ?? false
         
         var deadline: Date?
-        if let deadlineDouble = jsonObject["deadline"] as? Double {
+        if let deadlineDouble = jsonObject[kDeadline] as? Double {
             deadline = Date(timeIntervalSince1970: deadlineDouble)
         }
         
         var dateModified: Date?
-        if let dateModifiedDouble = jsonObject["dateModified"] as? Double {
+        if let dateModifiedDouble = jsonObject[kDdateModified] as? Double {
             dateModified = Date(timeIntervalSince1970: dateModifiedDouble)
         }
 
@@ -101,13 +109,13 @@ extension TodoItem {
     // Формирования json
     var json: Any {
         var jsonDict: [String: Any] = [:]
-        jsonDict["id"] = self.id
-        jsonDict["text"] = self.text
-        if importancy != .normal { jsonDict["importancy"] = importancy.rawValue }
-        if let deadline = self.deadline { jsonDict["deadline"] = Int(deadline.timeIntervalSince1970)}
-        jsonDict["isCompleted"] = self.isCompleted
-        jsonDict["dateCreated"] = Int(dateCreated.timeIntervalSince1970)
-        if let dateModified = self.dateModified { jsonDict["dateModified"] = Int(dateModified.timeIntervalSince1970)}
+        jsonDict[kId] = self.id
+        jsonDict[kText] = self.text
+        if importancy != .normal { jsonDict[kImportancy] = importancy.rawValue }
+        if let deadline = self.deadline { jsonDict[kDeadline] = Int(deadline.timeIntervalSince1970)}
+        jsonDict[kIsCompleted] = self.isCompleted
+        jsonDict[kDateCreated] = Int(dateCreated.timeIntervalSince1970)
+        if let dateModified = self.dateModified { jsonDict[kDdateModified] = Int(dateModified.timeIntervalSince1970)}
         return jsonDict
     }
 }
