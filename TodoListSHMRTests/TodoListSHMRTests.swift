@@ -9,50 +9,54 @@ import XCTest
 @testable import TodoListSHMR
 
 final class TodoListSHMRTests: XCTestCase {
-
-    func testTodoItemInit1(){
-        
-        let item1: TodoItem = TodoItem(
-            text: "Lol",
-            importancy: .important,
-            dateCreated: Date(timeIntervalSince1970: 2023.0)
-        )
-        
-        let text = "Lol"
-        let importancy = Importancy.important
-        let dateCreated = Date(timeIntervalSince1970: 2023.0)
-        
-        XCTAssertNotNil(item1.id)
-        XCTAssertEqual(item1.text, text)
-        XCTAssertEqual(item1.importancy, importancy)
-        XCTAssertEqual(item1.dateCreated, dateCreated)
-        XCTAssertNil(item1.deadline)
-        XCTAssertNil(item1.dateModified)
-    }
     
-    func testTodoItemInit2(){
+    func testTodoItemInitWithAllAttributes(){
         
-        let item2: TodoItem = TodoItem(
+        let item: TodoItem = TodoItem(
             id: "111111111122222",
             text: "text",
             importancy: .important,
-            deadline: Date(timeIntervalSince1970: 2023.0),
+            deadline: Date(timeIntervalSince1970: 2024.0),
             isCompleted: false,
             dateCreated: Date(timeIntervalSince1970: 2023.0),
-            dateModified: nil
+            dateModified: Date(timeIntervalSince1970: 2023.0)
         )
         
         let id = "111111111122222"
         let text = "text"
         let importancy = Importancy.important
-        let deadline = Date(timeIntervalSince1970: 2023.0)
+        let deadline = Date(timeIntervalSince1970: 2024.0)
+        let isCompleted = false
+        let dateCreated = Date(timeIntervalSince1970: 2023.0)
+        let dateModified = Date(timeIntervalSince1970: 2023.0)
+        
+        XCTAssertEqual(item.id, id)
+        XCTAssertEqual(item.text, text)
+        XCTAssertEqual(item.importancy, importancy)
+        XCTAssertEqual(item.deadline, deadline)
+        XCTAssertEqual(item.isCompleted, isCompleted)
+        XCTAssertEqual(item.dateCreated, dateCreated)
+        XCTAssertEqual(item.dateModified, dateModified)
+    }
+
+    func testTodoItemInitWithoutAllAttributes(){
+        
+        let item: TodoItem = TodoItem(
+            text: "Lol",
+            dateCreated: Date(timeIntervalSince1970: 2023.0)
+        )
+        
+        let text = "Lol"
+        let importancy = Importancy.normal
+        let isCompleted = false
         let dateCreated = Date(timeIntervalSince1970: 2023.0)
         
-        XCTAssertEqual(item2.id, id)
-        XCTAssertEqual(item2.text, text)
-        XCTAssertEqual(item2.importancy, importancy)
-        XCTAssertEqual(item2.deadline, deadline)
-        XCTAssertEqual(item2.dateCreated, dateCreated)
-        XCTAssertNil(item2.dateModified)
+        XCTAssertNotNil(item.id)
+        XCTAssertEqual(item.text, text)
+        XCTAssertEqual(item.importancy, importancy)
+        XCTAssertEqual(item.isCompleted, isCompleted)
+        XCTAssertEqual(item.dateCreated, dateCreated)
+        XCTAssertNil(item.deadline)
+        XCTAssertNil(item.dateModified)
     }
 }

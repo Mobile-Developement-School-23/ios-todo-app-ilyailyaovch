@@ -68,22 +68,19 @@ extension TodoItem {
         guard
             let id = jsonObject["id"] as? String,
             let text = jsonObject["text"] as? String,
-            let importancyString = jsonObject["importancy"] as? String,
-            let isCompleted = jsonObject["isCompleted"] as? Bool,
-            let dateCreatedDouble = jsonObject["dateCreated"] as? Double
+            let dateCreated = (jsonObject["dateCreated"] as? Double)
+                .flatMap ({ Date(timeIntervalSince1970: TimeInterval($0)) })
         else { return nil }
         
-        var importancy: Importancy = Importancy.normal
-        if let rightcase = Importancy(rawValue: importancyString){
-            importancy = rightcase
-        }
+        let importancy = (jsonObject["importancy"] as? String)
+            .flatMap(Importancy.init(rawValue:)) ?? .normal
+        
+        let isCompleted = (jsonObject["isCompleted"] as? Bool) ?? false
         
         var deadline: Date?
         if let deadlineDouble = jsonObject["deadline"] as? Double {
             deadline = Date(timeIntervalSince1970: deadlineDouble)
         }
-        
-        let dateCreated = Date(timeIntervalSince1970: dateCreatedDouble)
         
         var dateModified: Date?
         if let dateModifiedDouble = jsonObject["dateModified"] as? Double {
@@ -149,9 +146,7 @@ extension TodoItem {
             deadline = Date(timeIntervalSince1970: deadlineDouble)
         }
         
-        guard
-            let isCompleted = Bool(String(csvArr[4]))
-        else {return nil}
+        let isCompleted = Bool(String(csvArr[4])) ?? false
         
         guard
             let dateCreatedDouble = Double(csvArr[5])
@@ -182,16 +177,17 @@ extension TodoItem {
         csvString.append(self.text + ";")
         csvString.append(self.importancy == .normal ? "" : self.importancy.rawValue)
         csvString.append(";")
-        csvString.append(self.deadline != nil ?
-                         "\(String(describing: self.deadline?.timeIntervalSince1970))" : "")
+        if let deadline = deadline{
+            csvString.append("\(deadline.timeIntervalSince1970)")
+        }
         csvString.append(";")
         csvString.append(String(self.isCompleted))
         csvString.append(";")
         csvString.append("\(String(describing: self.dateCreated.timeIntervalSince1970))")
         csvString.append(";")
-        csvString.append(self.dateModified != nil ?
-                         "\(String(describing: self.dateModified?.timeIntervalSince1970))" : "")
-        csvString.append("\n")
+        if let dateModified = dateModified{
+            csvString.append("\(dateModified.timeIntervalSince1970)")
+        }
         return csvString
     }
 }

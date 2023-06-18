@@ -138,7 +138,7 @@ extension FileCache {
         var csvLine = "id;text;importancy;deadline;isCompleted;dateCreated;dateModified\n"
         do {
             for item in todoItems {
-                csvLine.append(item.csv)
+                csvLine.append(item.csv + "\n")
             }
             try csvLine.write(to: pathWithFilename, atomically: true, encoding: .utf8)
             
