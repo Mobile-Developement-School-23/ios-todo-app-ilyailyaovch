@@ -1,5 +1,5 @@
 //
-//  HomeViewController.swift
+//  RootViewController.swift
 //  TodoListSHMR
 //
 //  Created by Ilya Ovchinnikov on 13.06.2023.
@@ -15,10 +15,14 @@ class RootViewController: UIViewController {
         
         super.viewDidLoad()
         
-        view.backgroundColor = UIColor.white
-        title = "First Screen"
-        navigationController?.navigationBar.prefersLargeTitles = true
+        setupView()
         setupButton()
+    }
+    
+    func setupView(){
+        view.backgroundColor = Colors.backPrimary.color
+        title = "Мои дела"
+        navigationController?.navigationBar.prefersLargeTitles = true
     }
     
     func setupButton() {
@@ -28,8 +32,8 @@ class RootViewController: UIViewController {
         
         // style button
         welcomeButton.configuration = .filled()
-        welcomeButton.configuration?.baseBackgroundColor = .systemCyan
-        welcomeButton.configuration?.title = "Next"
+        welcomeButton.configuration?.baseBackgroundColor = Colors.green.color
+        welcomeButton.configuration?.title = "Отведу к TODO листу"
         
         // activate the button
         welcomeButton.addTarget(self, action: #selector(TappedButton), for: .touchUpInside)
@@ -48,7 +52,9 @@ class RootViewController: UIViewController {
     
     @objc func TappedButton(){
         
+        present(TodoViewController(), animated: true)
+        
     }
-    
+       
 }
 
