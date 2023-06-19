@@ -13,6 +13,7 @@
 		09CFD6A32A4049940037167C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6A22A4049940037167C /* Colors.swift */; };
 		09CFD6A62A404D650037167C /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6A52A404D650037167C /* TodoViewController.swift */; };
 		09CFD6A82A4050160037167C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6A72A4050160037167C /* RootViewController.swift */; };
+		09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */; };
 		09FFF5472A33A4BB00CFDCD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5462A33A4BB00CFDCD1 /* AppDelegate.swift */; };
 		09FFF5492A33A4BB00CFDCD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5482A33A4BB00CFDCD1 /* SceneDelegate.swift */; };
 		09FFF5532A33A4BC00CFDCD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09FFF5522A33A4BC00CFDCD1 /* Assets.xcassets */; };
@@ -48,6 +49,7 @@
 		09CFD6A22A4049940037167C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		09CFD6A52A404D650037167C /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		09CFD6A72A4050160037167C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		09FFF5432A33A4BB00CFDCD1 /* TodoListSHMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListSHMR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FFF5462A33A4BB00CFDCD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 0; };
 		09FFF5482A33A4BB00CFDCD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -100,6 +102,7 @@
 		09CFD6A42A404B920037167C /* ViewModel */ = {
 			isa = PBXGroup;
 			children = (
+				09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -307,6 +310,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */,
 				09837E122A4071850026EB9D /* Constants.swift in Sources */,
 				09FFF57D2A33A75F00CFDCD1 /* TodoItem.swift in Sources */,
 				09CFD6A32A4049940037167C /* Colors.swift in Sources */,
@@ -489,8 +493,7 @@
 				INFOPLIST_FILE = TodoListSHMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -515,8 +518,7 @@
 				INFOPLIST_FILE = TodoListSHMR/Info.plist;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
-				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
+				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

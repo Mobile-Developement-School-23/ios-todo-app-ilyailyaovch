@@ -7,13 +7,19 @@
 
 import UIKit
 
-class TodoViewController: UIViewController {
+class TodoViewController: UIViewController, UIScrollViewDelegate {
+    
+    // Properties
+    
+    private var viewModel: TodoViewModel = TodoViewModel()
+    
+    
+    // Override
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
-        
         view.backgroundColor = Colors.green.color
+        
     }
     
 }
