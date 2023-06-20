@@ -17,6 +17,8 @@
 		09F612412A40F42A00CEEE1B /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612402A40F42A00CEEE1B /* RootViewModel.swift */; };
 		09F612432A4192FC00CEEE1B /* TodoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612422A4192FC00CEEE1B /* TodoViewModelProtocol.swift */; };
 		09F612452A41952F00CEEE1B /* TodoViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612442A41952F00CEEE1B /* TodoViewControllerProtocol.swift */; };
+		09F612472A42196100CEEE1B /* ImportancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612462A42196000CEEE1B /* ImportancyView.swift */; };
+		09F612492A4243C400CEEE1B /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612482A4243C400CEEE1B /* Icons.swift */; };
 		09FFF5472A33A4BB00CFDCD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5462A33A4BB00CFDCD1 /* AppDelegate.swift */; };
 		09FFF5492A33A4BB00CFDCD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5482A33A4BB00CFDCD1 /* SceneDelegate.swift */; };
 		09FFF5532A33A4BC00CFDCD1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 09FFF5522A33A4BC00CFDCD1 /* Assets.xcassets */; };
@@ -56,6 +58,8 @@
 		09F612402A40F42A00CEEE1B /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		09F612422A4192FC00CEEE1B /* TodoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModelProtocol.swift; sourceTree = "<group>"; };
 		09F612442A41952F00CEEE1B /* TodoViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewControllerProtocol.swift; sourceTree = "<group>"; };
+		09F612462A42196000CEEE1B /* ImportancyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportancyView.swift; sourceTree = "<group>"; };
+		09F612482A4243C400CEEE1B /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		09FFF5432A33A4BB00CFDCD1 /* TodoListSHMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListSHMR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FFF5462A33A4BB00CFDCD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 0; };
 		09FFF5482A33A4BB00CFDCD1 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -101,6 +105,7 @@
 			children = (
 				09CFD6A22A4049940037167C /* Colors.swift */,
 				09837E112A4071850026EB9D /* Constants.swift */,
+				09F612482A4243C400CEEE1B /* Icons.swift */,
 			);
 			path = Style;
 			sourceTree = "<group>";
@@ -121,6 +126,7 @@
 				09CFD6A72A4050160037167C /* RootViewController.swift */,
 				09CFD6A52A404D650037167C /* TodoViewController.swift */,
 				09F612442A41952F00CEEE1B /* TodoViewControllerProtocol.swift */,
+				09F612462A42196000CEEE1B /* ImportancyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -319,6 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09F612492A4243C400CEEE1B /* Icons.swift in Sources */,
 				09F612412A40F42A00CEEE1B /* RootViewModel.swift in Sources */,
 				09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */,
 				09837E122A4071850026EB9D /* Constants.swift in Sources */,
@@ -329,6 +336,7 @@
 				09CFD6A62A404D650037167C /* TodoViewController.swift in Sources */,
 				09FFF5992A34F91900CFDCD1 /* FileCache.swift in Sources */,
 				09FFF5472A33A4BB00CFDCD1 /* AppDelegate.swift in Sources */,
+				09F612472A42196100CEEE1B /* ImportancyView.swift in Sources */,
 				09CFD6A82A4050160037167C /* RootViewController.swift in Sources */,
 				09FFF5492A33A4BB00CFDCD1 /* SceneDelegate.swift in Sources */,
 			);

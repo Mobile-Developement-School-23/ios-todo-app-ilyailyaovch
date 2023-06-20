@@ -17,4 +17,4 @@ struct Constants{
     
 }
 
-var constants = Constants()
+let constants = Constants()

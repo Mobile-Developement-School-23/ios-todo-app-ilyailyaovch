@@ -19,11 +19,11 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     var scrollView = UIScrollView()
     var stackView = UIStackView()
     
-    var textView = UITextField()    //UITextView()
+    var textView = UITextView()
     var detailsStack = UIStackView()
-//    var importancyView =
-//    var deadlineView =
-//    var calendarView =
+    let importancyView = ImportancyView()
+    //    var deadlineView =
+    //    var calendarView =
     var deleteButton = UIButton()
     
     // Inits
@@ -48,7 +48,6 @@ extension TodoViewController: TodoViewControllerProtocol {
         view.backgroundColor = Colors.backPrimary.color
 
         setupNavigationBar()
-        
         setupBody()
         setupBodyConstrains()
         
@@ -69,7 +68,7 @@ extension TodoViewController: TodoViewControllerProtocol {
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
     }
     
-    // Setup elements of TodoItemsViewController
+    //  Setup elements of TodoItemsViewController
     
     func setupBody(){
         
@@ -97,14 +96,12 @@ extension TodoViewController: TodoViewControllerProtocol {
     
     func setupTextView(){
         textView.layer.cornerRadius = constants.cornerRadius
-        textView.placeholder = "Что надо сделать?"
         textView.backgroundColor = Colors.backSecondary.color
-        textView.leftViewMode = .always
-        
-        textView.contentVerticalAlignment = .top
-        textView.textAlignment = .left
         textView.font = UIFont.systemFont(ofSize: constants.bodySize)
-//        textView.text = "Hello"
+        textView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
+        textView.isScrollEnabled = false
+        textView.keyboardDismissMode = .interactive
+        
     }
     
     func setupDetailsStack(){
@@ -112,6 +109,14 @@ extension TodoViewController: TodoViewControllerProtocol {
         detailsStack.alignment = .fill
         detailsStack.distribution = .equalSpacing
         detailsStack.layer.cornerRadius = 16
+        
+        detailsStack.backgroundColor = Colors.backSecondary.color
+        
+        detailsStack.addArrangedSubview(importancyView)
+//        detailsStack.addArrangedSubview()
+//        detailsStack.addArrangedSubview()
+//        detailsStack.addArrangedSubview()
+        
     }
     
     func setupDeleteButton(){
@@ -143,6 +148,8 @@ extension TodoViewController: TodoViewControllerProtocol {
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 
             textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120),
+            
+            importancyView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
             
             deleteButton.heightAnchor.constraint(equalToConstant: 56)
         ])
