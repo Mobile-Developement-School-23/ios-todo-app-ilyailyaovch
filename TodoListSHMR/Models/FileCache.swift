@@ -50,12 +50,12 @@ class FileCache {
         }
     }
     
-    // Сохранение всех дел в файл (applicationSupportDirectory)
+    // Сохранение всех дел в файл
     func saveItems(to file: String) throws {
         
         // формируем путь до файла
         guard
-            let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent("\(file).json")
         
@@ -63,7 +63,6 @@ class FileCache {
         let jsonItems = todoItems.map({ $0.json })
         
         // записываем json элементы в файл
-//        if JSONSerialization.isValidJSONObject(jsonItems){
         let jsonData = try JSONSerialization.data(withJSONObject: jsonItems, options: [])
         try jsonData.write(to: pathWithFilename)
     }
@@ -73,7 +72,7 @@ class FileCache {
         
         // формируем путь до файла
         guard
-            let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent("\(file).json")
         
@@ -100,7 +99,7 @@ extension FileCache {
         
         // формируем путь до файла
         guard
-            let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent("\(file).csv")
         
@@ -117,7 +116,7 @@ extension FileCache {
         
         // формируем путь до файла
         guard
-            let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
+            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent("\(file).csv")
         

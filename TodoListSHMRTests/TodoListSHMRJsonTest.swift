@@ -215,38 +215,53 @@ final class TodoListSHMRJsonTest: XCTestCase {
     }
     
     
-//    func testToDoItemSaveJSON() throws {
-//
-//        let item1: TodoItem = TodoItem(
-//            id: "111111111122222",
-//            text: "text",
-//            importancy: .important,
-//            deadline: Date(timeIntervalSince1970: 2024.0),
-//            isCompleted: false,
-//            dateCreated: Date(timeIntervalSince1970: 2023.0),
-//            dateModified: Date(timeIntervalSince1970: 2023.0)
-//        )
-//
-//        let item2: TodoItem = TodoItem(
-//            id: "33333333222222",
-//            text: "Second text",
-//            importancy: .low,
-//            deadline: Date(timeIntervalSince1970: 2024.0),
-//            isCompleted: false,
-//            dateCreated: Date(timeIntervalSince1970: 2023.0),
-//            dateModified: Date(timeIntervalSince1970: 2023.0)
-//        )
-//
-//        let fileCash: FileCache = FileCache()
-//        let fileCash2: FileCache = FileCache()
-//        try fileCash.add(item: item1)
-//        try fileCash.add(item: item2)
-//        let fileName = "TestFile"
-//
-//
+    func testToDoItemSaveJSON() throws {
+
+        let item1: TodoItem = TodoItem(
+            id: "111111111122222",
+            text: "text",
+            importancy: .important,
+            deadline: Date(timeIntervalSince1970: 2024.0),
+            isCompleted: false,
+            dateCreated: Date(timeIntervalSince1970: 2023.0),
+            dateModified: Date(timeIntervalSince1970: 2023.0)
+        )
+
+        let item2: TodoItem = TodoItem(
+            id: "33333333222222",
+            text: "Second text",
+            importancy: .low,
+            deadline: Date(timeIntervalSince1970: 2024.0),
+            isCompleted: false,
+            dateCreated: Date(timeIntervalSince1970: 2023.0),
+            dateModified: Date(timeIntervalSince1970: 2023.0)
+        )
+
+        let fileCash = FileCache()
+        let fileCash2 = FileCache()
+        try fileCash.add(item: item1)
+        try fileCash.add(item: item2)
+        let fileName = "TestFile"
+        
+        do{
+            try fileCash.saveItems(to: fileName)
+            print("Данные сохранены")
+        } catch {
+            print("Ошибка при сохранени \(error)")
+            return
+        }
+        
+        do{
+            try fileCash2.loadItems(from: fileName)
+            print("Данные загружены")
+        } catch {
+            print("Ошибка при загрузке \(error)")
+            return
+        }
+        
 //        XCTAssertNoThrow(try fileCash.saveItems(to: fileName))
-//
-//        XCTAssertEqual(fileCash.todoItems[0].id, item2.id)
-//        XCTAssertEqual(fileCash2.todoItems[0].id, item2.id)
-//    }
+
+        XCTAssertEqual(fileCash.todoItems[0].id, item1.id)
+        XCTAssertEqual(fileCash2.todoItems[0].id, item1.id)
+    }
 }
