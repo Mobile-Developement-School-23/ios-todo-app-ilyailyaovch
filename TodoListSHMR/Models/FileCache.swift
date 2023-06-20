@@ -32,13 +32,6 @@ class FileCache {
     // Коллекция TodoItems
     private (set) var todoItems: [TodoItem] = []
     
-    // Имя файла
-    private let fileName: String
-    
-    init(fileName: String) {
-        self.fileName = fileName
-    }
-    
     // Добавление новой задачи
     func add(item: TodoItem) throws {
         if let index = todoItems.firstIndex(where: {$0.id == item.id}){
@@ -46,11 +39,6 @@ class FileCache {
         } else {
             todoItems.append(item)
         }
-    }
-    
-    // Доступ к имени файла
-    func getFileName() -> (String) {
-        return self.fileName
     }
     
     // Удаление задачи (на основе id)
@@ -75,10 +63,9 @@ class FileCache {
         let jsonItems = todoItems.map({ $0.json })
         
         // записываем json элементы в файл
-        if JSONSerialization.isValidJSONObject(jsonItems){
-            let jsonData = try JSONSerialization.data(withJSONObject: jsonItems, options: [])
-            try jsonData.write(to: pathWithFilename)
-        }
+//        if JSONSerialization.isValidJSONObject(jsonItems){
+        let jsonData = try JSONSerialization.data(withJSONObject: jsonItems, options: [])
+        try jsonData.write(to: pathWithFilename)
     }
     
     // Загрузка всех дел из файла
@@ -115,7 +102,7 @@ extension FileCache {
         guard
             let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
-        let pathWithFilename = path.appendingPathComponent(file)
+        let pathWithFilename = path.appendingPathComponent("\(file).csv")
         
         // получаем text по заданному пути
         let textData = try String(contentsOf: pathWithFilename, encoding: .utf8)
@@ -132,7 +119,7 @@ extension FileCache {
         guard
             let path = FileManager.default.urls(for: .applicationSupportDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
-        let pathWithFilename = path.appendingPathComponent(file)
+        let pathWithFilename = path.appendingPathComponent("\(file).csv")
         
         // записываем построчно элементы
         var csvLine = "id;text;importancy;deadline;isCompleted;dateCreated;dateModified\n"

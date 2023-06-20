@@ -7,8 +7,14 @@
 
 import Foundation
 
-let cornerRadius    = 16
+struct Constants{
+    
+    let cornerRadius: CGFloat   = 16
 
-let bodySize        = 17
-let subheadSize     = 15
-let footnoteSize    = 13
+    let bodySize: CGFloat       = 17
+    let subheadSize: CGFloat    = 15
+    let footnoteSize: CGFloat   = 13
+    
+}
+
+var constants = Constants()

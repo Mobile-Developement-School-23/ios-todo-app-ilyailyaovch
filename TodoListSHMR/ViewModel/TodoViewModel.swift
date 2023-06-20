@@ -11,10 +11,10 @@ final class TodoViewModel {
     
     weak var viewController: TodoViewController?
     
-    // ТУТ НУЖНО КАК-ТО СДЕЛАТЬ ЧТОБЫ viewController СТАЛ TodoViewController
+//    var item: TodoItem
     
     func writeHello(){
-        print("Hello")
+        print("Did tap")
     }
     
 }

@@ -52,7 +52,8 @@ class RootViewController: UIViewController {
     
     @objc func TappedButton(){
         
-        present(TodoViewController(), animated: true)
+        let newNavViewController = UINavigationController(rootViewController: TodoViewController())
+        present(newNavViewController, animated: true)
         
     }
        

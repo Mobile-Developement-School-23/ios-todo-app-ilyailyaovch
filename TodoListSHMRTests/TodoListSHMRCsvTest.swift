@@ -150,21 +150,19 @@ final class TodoListSHMRCSVTest: XCTestCase {
 //            dateModified: nil
 //        )
 //
-//        let fileCash: FileCache = FileCache(fileName: "TestInput")
-//        let fileCash2: FileCache = FileCache(fileName: "TestInput")
+//        let fileCash: FileCache = FileCache()
+//        let fileCash2: FileCache = FileCache()
 //
 //        try fileCash.add(item: item1)
 //        try fileCash.add(item: item2)
 //        try fileCash.remove(id: item1.id)
-//        try fileCash.saveItemsCSV(to: "TestInput")
-//        try fileCash2.loadItemsCSV(from: "TestInput")
+//
+//        let fileName = "TestFileCSV"
+//
+//        try fileCash.saveItemsCSV(to: fileName)
+//        try fileCash2.loadItemsCSV(from: fileName)
 //
 //        XCTAssertEqual(fileCash.todoItems[0].id, item2.id)
 //        XCTAssertEqual(fileCash2.todoItems[0].id, item2.id)
-//        XCTAssertEqual(fileCash2.todoItems[0].text, item2.text)
-//        XCTAssertEqual(fileCash2.todoItems[0].importancy, item2.importancy)
-//        XCTAssertEqual(fileCash2.todoItems[0].dateCreated, item2.dateCreated)
-//        XCTAssertEqual(fileCash.todoItems.count, 1)
-//        XCTAssertEqual(fileCash2.todoItems.count, 1)
 //    }
 }
