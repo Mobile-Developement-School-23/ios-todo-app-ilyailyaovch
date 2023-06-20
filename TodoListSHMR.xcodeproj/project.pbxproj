@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		09CFD6192A3E10510037167C /* TodoListSHMRJsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */; };
+		09CFD61B2A3E10750037167C /* TodoListSHMRCsvTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD61A2A3E10750037167C /* TodoListSHMRCsvTest.swift */; };
 		09EABDCE2A38604B00DDB531 /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09EABDCD2A38604B00DDB531 /* HomeViewController.swift */; };
 		09FFF5472A33A4BB00CFDCD1 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5462A33A4BB00CFDCD1 /* AppDelegate.swift */; };
 		09FFF5492A33A4BB00CFDCD1 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5482A33A4BB00CFDCD1 /* SceneDelegate.swift */; };
@@ -16,7 +18,6 @@
 		09FFF56B2A33A4BC00CFDCD1 /* TodoListSHMRUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF56A2A33A4BC00CFDCD1 /* TodoListSHMRUITests.swift */; };
 		09FFF56D2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF56C2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift */; };
 		09FFF57D2A33A75F00CFDCD1 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF57C2A33A75F00CFDCD1 /* TodoItem.swift */; };
-		09FFF5972A34F6EB00CFDCD1 /* TestFunction.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5962A34F6EB00CFDCD1 /* TestFunction.swift */; };
 		09FFF5992A34F91900CFDCD1 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5982A34F91900CFDCD1 /* FileCache.swift */; };
 /* End PBXBuildFile section */
 
@@ -38,6 +39,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRJsonTest.swift; sourceTree = "<group>"; };
+		09CFD61A2A3E10750037167C /* TodoListSHMRCsvTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRCsvTest.swift; sourceTree = "<group>"; };
 		09EABDCD2A38604B00DDB531 /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
 		09FFF5432A33A4BB00CFDCD1 /* TodoListSHMR.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = TodoListSHMR.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		09FFF5462A33A4BB00CFDCD1 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; usesTabs = 0; };
@@ -51,7 +54,6 @@
 		09FFF56A2A33A4BC00CFDCD1 /* TodoListSHMRUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRUITests.swift; sourceTree = "<group>"; };
 		09FFF56C2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		09FFF57C2A33A75F00CFDCD1 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
-		09FFF5962A34F6EB00CFDCD1 /* TestFunction.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFunction.swift; sourceTree = "<group>"; };
 		09FFF5982A34F91900CFDCD1 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FileCache.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -113,7 +115,6 @@
 			children = (
 				09FFF5462A33A4BB00CFDCD1 /* AppDelegate.swift */,
 				09FFF5482A33A4BB00CFDCD1 /* SceneDelegate.swift */,
-				09FFF5962A34F6EB00CFDCD1 /* TestFunction.swift */,
 				09EABDCC2A38603200DDB531 /* Views */,
 				09FFF57E2A33A76400CFDCD1 /* Models */,
 				09FFF5572A33A4BC00CFDCD1 /* Info.plist */,
@@ -127,6 +128,8 @@
 			isa = PBXGroup;
 			children = (
 				09FFF5602A33A4BC00CFDCD1 /* TodoListSHMRTests.swift */,
+				09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */,
+				09CFD61A2A3E10750037167C /* TodoListSHMRCsvTest.swift */,
 			);
 			path = TodoListSHMRTests;
 			sourceTree = "<group>";
@@ -280,7 +283,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				09FFF57D2A33A75F00CFDCD1 /* TodoItem.swift in Sources */,
-				09FFF5972A34F6EB00CFDCD1 /* TestFunction.swift in Sources */,
 				09FFF5992A34F91900CFDCD1 /* FileCache.swift in Sources */,
 				09EABDCE2A38604B00DDB531 /* HomeViewController.swift in Sources */,
 				09FFF5472A33A4BB00CFDCD1 /* AppDelegate.swift in Sources */,
@@ -293,6 +295,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				09FFF5612A33A4BC00CFDCD1 /* TodoListSHMRTests.swift in Sources */,
+				09CFD6192A3E10510037167C /* TodoListSHMRJsonTest.swift in Sources */,
+				09CFD61B2A3E10750037167C /* TodoListSHMRCsvTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

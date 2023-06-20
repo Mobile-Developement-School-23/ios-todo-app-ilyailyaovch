@@ -19,32 +19,40 @@ import Foundation
 
 enum Importancy: String {
     case important
-    case common
-    case unImportant
+    case normal
+    case low
 }
+
+private let kId = "id"
+private let kText = "text"
+private let kImportancy = "importancy"
+private let kDeadline = "deadline"
+private let kIsCompleted = "isCompleted"
+private let kDateCreated = "dateCreated"
+private let kDdateModified = "dateModified"
 
 struct TodoItem {
     
     let id:             String
     let text:           String
-    var importancy:     Importancy
+    let importancy:     Importancy
     let deadline:       Date?
-    var isComplited:    Bool
+    let isCompleted:    Bool
     let dateCreated:    Date
     let dateModified:   Date?
     
     init(id: String = UUID().uuidString,
          text: String,
-         importancy: Importancy = Importancy.common,
+         importancy: Importancy = Importancy.normal,
          deadline: Date? = nil,
-         isComplited: Bool = false,
+         isCompleted: Bool = false,
          dateCreated: Date = Date(),
          dateModified: Date? = nil) {
         self.id = id
         self.text = text
         self.importancy = importancy
         self.deadline = deadline
-        self.isComplited = isComplited
+        self.isCompleted = isCompleted
         self.dateCreated = dateCreated
         self.dateModified = dateModified
     }
@@ -66,27 +74,24 @@ extension TodoItem {
     static func parse(json: Any) -> TodoItem?{
         guard let jsonObject = json as? [String: Any] else { return nil }
         guard
-            let id = jsonObject["id"] as? String,
-            let text = jsonObject["text"] as? String,
-            let importancyString = jsonObject["importancy"] as? String,
-            let isCompleted = jsonObject["isComplited"] as? Bool,
-            let dateCreatedDouble = jsonObject["dateCreated"] as? Double
+            let id = jsonObject[kId] as? String,
+            let text = jsonObject[kText] as? String,
+            let dateCreated = (jsonObject[kDateCreated] as? Double)
+                .flatMap ({ Date(timeIntervalSince1970: TimeInterval($0)) })
         else { return nil }
         
-        var importancy: Importancy = Importancy.common
-        if let rightcase = Importancy(rawValue: importancyString){
-            importancy = rightcase
-        }
+        let importancy = (jsonObject[kImportancy] as? String)
+            .flatMap(Importancy.init(rawValue:)) ?? .normal
+        
+        let isCompleted = (jsonObject[kIsCompleted] as? Bool) ?? false
         
         var deadline: Date?
-        if let deadlineDouble = jsonObject["deadline"] as? Double {
+        if let deadlineDouble = jsonObject[kDeadline] as? Double {
             deadline = Date(timeIntervalSince1970: deadlineDouble)
         }
         
-        let dateCreated = Date(timeIntervalSince1970: dateCreatedDouble)
-        
         var dateModified: Date?
-        if let dateModifiedDouble = jsonObject["dateModified"] as? Double {
+        if let dateModifiedDouble = jsonObject[kDdateModified] as? Double {
             dateModified = Date(timeIntervalSince1970: dateModifiedDouble)
         }
 
@@ -95,7 +100,7 @@ extension TodoItem {
             text: text,
             importancy: importancy,
             deadline: deadline,
-            isComplited: isCompleted,
+            isCompleted: isCompleted,
             dateCreated: dateCreated,
             dateModified: dateModified
         )
@@ -104,13 +109,13 @@ extension TodoItem {
     // Формирования json
     var json: Any {
         var jsonDict: [String: Any] = [:]
-        jsonDict["id"] = id
-        jsonDict["text"] = text
-        if importancy != .common { jsonDict["importancy"] = importancy.rawValue }
-        if deadline != nil { jsonDict["deadline"] = deadline?.timeIntervalSince1970}
-        jsonDict["isComplited"] = isComplited
-        jsonDict["dateCreated"] = dateCreated.timeIntervalSince1970
-        if dateModified != nil { jsonDict["dateModified"] = dateModified?.timeIntervalSince1970}
+        jsonDict[kId] = self.id
+        jsonDict[kText] = self.text
+        if importancy != .normal { jsonDict[kImportancy] = importancy.rawValue }
+        if let deadline = self.deadline { jsonDict[kDeadline] = Int(deadline.timeIntervalSince1970)}
+        jsonDict[kIsCompleted] = self.isCompleted
+        jsonDict[kDateCreated] = Int(dateCreated.timeIntervalSince1970)
+        if let dateModified = self.dateModified { jsonDict[kDdateModified] = Int(dateModified.timeIntervalSince1970)}
         return jsonDict
     }
 }
@@ -132,11 +137,13 @@ extension TodoItem {
         let csvArr : [String] = csv.components(separatedBy: ";")
         
         let id = csvArr[0]
+        if id == "" { return nil }
         
         let text = csvArr[1]
+        if text == "" { return nil }
         
         let importancyString = csvArr[2]
-        var importancy: Importancy = Importancy.common
+        var importancy: Importancy = Importancy.normal
         if let rightcase = Importancy(rawValue: importancyString){
             importancy = rightcase
         }
@@ -147,9 +154,7 @@ extension TodoItem {
             deadline = Date(timeIntervalSince1970: deadlineDouble)
         }
         
-        guard
-            let isCompleted = Bool(String(csvArr[4]))
-        else {return nil}
+        let isCompleted = Bool(String(csvArr[4])) ?? false
         
         guard
             let dateCreatedDouble = Double(csvArr[5])
@@ -167,7 +172,7 @@ extension TodoItem {
             text: text,
             importancy: importancy,
             deadline: deadline,
-            isComplited: isCompleted,
+            isCompleted: isCompleted,
             dateCreated: dateCreated,
             dateModified: dateModified
         )
@@ -178,18 +183,19 @@ extension TodoItem {
         var csvString: String = ""
         csvString.append(self.id + ";")
         csvString.append(self.text + ";")
-        csvString.append(self.importancy == .common ? "" : self.importancy.rawValue)
+        csvString.append(self.importancy == .normal ? "" : self.importancy.rawValue)
         csvString.append(";")
-        csvString.append(self.deadline != nil ?
-                         "\(String(describing: self.deadline?.timeIntervalSince1970))" : "")
+        if let deadline = deadline{
+            csvString.append("\(deadline.timeIntervalSince1970)")
+        }
         csvString.append(";")
-        csvString.append(String(self.isComplited))
+        csvString.append(String(self.isCompleted))
         csvString.append(";")
         csvString.append("\(String(describing: self.dateCreated.timeIntervalSince1970))")
         csvString.append(";")
-        csvString.append(self.dateModified != nil ?
-                         "\(String(describing: self.dateModified?.timeIntervalSince1970))" : "")
-        csvString.append("\n")
+        if let dateModified = dateModified{
+            csvString.append("\(dateModified.timeIntervalSince1970)")
+        }
         return csvString
     }
 }

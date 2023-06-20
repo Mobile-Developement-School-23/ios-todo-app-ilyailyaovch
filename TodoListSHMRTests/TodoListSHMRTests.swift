@@ -9,28 +9,54 @@ import XCTest
 @testable import TodoListSHMR
 
 final class TodoListSHMRTests: XCTestCase {
-
-    override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+    
+    func testTodoItemInitWithAllAttributes(){
+        
+        let item: TodoItem = TodoItem(
+            id: "111111111122222",
+            text: "text",
+            importancy: .important,
+            deadline: Date(timeIntervalSince1970: 2024.0),
+            isCompleted: false,
+            dateCreated: Date(timeIntervalSince1970: 2023.0),
+            dateModified: Date(timeIntervalSince1970: 2023.0)
+        )
+        
+        let id = "111111111122222"
+        let text = "text"
+        let importancy = Importancy.important
+        let deadline = Date(timeIntervalSince1970: 2024.0)
+        let isCompleted = false
+        let dateCreated = Date(timeIntervalSince1970: 2023.0)
+        let dateModified = Date(timeIntervalSince1970: 2023.0)
+        
+        XCTAssertEqual(item.id, id)
+        XCTAssertEqual(item.text, text)
+        XCTAssertEqual(item.importancy, importancy)
+        XCTAssertEqual(item.deadline, deadline)
+        XCTAssertEqual(item.isCompleted, isCompleted)
+        XCTAssertEqual(item.dateCreated, dateCreated)
+        XCTAssertEqual(item.dateModified, dateModified)
     }
 
-    override func tearDownWithError() throws {
-        // Put teardown code here. This method is called after the invocation of each test method in the class.
+    func testTodoItemInitWithoutAllAttributes(){
+        
+        let item: TodoItem = TodoItem(
+            text: "Lol",
+            dateCreated: Date(timeIntervalSince1970: 2023.0)
+        )
+        
+        let text = "Lol"
+        let importancy = Importancy.normal
+        let isCompleted = false
+        let dateCreated = Date(timeIntervalSince1970: 2023.0)
+        
+        XCTAssertNotNil(item.id)
+        XCTAssertEqual(item.text, text)
+        XCTAssertEqual(item.importancy, importancy)
+        XCTAssertEqual(item.isCompleted, isCompleted)
+        XCTAssertEqual(item.dateCreated, dateCreated)
+        XCTAssertNil(item.deadline)
+        XCTAssertNil(item.dateModified)
     }
-
-    func testExample() throws {
-        // This is an example of a functional test case.
-        // Use XCTAssert and related functions to verify your tests produce the correct results.
-        // Any test you write for XCTest can be annotated as throws and async.
-        // Mark your test throws to produce an unexpected failure when your test encounters an uncaught error.
-        // Mark your test async to allow awaiting for asynchronous code to complete. Check the results with assertions afterwards.
-    }
-
-    func testPerformanceExample() throws {
-        // This is an example of a performance test case.
-        self.measure {
-            // Put the code you want to measure the time of here.
-        }
-    }
-
 }
