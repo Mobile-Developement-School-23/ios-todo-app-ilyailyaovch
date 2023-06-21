@@ -25,6 +25,9 @@ protocol TodoViewControllerProtocol {
     /// Importancy, Dealine,  Calendar
     func setupDetailsStack()
     
+    /// Plain divider
+    func setupDivider()
+    
     /// DeleteButton
     func setupDeleteButton()
     

@@ -21,9 +21,10 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     
     var textView = UITextView()
     var detailsStack = UIStackView()
-    let importancyView = ImportancyView()
-    //    var deadlineView =
-    //    var calendarView =
+    var divider = UIView()
+    var importancyView = ImportancyView()
+    var deadineView = DeadlineView()
+    var calendarView = CalendarView()
     var deleteButton = UIButton()
     
     // Inits
@@ -80,6 +81,7 @@ extension TodoViewController: TodoViewControllerProtocol {
         setupTextView()
         stackView.addArrangedSubview(textView)
         
+        setupDivider()
         setupDetailsStack()
         stackView.addArrangedSubview(detailsStack)
         
@@ -104,18 +106,33 @@ extension TodoViewController: TodoViewControllerProtocol {
         
     }
     
+    func setupDivider(){
+        let fill = UIView()
+        divider.addSubview(fill)
+        fill.translatesAutoresizingMaskIntoConstraints = false
+        fill.backgroundColor = Colors.supportSeparator.color
+        NSLayoutConstraint.activate([
+            divider.heightAnchor.constraint(equalToConstant: 0.5),
+            fill.topAnchor.constraint(equalTo: divider.topAnchor),
+            fill.leftAnchor.constraint(equalTo: divider.leftAnchor, constant: 16),
+            fill.rightAnchor.constraint(equalTo: divider.rightAnchor, constant: -16),
+            fill.heightAnchor.constraint(equalTo: divider.heightAnchor)
+        ])
+    }
+    
     func setupDetailsStack(){
         detailsStack.axis = .vertical
         detailsStack.alignment = .fill
         detailsStack.distribution = .equalSpacing
-        detailsStack.layer.cornerRadius = 16
+        detailsStack.layer.cornerRadius = constants.cornerRadius
         
         detailsStack.backgroundColor = Colors.backSecondary.color
         
         detailsStack.addArrangedSubview(importancyView)
-//        detailsStack.addArrangedSubview()
-//        detailsStack.addArrangedSubview()
-//        detailsStack.addArrangedSubview()
+        detailsStack.addArrangedSubview(divider)
+        detailsStack.addArrangedSubview(deadineView)
+        // Divider
+        detailsStack.addArrangedSubview(calendarView)
         
     }
     
@@ -150,6 +167,7 @@ extension TodoViewController: TodoViewControllerProtocol {
             textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
             importancyView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
+            deadineView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
             
             deleteButton.heightAnchor.constraint(equalToConstant: 56)
         ])
@@ -169,5 +187,9 @@ extension TodoViewController {
     
     @objc func deleteTodo() {
         viewModel.writeHello()
+    }
+    
+    @objc func datePickerChanged(_ sender: UISegmentedControl) {
+        print("Item Changed")
     }
 }
