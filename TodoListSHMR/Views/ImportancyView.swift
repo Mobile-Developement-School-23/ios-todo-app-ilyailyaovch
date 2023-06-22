@@ -9,7 +9,24 @@ import UIKit
 
 class ImportancyView: UIView {
     
-    //Надо отслеживать данные
+    var valueDidChange: ((Importancy) -> Void)?
+    
+    var importancy: Importancy? {
+        didSet {
+            guard
+                let importancy = importancy
+            else { return }
+
+            switch importancy {
+            case .low:
+                segControl.selectedSegmentIndex = 0
+            case .normal:
+                segControl.selectedSegmentIndex = 1
+            case .important:
+                segControl.selectedSegmentIndex = 2
+            }
+        }
+    }
     
     let titleLabel = UILabel()
     let segControl = UISegmentedControl()
@@ -65,6 +82,15 @@ class ImportancyView: UIView {
 extension ImportancyView {
     
     @objc func segControlValueChanged(_ sender: UISegmentedControl) {
-        print("Item Changed")
+        switch sender.selectedSegmentIndex {
+        case 0:
+            valueDidChange?(Importancy.low)
+        case 1:
+            valueDidChange?(Importancy.normal)
+        case 2:
+            valueDidChange?(Importancy.important)
+        default:
+            valueDidChange?(Importancy.normal)
+        }
     }
 }

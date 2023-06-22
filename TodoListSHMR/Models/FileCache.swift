@@ -33,7 +33,7 @@ class FileCache {
     private (set) var todoItems: [TodoItem] = []
     
     // Добавление новой задачи
-    func add(item: TodoItem) throws {
+    func add(item: TodoItem) {
         if let index = todoItems.firstIndex(where: {$0.id == item.id}){
             todoItems[index] = item
         } else {

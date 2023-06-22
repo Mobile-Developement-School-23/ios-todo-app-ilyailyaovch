@@ -11,10 +11,12 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
 
     // Properties
 
+    // Потом изменить
+    // для конкретной модели
     var viewModel: TodoViewModel = TodoViewModel()
     
-    var cancelButton = UIButton(type: .system)
-    var saveButton = UIButton(type: .system)
+    var cancelButton = UIButton(configuration: .plain(), primaryAction: nil)
+    var saveButton = UIButton(configuration: .plain(), primaryAction: nil)
     
     var scrollView = UIScrollView()
     var stackView = UIStackView()
@@ -23,9 +25,11 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     var detailsStack = UIStackView()
     var divider = UIView()
     var importancyView = ImportancyView()
-    var deadineView = DeadlineView()
+    var deadlineView = DeadlineView()
+    var calendarDivider = UIView()
     var calendarView = CalendarView()
     var deleteButton = UIButton()
+    
     
     // Inits
     
@@ -37,159 +41,122 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
-extension TodoViewController: TodoViewControllerProtocol {
+// MARK: - UITextViewDelegate
 
-    // Override
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        view.backgroundColor = Colors.backPrimary.color
-
-        setupNavigationBar()
-        setupBody()
-        setupBodyConstrains()
-        
-    }
-
-    // Setup elements of NavigationBar
-
-    func setupNavigationBar() {
-        cancelButton.setTitle("Отменить", for: .normal)
-        cancelButton.addTarget(self, action: #selector(tapCancel), for: .touchUpInside)
-        
-        saveButton.setTitle("Сохранить", for: .normal)
-        saveButton.addTarget(self, action: #selector(tapSave), for: .touchUpInside)
-        saveButton.isEnabled = false
-        
-        title = "Дело"
-        navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
-        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
+extension TodoViewController: UITextViewDelegate {
+    
+    func textViewDidChange(_ textView: UITextView) {
+        activateButtons()
     }
     
-    //  Setup elements of TodoItemsViewController
-    
-    func setupBody(){
-        
-        view.addSubview(scrollView)
-        
-        setupStackView()
-        scrollView.addSubview(stackView)
-        
-        setupTextView()
-        stackView.addArrangedSubview(textView)
-        
-        setupDivider()
-        setupDetailsStack()
-        stackView.addArrangedSubview(detailsStack)
-        
-        setupDeleteButton()
-        stackView.addArrangedSubview(deleteButton)
+    func textViewDidBeginEditing(_ textView: UITextView) {
+        if textView.textColor == UIColor.lightGray {
+            textView.text = nil
+            textView.textColor = UIColor.black
+        }
     }
     
-    func setupStackView(){
-        stackView.axis = .vertical
-        stackView.distribution = .equalSpacing
-        stackView.spacing = 16.0
-        stackView.alignment = .fill
-    }
-    
-    func setupTextView(){
-        textView.layer.cornerRadius = constants.cornerRadius
-        textView.backgroundColor = Colors.backSecondary.color
-        textView.font = UIFont.systemFont(ofSize: constants.bodySize)
-        textView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
-        textView.isScrollEnabled = false
-        textView.keyboardDismissMode = .interactive
-        
-    }
-    
-    func setupDivider(){
-        let fill = UIView()
-        divider.addSubview(fill)
-        fill.translatesAutoresizingMaskIntoConstraints = false
-        fill.backgroundColor = Colors.supportSeparator.color
-        NSLayoutConstraint.activate([
-            divider.heightAnchor.constraint(equalToConstant: 0.5),
-            fill.topAnchor.constraint(equalTo: divider.topAnchor),
-            fill.leftAnchor.constraint(equalTo: divider.leftAnchor, constant: 16),
-            fill.rightAnchor.constraint(equalTo: divider.rightAnchor, constant: -16),
-            fill.heightAnchor.constraint(equalTo: divider.heightAnchor)
-        ])
-    }
-    
-    func setupDetailsStack(){
-        detailsStack.axis = .vertical
-        detailsStack.alignment = .fill
-        detailsStack.distribution = .equalSpacing
-        detailsStack.layer.cornerRadius = constants.cornerRadius
-        
-        detailsStack.backgroundColor = Colors.backSecondary.color
-        
-        detailsStack.addArrangedSubview(importancyView)
-        detailsStack.addArrangedSubview(divider)
-        detailsStack.addArrangedSubview(deadineView)
-        // Divider
-        detailsStack.addArrangedSubview(calendarView)
-        
-    }
-    
-    func setupDeleteButton(){
-        deleteButton.setTitle("Удалить", for: .normal)
-        deleteButton.setTitleColor(Colors.red.color, for: .normal)
-        deleteButton.titleLabel?.font = UIFont.systemFont(ofSize: constants.bodySize)
-        deleteButton.backgroundColor = Colors.backSecondary.color
-        deleteButton.configuration?.contentInsets = .init(top: 17, leading: 16, bottom: 17, trailing: 16)
-        deleteButton.layer.cornerRadius = constants.cornerRadius        
-        deleteButton.addTarget(self, action: #selector(deleteTodo), for: .touchUpInside)
-    }
-    
-    // Setup constrains of TodoItemsViewController
-    
-    func setupBodyConstrains(){
-        scrollView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        
-        NSLayoutConstraint.activate([
-            scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
-            scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
-            scrollView.topAnchor.constraint(equalTo: view.topAnchor),
-            scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-
-            stackView.leadingAnchor.constraint(equalTo: scrollView.leadingAnchor),
-            stackView.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor),
-            stackView.topAnchor.constraint(equalTo: scrollView.topAnchor),
-            stackView.bottomAnchor.constraint(equalTo: scrollView.bottomAnchor),
-            stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
-
-            textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120),
-            
-            importancyView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
-            deadineView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
-            
-            deleteButton.heightAnchor.constraint(equalToConstant: 56)
-        ])
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.textView.resignFirstResponder()
     }
 }
 
-// @objc
+// MARK: - Visual changes
+
+extension TodoViewController {
+
+    func showCalendar(with date: Date) {
+        calendarView.datePicker.setDate(date, animated: false)
+        calendarView.datePicker.layer.opacity = 1
+        calendarDivider.layer.opacity = 1
+        UIView.animate(withDuration: 0.25) {
+            self.calendarView.datePicker.isHidden = false
+            self.calendarView.isHidden = false
+            self.calendarDivider.isHidden = false
+        }
+    }
+
+    func dismissCalendar() {
+        calendarView.datePicker.layer.opacity = 0
+        calendarDivider.layer.opacity = 0
+        UIView.animate(withDuration: 0.25) {
+            self.calendarView.datePicker.isHidden = true
+            self.calendarView.isHidden = true
+            self.calendarDivider.isHidden = true
+        }
+    }
+    
+    
+    func importancyDidChange(importancy: Importancy){
+        activateButtons()
+    }
+    
+    func deadlineDidChange(isEnabled: Bool){
+        let defaultDeadline = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+        deadlineView.deadline = isEnabled ? deadlineView.deadline ?? defaultDeadline : nil
+        isEnabled ? showCalendar(with: deadlineView.deadline ?? defaultDeadline) : dismissCalendar()
+        activateButtons()
+    }
+    
+    func deadlineSubTextDidClick(){
+        if deadlineView.deadline != nil{
+            let defaultDeadline = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
+            showCalendar(with: deadlineView.deadline ?? defaultDeadline)
+        }
+    }
+    
+    func deadlineDateDidChange(){
+        deadlineView.deadline = calendarView.datePicker.date
+        dismissCalendar()
+    }
+
+    
+    func activateButtons(){
+        if !textView.text.isEmpty && textView.text != constants.placeholder{
+            saveButton.isEnabled = true
+            deleteButton.isEnabled = true
+            deleteButton.setTitleColor(Colors.red.color, for: .normal)
+        }
+    }
+
+}
+
+// MARK: - @objc
 extension TodoViewController {
     
-    @objc func tapCancel() {
+    @objc func cancelButtonTap() {
         dismiss(animated: true)
     }
 
-    @objc func tapSave() {
-        viewModel.writeHello()
+    @objc func saveButtonTap() {
+        viewModel.saveItem(
+            item: TodoItem(
+                text: textView.text,
+                importancy: importancyView.importancy ?? .normal,
+                deadline: deadlineView.deadline ?? nil)
+            )
     }
     
-    @objc func deleteTodo() {
-        viewModel.writeHello()
+    @objc func deleteButtonTap() {
+        if saveButton.isEnabled{
+            viewModel.deleteItem(id: viewModel.state.id)
+        } else {
+            dismiss(animated: true)
+        }
     }
     
-    @objc func datePickerChanged(_ sender: UISegmentedControl) {
-        print("Item Changed")
+    @objc func keyboardWillShow(sender: NSNotification) {
+        guard let userInfo = sender.userInfo,
+              let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }
+        let keyboardHeight = keyboardFrame.cgRectValue.height
+        scrollView.contentInset.bottom = keyboardHeight
+    }
+
+    @objc func keyboardWillHide(notification: NSNotification) {
+        scrollView.contentInset.bottom = 0
     }
 }
+
+

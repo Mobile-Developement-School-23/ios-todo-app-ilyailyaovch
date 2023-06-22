@@ -9,7 +9,32 @@ import UIKit
 
 class DeadlineView: UIView {
     
-    //Надо отслеживать данные
+    var valueDidChange: ((Bool) -> Void)?
+    
+    var deadlineDidClick: (() -> Void)?
+    
+    var deadline: Date? {
+        didSet {
+            if let deadline = deadline {
+                let dateFormatter = DateFormatter()
+                dateFormatter.dateFormat = "dd MMM YYYY"
+                subTitleLabel.text = dateFormatter.string(from: deadline)
+
+                UIView.animate(withDuration: 0.25, animations: { [weak self] in
+                    self?.subTitleLabel.isHidden = false
+                    self?.subTitleLabel.layer.opacity = 1
+                })
+                switchButton.setOn(true, animated: false)
+            }else {
+                UIView.animate(withDuration: 0.25, animations: { [weak self] in
+                    self?.subTitleLabel.text = ""
+                    self?.subTitleLabel.isHidden = true
+                    self?.subTitleLabel.layer.opacity = 0
+                })
+                return
+            }
+        }
+    }
     
     var titleLabel = UILabel()
     var subTitleLabel = UILabel()
@@ -21,6 +46,7 @@ class DeadlineView: UIView {
         setupViews()
         addSubview(stackView)
         addSubview(switchButton)
+        subTitleLabelTapRecogniser()
         setupConstraints()
     }
     
@@ -33,7 +59,6 @@ class DeadlineView: UIView {
         titleLabel.font = UIFont.systemFont(ofSize: constants.bodySize)
         titleLabel.textColor = Colors.labelPrimary.color
         
-        subTitleLabel.text = "дата"
         subTitleLabel.font = UIFont.systemFont(ofSize: constants.footnoteSize)
         subTitleLabel.textColor = Colors.blue.color
         
@@ -44,7 +69,7 @@ class DeadlineView: UIView {
         stackView.addArrangedSubview(titleLabel)
         stackView.addArrangedSubview(subTitleLabel)
         
-//        switchButton.button.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
+        switchButton.addTarget(self, action: #selector(valueChanged), for: .valueChanged)
         switchButton.backgroundColor = Colors.supportOverlay.color
         switchButton.layer.cornerRadius = constants.cornerRadius
     }
@@ -64,12 +89,22 @@ class DeadlineView: UIView {
             switchButton.centerYAnchor.constraint(equalTo: centerYAnchor)
         ])
     }
+    
+    func subTitleLabelTapRecogniser(){
+        let tap = UITapGestureRecognizer(target: self, action: #selector(clickSubTitle))
+        stackView.isUserInteractionEnabled = true
+        stackView.addGestureRecognizer(tap)
+    }
 }
 
 extension DeadlineView {
 
     @objc func valueChanged(switcher: UISwitch) {
-    //        valueDidChange?(switcher.isOn)
+        valueDidChange?(switcher.isOn)
+    }
+    
+    @objc func clickSubTitle(switcher: UISwitch) {
+        deadlineDidClick?()
     }
     
 }

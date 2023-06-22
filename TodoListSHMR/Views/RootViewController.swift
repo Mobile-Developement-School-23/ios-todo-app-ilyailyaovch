@@ -7,6 +7,8 @@
 
 import UIKit
 
+var rootViewModel: RootViewModel = RootViewModel()
+
 class RootViewController: UIViewController {
     
     let welcomeButton = UIButton()
@@ -29,18 +31,14 @@ class RootViewController: UIViewController {
         
         //  add button
         view.addSubview(welcomeButton)
-        
         // style button
         welcomeButton.configuration = .filled()
         welcomeButton.configuration?.baseBackgroundColor = Colors.green.color
         welcomeButton.configuration?.title = "Отведу к TODO листу"
-        
         // activate the button
         welcomeButton.addTarget(self, action: #selector(TappedButton), for: .touchUpInside)
-        
         // for every UI element
         welcomeButton.translatesAutoresizingMaskIntoConstraints = false
-        
         //  group of constrains activated together
         NSLayoutConstraint.activate([
             welcomeButton.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -51,7 +49,8 @@ class RootViewController: UIViewController {
     }
     
     @objc func TappedButton(){
-        
+        // Потом изменить
+        // У Вью контроллера может быть другая модель
         let newNavViewController = UINavigationController(rootViewController: TodoViewController())
         present(newNavViewController, animated: true)
         

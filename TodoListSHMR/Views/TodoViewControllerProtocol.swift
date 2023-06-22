@@ -7,10 +7,13 @@
 
 import UIKit
 
-protocol TodoViewControllerProtocol {
+protocol TodoViewControllerProtocol: AnyObject {
 
     /// ViewDidLoad
     func viewDidLoad()
+    
+    /// Scroll View
+    func setupScrollView()
     
     /// CancelButton, SaveButton, title
     func setupNavigationBar()
@@ -25,8 +28,8 @@ protocol TodoViewControllerProtocol {
     /// Importancy, Dealine,  Calendar
     func setupDetailsStack()
     
-    /// Plain divider
-    func setupDivider()
+    /// Plain divider, CalendarDivider
+    func setupDivider(divider: UIView)
     
     /// DeleteButton
     func setupDeleteButton()

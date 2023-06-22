@@ -9,9 +9,9 @@ import UIKit
 
 class CalendarView: UIView {
     
-    //Надо отслеживать данные
-    
     var datePicker = UIDatePicker()
+    
+    var valueDidChange: ((Date) -> Void)?
     
     override init(frame: CGRect) {
         super.init(frame: frame)
@@ -44,7 +44,6 @@ class CalendarView: UIView {
 extension CalendarView {
     
     @objc func datePickerChanged(_ sender: UISegmentedControl) {
-        print("Item Changed")
+        valueDidChange?(datePicker.date)
     }
-
 }
