@@ -55,6 +55,4 @@ class RootViewController: UIViewController {
         present(newNavViewController, animated: true)
         
     }
-       
 }
-

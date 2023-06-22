@@ -55,8 +55,8 @@ extension TodoViewController: UITextViewDelegate {
     
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
+            textView.textColor = Colors.labelPrimary.color
             textView.text = nil
-            textView.textColor = UIColor.black
         }
     }
     
@@ -90,7 +90,6 @@ extension TodoViewController {
         }
     }
     
-    
     func importancyDidChange(importancy: Importancy){
         activateButtons()
     }
@@ -114,7 +113,6 @@ extension TodoViewController {
         dismissCalendar()
     }
 
-    
     func activateButtons(){
         if !textView.text.isEmpty && textView.text != constants.placeholder{
             saveButton.isEnabled = true
@@ -122,7 +120,6 @@ extension TodoViewController {
             deleteButton.setTitleColor(Colors.red.color, for: .normal)
         }
     }
-
 }
 
 // MARK: - @objc
@@ -159,5 +156,3 @@ extension TodoViewController {
         scrollView.contentInset.bottom = 0
     }
 }
-
-
