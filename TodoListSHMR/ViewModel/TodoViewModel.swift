@@ -36,7 +36,7 @@ extension TodoViewModel: TodoViewModelProtocol {
         do{
             try rootViewModel.fileCache.remove(id: id)
         } catch {
-            print("Error: deleteItem")
+            viewController?.dismiss(animated: true)
         }
     }
     

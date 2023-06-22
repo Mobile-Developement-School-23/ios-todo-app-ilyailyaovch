@@ -7,6 +7,8 @@
 
 import UIKit
 
+// MARK: - TodoViewController
+
 final class TodoViewController: UIViewController, UIScrollViewDelegate {
 
     // Properties
@@ -131,12 +133,11 @@ extension TodoViewController {
     }
 
     @objc func saveButtonTap() {
-        viewModel.saveItem(
-            item: TodoItem(
-                text: textView.text,
-                importancy: importancyView.importancy ?? .normal,
-                deadline: deadlineView.deadline ?? nil)
-            )
+        viewModel.saveItem(item: TodoItem(
+            text: textView.text,
+            importancy: importancyView.importancy ?? .normal,
+            deadline: deadlineView.deadline ?? nil)
+        )
     }
     
     @objc func deleteButtonTap() {

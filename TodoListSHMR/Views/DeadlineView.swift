@@ -106,8 +106,4 @@ extension DeadlineView {
     @objc func clickSubTitle(switcher: UISwitch) {
         deadlineDidClick?()
     }
-    
 }
-
-
-

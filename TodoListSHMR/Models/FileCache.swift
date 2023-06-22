@@ -27,6 +27,8 @@ enum FileCacheErrors: Error {
     case CSVError
 }
 
+// MARK: - FileCache Json
+
 class FileCache {
     
     // Коллекция TodoItems
@@ -89,8 +91,9 @@ class FileCache {
 
         todoItems = jsonArray.compactMap { TodoItem.parse(json: $0)}
         }
-    
 }
+
+// MARK: - FileCache Csv
 
 extension FileCache {
     

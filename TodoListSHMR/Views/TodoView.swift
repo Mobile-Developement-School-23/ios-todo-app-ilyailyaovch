@@ -9,7 +9,7 @@ import UIKit
 
 extension TodoViewController: TodoViewControllerProtocol{
     
-    // MARK: Override viewDidLoad
+    // MARK: - Override viewDidLoad
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,7 +23,7 @@ extension TodoViewController: TodoViewControllerProtocol{
         valuesDidChange()
     }
     
-    // MARK: Keyboard observer
+    // MARK: - Keyboard observer
     
     func setupKeyboardObserver() {
 
@@ -37,7 +37,7 @@ extension TodoViewController: TodoViewControllerProtocol{
         )
     }
     
-    // MARK: Values Did Change
+    // MARK: - Values Did Change
 
     func valuesDidChange(){
         
@@ -58,7 +58,7 @@ extension TodoViewController: TodoViewControllerProtocol{
         }
     }
     
-    // MARK: Setup NavigationBar
+    // MARK: - Setup NavigationBar
 
     func setupNavigationBar() {
         cancelButton.setTitle("Отменить", for: .normal)
@@ -73,7 +73,7 @@ extension TodoViewController: TodoViewControllerProtocol{
         saveButton.isEnabled = false
     }
     
-    //  MARK: Setup TodoView
+    //  MARK: - Setup TodoView
     
     func setupBody(){
         
@@ -160,7 +160,7 @@ extension TodoViewController: TodoViewControllerProtocol{
         deleteButton.addTarget(self, action: #selector(deleteButtonTap), for: .touchUpInside)
     }
     
-    // MARK: Constrains of TodoItemsViewController
+    // MARK: - Constrains of TodoItemsViewController
     
     func setupBodyConstrains(){
         scrollView.translatesAutoresizingMaskIntoConstraints = false

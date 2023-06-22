@@ -33,6 +33,8 @@ private enum Keys {
     static let kDdateModified = "dateModified"
 }
 
+// MARK: - TodoItem
+
 struct TodoItem {
     
     let id: String
@@ -70,9 +72,11 @@ struct TodoItem {
 〉Обязательно использовать JSONSerialization (т.е. работу со словарем)
 */
 
+// MARK: - TodoItem Json
+
 extension TodoItem {
     
-    // Разбор json
+    /// Разбор json
     static func parse(json: Any) -> TodoItem?{
         guard let jsonObject = json as? [String: Any] else { return nil }
         guard
@@ -108,7 +112,7 @@ extension TodoItem {
         )
     }
     
-    // Формирования json
+    /// Формирования json
     var json: Any {
         var jsonDict: [String: Any] = [:]
         jsonDict[Keys.kId] = self.id
@@ -131,9 +135,11 @@ extension TodoItem {
 〉Сохранять deadline только если он задан
  */
 
+// MARK: - TodoItem Csv
+
 extension TodoItem {
  
-    // Разбор csv
+    /// Разбор csv
     static func parse(csv: String) -> TodoItem?{
         
         let csvArr : [String] = csv.components(separatedBy: ";")
@@ -180,7 +186,7 @@ extension TodoItem {
         )
     }
     
-    // Формирования csv
+    /// Формирования csv
     var csv: String {
         var csvString: String = ""
         csvString.append(self.id + ";")

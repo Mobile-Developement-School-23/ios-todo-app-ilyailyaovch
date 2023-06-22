@@ -9,10 +9,10 @@ import Foundation
 
 struct Constants{
     
-    // Corner radius
+    /// Corner radius
     let cornerRadius: CGFloat   = 16
     
-    // Placeholder for TextView
+    /// Placeholder for TextView
     let placeholder = "Что надо сделать?"
 
     /// 17
