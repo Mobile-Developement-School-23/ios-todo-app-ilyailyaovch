@@ -180,9 +180,8 @@ extension TodoViewController: TodoViewControllerProtocol{
 
             textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120),
             
-            importancyView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
-            deadlineView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
-            
+            importancyView.heightAnchor.constraint(greaterThanOrEqualToConstant: 56),
+            deadlineView.heightAnchor.constraint(greaterThanOrEqualToConstant: 56),
             deleteButton.heightAnchor.constraint(equalToConstant: 56)
         ])
     }

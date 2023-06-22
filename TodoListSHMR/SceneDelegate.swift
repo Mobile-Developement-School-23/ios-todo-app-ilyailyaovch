@@ -1,10 +1,3 @@
-//
-//  SceneDelegate.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 09.06.2023.
-//
-
 import UIKit
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {

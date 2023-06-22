@@ -7,6 +7,7 @@
 
 import UIKit
 
+/// Global variable which contains fileCache
 var rootViewModel: RootViewModel = RootViewModel()
 
 class RootViewController: UIViewController {
@@ -14,7 +15,6 @@ class RootViewController: UIViewController {
     let welcomeButton = UIButton()
 
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         
         setupView()

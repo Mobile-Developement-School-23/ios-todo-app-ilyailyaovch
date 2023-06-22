@@ -25,7 +25,7 @@ class DeadlineView: UIView {
                     self?.subTitleLabel.layer.opacity = 1
                 })
                 switchButton.setOn(true, animated: false)
-            }else {
+            } else {
                 UIView.animate(withDuration: 0.25, animations: { [weak self] in
                     self?.subTitleLabel.text = ""
                     self?.subTitleLabel.isHidden = true
@@ -61,6 +61,7 @@ class DeadlineView: UIView {
         
         subTitleLabel.font = UIFont.systemFont(ofSize: constants.footnoteSize)
         subTitleLabel.textColor = Colors.blue.color
+        subTitleLabel.isHidden = true
         
         stackView.axis = .vertical
         stackView.distribution = .fillEqually

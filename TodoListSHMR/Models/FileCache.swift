@@ -21,10 +21,7 @@ enum FileCacheErrors: Error {
     case incorrectJson
     case saveItemsError
     case wrongDirectory
-    case itemAlreadyExist
     case itemDoesntExist
-    case itemCannotChange
-    case CSVError
 }
 
 // MARK: - FileCache Json
