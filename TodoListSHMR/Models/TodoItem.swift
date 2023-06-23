@@ -23,23 +23,27 @@ enum Importancy: String {
     case low
 }
 
-private let kId = "id"
-private let kText = "text"
-private let kImportancy = "importancy"
-private let kDeadline = "deadline"
-private let kIsCompleted = "isCompleted"
-private let kDateCreated = "dateCreated"
-private let kDdateModified = "dateModified"
+private enum Keys {
+    static let kId = "id"
+    static let kText = "text"
+    static let kImportancy = "importancy"
+    static let kDeadline = "deadline"
+    static let kIsCompleted = "isCompleted"
+    static let kDateCreated = "dateCreated"
+    static let kDdateModified = "dateModified"
+}
+
+// MARK: - TodoItem
 
 struct TodoItem {
     
-    let id:             String
-    let text:           String
-    let importancy:     Importancy
-    let deadline:       Date?
-    let isCompleted:    Bool
-    let dateCreated:    Date
-    let dateModified:   Date?
+    let id: String
+    let text: String
+    let importancy: Importancy
+    let deadline: Date?
+    let isCompleted: Bool
+    let dateCreated: Date
+    let dateModified: Date?
     
     init(id: String = UUID().uuidString,
          text: String,
@@ -68,30 +72,32 @@ struct TodoItem {
 〉Обязательно использовать JSONSerialization (т.е. работу со словарем)
 */
 
+// MARK: - TodoItem Json
+
 extension TodoItem {
     
-    // Разбор json
+    /// Разбор json
     static func parse(json: Any) -> TodoItem?{
         guard let jsonObject = json as? [String: Any] else { return nil }
         guard
-            let id = jsonObject[kId] as? String,
-            let text = jsonObject[kText] as? String,
-            let dateCreated = (jsonObject[kDateCreated] as? Double)
+            let id = jsonObject[Keys.kId] as? String,
+            let text = jsonObject[Keys.kText] as? String,
+            let dateCreated = (jsonObject[Keys.kDateCreated] as? Double)
                 .flatMap ({ Date(timeIntervalSince1970: TimeInterval($0)) })
         else { return nil }
         
-        let importancy = (jsonObject[kImportancy] as? String)
+        let importancy = (jsonObject[Keys.kImportancy] as? String)
             .flatMap(Importancy.init(rawValue:)) ?? .normal
         
-        let isCompleted = (jsonObject[kIsCompleted] as? Bool) ?? false
+        let isCompleted = (jsonObject[Keys.kIsCompleted] as? Bool) ?? false
         
         var deadline: Date?
-        if let deadlineDouble = jsonObject[kDeadline] as? Double {
+        if let deadlineDouble = jsonObject[Keys.kDeadline] as? Double {
             deadline = Date(timeIntervalSince1970: deadlineDouble)
         }
         
         var dateModified: Date?
-        if let dateModifiedDouble = jsonObject[kDdateModified] as? Double {
+        if let dateModifiedDouble = jsonObject[Keys.kDdateModified] as? Double {
             dateModified = Date(timeIntervalSince1970: dateModifiedDouble)
         }
 
@@ -106,16 +112,16 @@ extension TodoItem {
         )
     }
     
-    // Формирования json
+    /// Формирования json
     var json: Any {
         var jsonDict: [String: Any] = [:]
-        jsonDict[kId] = self.id
-        jsonDict[kText] = self.text
-        if importancy != .normal { jsonDict[kImportancy] = importancy.rawValue }
-        if let deadline = self.deadline { jsonDict[kDeadline] = Int(deadline.timeIntervalSince1970)}
-        jsonDict[kIsCompleted] = self.isCompleted
-        jsonDict[kDateCreated] = Int(dateCreated.timeIntervalSince1970)
-        if let dateModified = self.dateModified { jsonDict[kDdateModified] = Int(dateModified.timeIntervalSince1970)}
+        jsonDict[Keys.kId] = self.id
+        jsonDict[Keys.kText] = self.text
+        if importancy != .normal { jsonDict[Keys.kImportancy] = importancy.rawValue }
+        if let deadline = self.deadline { jsonDict[Keys.kDeadline] = Int(deadline.timeIntervalSince1970)}
+        jsonDict[Keys.kIsCompleted] = self.isCompleted
+        jsonDict[Keys.kDateCreated] = Int(dateCreated.timeIntervalSince1970)
+        if let dateModified = self.dateModified { jsonDict[Keys.kDdateModified] = Int(dateModified.timeIntervalSince1970)}
         return jsonDict
     }
 }
@@ -129,18 +135,20 @@ extension TodoItem {
 〉Сохранять deadline только если он задан
  */
 
+// MARK: - TodoItem Csv
+
 extension TodoItem {
  
-    // Разбор csv
+    /// Разбор csv
     static func parse(csv: String) -> TodoItem?{
         
         let csvArr : [String] = csv.components(separatedBy: ";")
         
         let id = csvArr[0]
-        if id == "" { return nil }
+        if id.isEmpty { return nil }
         
         let text = csvArr[1]
-        if text == "" { return nil }
+        if text.isEmpty { return nil }
         
         let importancyString = csvArr[2]
         var importancy: Importancy = Importancy.normal
@@ -178,7 +186,7 @@ extension TodoItem {
         )
     }
     
-    // Формирования csv
+    /// Формирования csv
     var csv: String {
         var csvString: String = ""
         csvString.append(self.id + ";")
