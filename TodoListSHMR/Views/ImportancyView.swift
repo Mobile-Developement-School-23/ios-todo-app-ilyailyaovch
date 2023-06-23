@@ -85,10 +85,13 @@ extension ImportancyView {
         switch sender.selectedSegmentIndex {
         case 0:
             valueDidChange?(Importancy.low)
+            importancy = Importancy.low
         case 1:
             valueDidChange?(Importancy.normal)
+            importancy = Importancy.normal
         case 2:
             valueDidChange?(Importancy.important)
+            importancy = Importancy.important
         default:
             valueDidChange?(Importancy.normal)
         }

@@ -13,14 +13,23 @@ extension TodoViewController: TodoViewControllerProtocol{
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
         view.backgroundColor = Colors.backPrimary.color
-
+        
+        // setup UI
         setupNavigationBar()
         setupBody()
         setupBodyConstrains()
+        
+        // setup keyboard
         setupKeyboardObserver()
         
+        // check switches
         valuesDidChange()
+        
+        // Потом изменить Подавать № todoItem
+        // load data if exists
+        viewModel.loadData()
     }
     
     // MARK: - Keyboard observer
@@ -116,17 +125,17 @@ extension TodoViewController: TodoViewControllerProtocol{
         textView.keyboardDismissMode = .interactive
     }
     
-    func setupDivider(divider: UIView){
+    func setupDivider(with div: UIView){
         let fill = UIView()
-        divider.addSubview(fill)
+        div.addSubview(fill)
         fill.backgroundColor = Colors.supportSeparator.color
         fill.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            divider.heightAnchor.constraint(equalToConstant: 0.5),
-            fill.topAnchor.constraint(equalTo: divider.topAnchor),
-            fill.leftAnchor.constraint(equalTo: divider.leftAnchor, constant: 16),
-            fill.rightAnchor.constraint(equalTo: divider.rightAnchor, constant: -16),
-            fill.heightAnchor.constraint(equalTo: divider.heightAnchor)
+            div.heightAnchor.constraint(equalToConstant: 0.5),
+            fill.topAnchor.constraint(equalTo: div.topAnchor),
+            fill.leftAnchor.constraint(equalTo: div.leftAnchor, constant: 16),
+            fill.rightAnchor.constraint(equalTo: div.rightAnchor, constant: -16),
+            fill.heightAnchor.constraint(equalTo: div.heightAnchor)
         ])
     }
     
@@ -137,14 +146,17 @@ extension TodoViewController: TodoViewControllerProtocol{
         detailsStack.layer.cornerRadius = constants.cornerRadius
         detailsStack.backgroundColor = Colors.backSecondary.color
         
-        setupDivider(divider: divider)
-        setupDivider(divider: calendarDivider)
+        setupDivider(with: divider)
+        setupDivider(with: calendarDivider)
+//        setupDivider(with: colorDivider)
                 
         detailsStack.addArrangedSubview(importancyView)
         detailsStack.addArrangedSubview(divider)
         detailsStack.addArrangedSubview(deadlineView)
         detailsStack.addArrangedSubview(calendarDivider)
         detailsStack.addArrangedSubview(calendarView)
+//        detailsStack.addArrangedSubview(colorDivider)
+//        detailsStack.addArrangedSubview(colorPickerView)
         calendarDivider.isHidden = true
         calendarView.isHidden = true
     }

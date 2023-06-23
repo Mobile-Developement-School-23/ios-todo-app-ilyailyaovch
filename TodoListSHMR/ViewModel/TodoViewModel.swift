@@ -35,12 +35,31 @@ extension TodoViewModel: TodoViewModelProtocol {
     func deleteItem(id: String) {
         do{
             try rootViewModel.fileCache.remove(id: id)
+            try rootViewModel.fileCache.saveItems(to: rootViewModel.fileName)
         } catch {
             viewController?.dismiss(animated: true)
         }
     }
     
-    //Потом изменить
-    //Написать load непонятно откуда
+    // Потом изменить
+    // Подавать № todoItem
+    func loadData(){
+        do{
+            try rootViewModel.fileCache.loadItems(from: rootViewModel.fileName)
+            if !rootViewModel.fileCache.todoItems.isEmpty{
+                self.state = TodoItemState(item: rootViewModel.fileCache.todoItems[0])
+                setupView()
+            }
+        } catch {
+            print("Error: loadItem")
+        }
+    }
     
+    func setupView(){
+        viewController?.textView.text = state.text
+        viewController?.textView.textColor = Colors.labelPrimary.color
+        viewController?.importancyView.importancy = state.importancy
+        viewController?.deadlineView.deadline = state.deadline
+        viewController?.activateButtons()
+    }
 }

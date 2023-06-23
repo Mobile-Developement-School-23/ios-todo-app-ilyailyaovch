@@ -9,7 +9,7 @@ import Foundation
 
 struct TodoItemState {
     
-    let id: String
+    var id: String
     var text: String
     var importancy: Importancy
     var deadline: Date?

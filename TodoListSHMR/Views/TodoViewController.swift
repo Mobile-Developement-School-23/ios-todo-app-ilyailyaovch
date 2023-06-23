@@ -30,6 +30,8 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     var deadlineView = DeadlineView()
     var calendarDivider = UIView()
     var calendarView = CalendarView()
+//    var colorDivider = UIView()
+//    var colorPickerView = ColorPickerView()
     var deleteButton = UIButton()
     
     
@@ -131,6 +133,7 @@ extension TodoViewController {
 
     @objc func saveButtonTap() {
         viewModel.saveItem(item: TodoItem(
+            id: viewModel.state.id,
             text: textView.text,
             importancy: importancyView.importancy ?? .normal,
             deadline: deadlineView.deadline ?? nil)

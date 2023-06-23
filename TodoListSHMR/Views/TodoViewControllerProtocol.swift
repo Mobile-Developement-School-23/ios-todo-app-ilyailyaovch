@@ -29,11 +29,12 @@ protocol TodoViewControllerProtocol: AnyObject {
     func setupDetailsStack()
     
     /// Plain divider, CalendarDivider
-    func setupDivider(divider: UIView)
+    func setupDivider(with div: UIView)
     
     /// DeleteButton
     func setupDeleteButton()
     
     /// Constrains for TodoViewBody
     func setupBodyConstrains()
+
 }

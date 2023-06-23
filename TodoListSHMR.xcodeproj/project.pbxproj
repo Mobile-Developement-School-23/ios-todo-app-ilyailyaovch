@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		09837E122A4071850026EB9D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09837E112A4071850026EB9D /* Constants.swift */; };
 		09ACBA942A449963008C8876 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACBA932A449963008C8876 /* TodoView.swift */; };
+		09ACBA962A45045B008C8876 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACBA952A45045B008C8876 /* ColorPickerView.swift */; };
 		09CFD6192A3E10510037167C /* TodoListSHMRJsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */; };
 		09CFD61B2A3E10750037167C /* TodoListSHMRCsvTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD61A2A3E10750037167C /* TodoListSHMRCsvTest.swift */; };
 		09CFD6A32A4049940037167C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6A22A4049940037167C /* Colors.swift */; };
@@ -54,6 +55,7 @@
 /* Begin PBXFileReference section */
 		09837E112A4071850026EB9D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		09ACBA932A449963008C8876 /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
+		09ACBA952A45045B008C8876 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRJsonTest.swift; sourceTree = "<group>"; };
 		09CFD61A2A3E10750037167C /* TodoListSHMRCsvTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRCsvTest.swift; sourceTree = "<group>"; };
 		09CFD6A22A4049940037167C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
@@ -138,6 +140,7 @@
 				09F612462A42196000CEEE1B /* ImportancyView.swift */,
 				09F6124A2A42573500CEEE1B /* DeadlineView.swift */,
 				09F6124C2A42E8BC00CEEE1B /* CalendarView.swift */,
+				09ACBA952A45045B008C8876 /* ColorPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -347,6 +350,7 @@
 				09FFF57D2A33A75F00CFDCD1 /* TodoItem.swift in Sources */,
 				09F612452A41952F00CEEE1B /* TodoViewControllerProtocol.swift in Sources */,
 				09F6124B2A42573500CEEE1B /* DeadlineView.swift in Sources */,
+				09ACBA962A45045B008C8876 /* ColorPickerView.swift in Sources */,
 				09F612432A4192FC00CEEE1B /* TodoViewModelProtocol.swift in Sources */,
 				09CFD6A32A4049940037167C /* Colors.swift in Sources */,
 				09CFD6A62A404D650037167C /* TodoViewController.swift in Sources */,
