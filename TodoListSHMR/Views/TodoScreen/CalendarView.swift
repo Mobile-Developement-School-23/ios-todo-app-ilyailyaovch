@@ -1,10 +1,3 @@
-//
-//  CalendarView.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 21.06.2023.
-//
-
 import UIKit
 
 class CalendarView: UIView {

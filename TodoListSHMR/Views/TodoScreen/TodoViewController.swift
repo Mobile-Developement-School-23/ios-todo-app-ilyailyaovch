@@ -1,10 +1,3 @@
-//
-//  TodoViewController.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 19.06.2023.
-//
-
 import UIKit
 
 // MARK: - TodoViewController
@@ -125,6 +118,7 @@ extension TodoViewController {
 }
 
 // MARK: - @objc
+
 extension TodoViewController {
     
     @objc func cancelButtonTap() {

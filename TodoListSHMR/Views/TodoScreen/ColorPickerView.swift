@@ -1,16 +1,6 @@
-//
-//  ColorPickerView.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 23.06.2023.
-//
-
 import UIKit
 
 class ColorPickerView: UIView {
-    
-    private let colors:[UIColor] = [.red, .yellow, .orange,
-                                    .purple, .blue, .green]
     
     var selectedColor: UIColor?
 

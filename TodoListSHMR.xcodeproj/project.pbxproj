@@ -8,6 +8,9 @@
 
 /* Begin PBXBuildFile section */
 		09837E122A4071850026EB9D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09837E112A4071850026EB9D /* Constants.swift */; };
+		099AEDB52A4763FC007D57DB /* TableViewAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDB42A4763FC007D57DB /* TableViewAddCell.swift */; };
+		099AEDB72A476407007D57DB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDB62A476407007D57DB /* TableViewCell.swift */; };
+		099AEDB92A4764C1007D57DB /* TableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDB82A4764C1007D57DB /* TableViewHeaderCell.swift */; };
 		09ACBA942A449963008C8876 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACBA932A449963008C8876 /* TodoView.swift */; };
 		09ACBA962A45045B008C8876 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACBA952A45045B008C8876 /* ColorPickerView.swift */; };
 		09CFD6192A3E10510037167C /* TodoListSHMRJsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */; };
@@ -54,6 +57,9 @@
 
 /* Begin PBXFileReference section */
 		09837E112A4071850026EB9D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		099AEDB42A4763FC007D57DB /* TableViewAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAddCell.swift; sourceTree = "<group>"; };
+		099AEDB62A476407007D57DB /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
+		099AEDB82A4764C1007D57DB /* TableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderCell.swift; sourceTree = "<group>"; };
 		09ACBA932A449963008C8876 /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		09ACBA952A45045B008C8876 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRJsonTest.swift; sourceTree = "<group>"; };
@@ -110,6 +116,31 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		093DFDE92A45CC530095145A /* TodoScreen */ = {
+			isa = PBXGroup;
+			children = (
+				09ACBA932A449963008C8876 /* TodoView.swift */,
+				09CFD6A52A404D650037167C /* TodoViewController.swift */,
+				09F612442A41952F00CEEE1B /* TodoViewControllerProtocol.swift */,
+				09F612462A42196000CEEE1B /* ImportancyView.swift */,
+				09F6124A2A42573500CEEE1B /* DeadlineView.swift */,
+				09F6124C2A42E8BC00CEEE1B /* CalendarView.swift */,
+				09ACBA952A45045B008C8876 /* ColorPickerView.swift */,
+			);
+			path = TodoScreen;
+			sourceTree = "<group>";
+		};
+		093DFDEA2A45CC7B0095145A /* RootScreen */ = {
+			isa = PBXGroup;
+			children = (
+				09CFD6A72A4050160037167C /* RootViewController.swift */,
+				099AEDB62A476407007D57DB /* TableViewCell.swift */,
+				099AEDB42A4763FC007D57DB /* TableViewAddCell.swift */,
+				099AEDB82A4764C1007D57DB /* TableViewHeaderCell.swift */,
+			);
+			path = RootScreen;
+			sourceTree = "<group>";
+		};
 		09CFD6A12A4049290037167C /* Style */ = {
 			isa = PBXGroup;
 			children = (
@@ -133,14 +164,8 @@
 		09EABDCC2A38603200DDB531 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				09CFD6A72A4050160037167C /* RootViewController.swift */,
-				09ACBA932A449963008C8876 /* TodoView.swift */,
-				09CFD6A52A404D650037167C /* TodoViewController.swift */,
-				09F612442A41952F00CEEE1B /* TodoViewControllerProtocol.swift */,
-				09F612462A42196000CEEE1B /* ImportancyView.swift */,
-				09F6124A2A42573500CEEE1B /* DeadlineView.swift */,
-				09F6124C2A42E8BC00CEEE1B /* CalendarView.swift */,
-				09ACBA952A45045B008C8876 /* ColorPickerView.swift */,
+				093DFDEA2A45CC7B0095145A /* RootScreen */,
+				093DFDE92A45CC530095145A /* TodoScreen */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -341,6 +366,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				09F612492A4243C400CEEE1B /* Icons.swift in Sources */,
+				099AEDB72A476407007D57DB /* TableViewCell.swift in Sources */,
 				09F612412A40F42A00CEEE1B /* RootViewModel.swift in Sources */,
 				09F6124F2A4424B600CEEE1B /* TodoItemState.swift in Sources */,
 				09F6124D2A42E8BC00CEEE1B /* CalendarView.swift in Sources */,
@@ -351,11 +377,13 @@
 				09F612452A41952F00CEEE1B /* TodoViewControllerProtocol.swift in Sources */,
 				09F6124B2A42573500CEEE1B /* DeadlineView.swift in Sources */,
 				09ACBA962A45045B008C8876 /* ColorPickerView.swift in Sources */,
+				099AEDB92A4764C1007D57DB /* TableViewHeaderCell.swift in Sources */,
 				09F612432A4192FC00CEEE1B /* TodoViewModelProtocol.swift in Sources */,
 				09CFD6A32A4049940037167C /* Colors.swift in Sources */,
 				09CFD6A62A404D650037167C /* TodoViewController.swift in Sources */,
 				09FFF5992A34F91900CFDCD1 /* FileCache.swift in Sources */,
 				09FFF5472A33A4BB00CFDCD1 /* AppDelegate.swift in Sources */,
+				099AEDB52A4763FC007D57DB /* TableViewAddCell.swift in Sources */,
 				09F612472A42196100CEEE1B /* ImportancyView.swift in Sources */,
 				09CFD6A82A4050160037167C /* RootViewController.swift in Sources */,
 				09FFF5492A33A4BB00CFDCD1 /* SceneDelegate.swift in Sources */,
@@ -535,6 +563,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -561,6 +590,7 @@
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = "UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight UIInterfaceOrientationPortrait";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.4;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

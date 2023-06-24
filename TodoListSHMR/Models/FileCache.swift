@@ -1,10 +1,3 @@
-//
-//  FileCache.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 10.06.2023.
-//
-
 import Foundation
 
 /*  FileCache
