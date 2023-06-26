@@ -7,6 +7,7 @@ final class TodoViewModel {
     var item: TodoItem?
     var state: TodoItemState
     
+    // Потом изменить 1111111111111111111111
     init() {
         self.state = TodoItemState(item: TodoItem(text: ""))
     }

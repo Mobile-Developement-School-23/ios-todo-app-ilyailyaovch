@@ -25,7 +25,7 @@ class ColorPickerView: UIView {
     }
     
     func setupView(){
-        titleLabel.text = "Цвет "
+        titleLabel.text = "Цвет"
         titleLabel.font = UIFont.systemFont(ofSize: constants.bodySize)
         titleLabel.textColor = Colors.labelPrimary.color
         

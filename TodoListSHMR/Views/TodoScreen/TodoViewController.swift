@@ -4,8 +4,6 @@ import UIKit
 
 final class TodoViewController: UIViewController, UIScrollViewDelegate {
 
-    // Properties
-
     // Потом изменить
     // для конкретной модели
     var viewModel: TodoViewModel = TodoViewModel()
@@ -28,7 +26,7 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     var deleteButton = UIButton()
     
     
-    // Inits
+    // MARK: - Inits
     
     init(){
         super.init(nibName: nil, bundle: nil)
@@ -37,6 +35,27 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Override
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // setup UI
+        setupNavigationBar()
+        setupBody()
+        setupBodyConstrains()
+        
+        // setup keyboard
+        setupKeyboardObserver()
+        
+        // check switches
+        valuesDidChange()
+        
+        // Потом изменить Подавать № todoItem
+        // load data if exists
+        viewModel.loadData()
     }
 }
 
