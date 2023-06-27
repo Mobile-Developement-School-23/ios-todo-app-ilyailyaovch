@@ -12,7 +12,7 @@ extension RootViewController: RootViewControllerProtocol{
     func setupLayout(){
         view.backgroundColor = Colors.backPrimary.color
         view.addSubview(tableView)
-        view.addSubview(buttonView)
+        view.addSubview(addButtonView)
     }
     
     func setupTableView(){
@@ -25,19 +25,19 @@ extension RootViewController: RootViewControllerProtocol{
     }
     
     func setupButton(){
-        buttonView.addTarget(self, action: #selector(AddCellTapped), for: .touchUpInside)
-        buttonView.setImage(Icon.PlusButton.image, for: .normal)
-        buttonView.layer.shadowColor = UIColor.blue.cgColor
-        buttonView.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
-        buttonView.layer.shadowRadius = 5.0
-        buttonView.layer.shadowOpacity = 0.3
+        addButtonView.addTarget(self, action: #selector(AddCellTapped), for: .touchUpInside)
+        addButtonView.setImage(Icon.PlusButton.image, for: .normal)
+        addButtonView.layer.shadowColor = UIColor.blue.cgColor
+        addButtonView.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+        addButtonView.layer.shadowRadius = 5.0
+        addButtonView.layer.shadowOpacity = 0.3
     }
     
     // MARK: - Constrains of RootViewController
     
     func setupConstraints(){
         tableView.translatesAutoresizingMaskIntoConstraints = false
-        buttonView.translatesAutoresizingMaskIntoConstraints = false
+        addButtonView.translatesAutoresizingMaskIntoConstraints = false
         
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
@@ -45,10 +45,10 @@ extension RootViewController: RootViewControllerProtocol{
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 
-            buttonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            buttonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54),
-            buttonView.widthAnchor.constraint(equalToConstant: 44),
-            buttonView.heightAnchor.constraint(equalToConstant: 44)
+            addButtonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54),
+            addButtonView.widthAnchor.constraint(equalToConstant: 44),
+            addButtonView.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
     

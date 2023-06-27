@@ -2,15 +2,15 @@ import UIKit
 
 final class TableViewCell: UITableViewCell {
 
-    var CellTapped: (() -> Void)?
+    var circleStatViewTapped: (() -> Void)?
 
     static let identifier: String = "TableViewCell"
 
     let textView = UILabel()
     // deadlineView?
     let stackView = UIStackView()
-    //circleStat
-    //importancyStat
+    //circleStatView
+    //importancyStatView
     let shevronView = UIImageView(image: Icon.Shevron.image)
     
     // MARK: - Override init

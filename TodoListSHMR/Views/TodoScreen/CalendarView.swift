@@ -21,6 +21,7 @@ class CalendarView: UIView {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
         datePicker.locale = Locale.autoupdatingCurrent
+        datePicker.minimumDate = .now
         datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
     }
     

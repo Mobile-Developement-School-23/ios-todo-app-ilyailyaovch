@@ -29,7 +29,7 @@ class FileCache {
         if let index = todoItems.firstIndex(where: {$0.id == item.id}){
             todoItems[index] = item
         } else {
-            todoItems.append(item)
+            todoItems.insert(item, at: 0)
         }
     }
     

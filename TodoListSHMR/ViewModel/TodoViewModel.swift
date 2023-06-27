@@ -15,24 +15,13 @@ final class TodoViewModel {
 extension TodoViewModel: TodoViewModelProtocol {
     
     func saveItem(item: TodoItem){
-        do{
-            rootViewModel.fileCache.add(item: item)
-            try rootViewModel.fileCache.saveItems(to: rootViewModel.fileName)
-            viewController?.dismiss(animated: true)
-            rootViewModel.viewController?.updateData()
-        } catch {
-            print("Error: saveItem")
-        }
+        rootViewModel.saveToDo(item: item)
+        viewController?.dismiss(animated: true)
     }
 
     func deleteItem(id: String) {
-        do{
-            try rootViewModel.fileCache.remove(id: id)
-            try rootViewModel.fileCache.saveItems(to: rootViewModel.fileName)
-            rootViewModel.viewController?.updateData()
-        } catch {
-            viewController?.dismiss(animated: true)
-        }
+        rootViewModel.deleteToDo(id: id)
+        viewController?.dismiss(animated: true)
     }
     
     func loadData(){
