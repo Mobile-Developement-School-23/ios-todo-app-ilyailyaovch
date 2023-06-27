@@ -4,6 +4,7 @@ final class RootViewModel: UIViewController {
     
     var fileName = "TodoCache"
     var fileCache = FileCache()
+    weak var viewController: RootViewController?
 }
 
 extension RootViewModel: RootViewModelProtocol {
@@ -19,12 +20,8 @@ extension RootViewModel: RootViewModelProtocol {
     
     // Open todoItem
     func openToDo(with item: TodoItem? = nil){
-        if item == nil {
-            // новый
-            let newNavViewController = UINavigationController(rootViewController: TodoViewController())
-            present(newNavViewController, animated: true)
-        } else {
-            // существующий
-        }
+        let newItem = item ?? TodoItem(text: "")
+        let newNavViewController = UINavigationController(rootViewController: TodoViewController(with: newItem))
+        viewController?.present(newNavViewController, animated: true)
     }
 }

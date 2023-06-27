@@ -6,8 +6,10 @@ final class TableViewAddCell: UITableViewCell, UITextFieldDelegate {
 
     static let identifier: String = "TableViewAddCell"
 
-    let textField = UILabel()
+    let textView = UILabel()
     let imagePlus = UIImage(systemName: "plus.circle.fill")
+    
+    // MARK: - Override init
 
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
@@ -21,25 +23,31 @@ final class TableViewAddCell: UITableViewCell, UITextFieldDelegate {
         fatalError("init(coder:) has not been implemented")
     }
     
-    func setupText(){
-        textField.text = "Новое"
-        textField.textColor = Colors.labelTertiary.color
-    }
-
+    // MARK: - setupViews
+    
     func setupViews() {
-        contentView.backgroundColor = Colors.white.color
-        contentView.addSubview(textField)
+        contentView.backgroundColor = Colors.backSecondary.color
+        contentView.addSubview(textView)
     }
+    
+    func setupText(){
+        textView.text = "Новое"
+        textView.textColor = Colors.labelTertiary.color
+    }
+    
+    // MARK: - setupConstraints
 
     func setupConstraints() {
-        textField.translatesAutoresizingMaskIntoConstraints = false
+        textView.translatesAutoresizingMaskIntoConstraints = false
         NSLayoutConstraint.activate([
-            textField.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
-            textField.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
-            textField.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16 + 24 + 12),
-            textField.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
+            textView.topAnchor.constraint(equalTo: contentView.topAnchor, constant: 16),
+            textView.bottomAnchor.constraint(equalTo: contentView.bottomAnchor, constant: -16),
+            textView.leadingAnchor.constraint(equalTo: contentView.leadingAnchor, constant: 16 + 24 + 12),
+            textView.trailingAnchor.constraint(equalTo: contentView.trailingAnchor, constant: -16),
         ])
     }
+    
+    // MARK: - addCellTapRecogniser
     
     func addCellTapRecogniser(){
         let tap = UITapGestureRecognizer(target: self, action: #selector(clickAddCell))
@@ -47,6 +55,8 @@ final class TableViewAddCell: UITableViewCell, UITextFieldDelegate {
         contentView.addGestureRecognizer(tap)
         }
 }
+
+// MARK: - @objc
 
 extension TableViewAddCell {
 

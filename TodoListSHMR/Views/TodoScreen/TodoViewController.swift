@@ -4,9 +4,7 @@ import UIKit
 
 final class TodoViewController: UIViewController, UIScrollViewDelegate {
 
-    // Потом изменить
-    // для конкретной модели
-    var viewModel: TodoViewModel = TodoViewModel()
+    var viewModel: TodoViewModel
     
     var cancelButton = UIButton(configuration: .plain(), primaryAction: nil)
     var saveButton = UIButton(configuration: .plain(), primaryAction: nil)
@@ -28,7 +26,8 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     
     // MARK: - Inits
     
-    init(){
+    init(with item: TodoItem){
+        self.viewModel = TodoViewModel(item: item)
         super.init(nibName: nil, bundle: nil)
         self.viewModel.viewController = self
     }
@@ -53,8 +52,6 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
         // check switches
         valuesDidChange()
         
-        // Потом изменить Подавать № todoItem
-        // load data if exists
         viewModel.loadData()
     }
 }

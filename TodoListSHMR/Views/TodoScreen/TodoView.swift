@@ -143,7 +143,7 @@ extension TodoViewController: TodoViewControllerProtocol{
         deleteButton.addTarget(self, action: #selector(deleteButtonTap), for: .touchUpInside)
     }
     
-    // MARK: - Constrains of TodoItemsViewController
+    // MARK: - Constrains of TodoViewController
     
     func setupBodyConstrains(){
         scrollView.translatesAutoresizingMaskIntoConstraints = false
