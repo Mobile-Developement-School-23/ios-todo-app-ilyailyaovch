@@ -9,6 +9,7 @@ class RootViewController: UIViewController {
     
     let addButtonView = UIButton()
     var tableView = UITableView(frame: .zero, style: .insetGrouped)
+    var tableHeaderView = TableViewHeaderCell()
 
     // MARK: - Override
     
@@ -27,6 +28,7 @@ class RootViewController: UIViewController {
         
         // fetch data
         rootViewModel.fetchData()
+        rootViewModel.updateTodoListState()
     }
 }
 
@@ -35,25 +37,26 @@ class RootViewController: UIViewController {
 extension RootViewController: UITableViewDelegate, UITableViewDataSource{
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return rootViewModel.fileCache.todoItems.count + 1
+        return rootViewModel.todoListState.count + 1
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard
             tableView.cellForRow(at: indexPath) is TableViewCell
         else { return }
-        let item = rootViewModel.fileCache.todoItems[indexPath.row]
+        let item = rootViewModel.todoListState[indexPath.row]
         rootViewModel.openToDo(with: item)
     }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        if indexPath.row == rootViewModel.fileCache.todoItems.count {
+        if indexPath.row == rootViewModel.todoListState.count {
             // Строка последнего элемента "Новое"
             let newCell = tableView.dequeueReusableCell(withIdentifier: TableViewAddCell.identifier, for: indexPath)
             guard
                 let newCell = newCell as? TableViewAddCell
             else { return UITableViewCell() }
             newCell.addCellTapped = { [weak self] in self?.AddCellTapped() }
+            newCell.selectionStyle = .none
             return newCell
         } else {
             // Строки для todoItems
@@ -61,21 +64,32 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
             guard
                 let customCell = customCell as? TableViewCell
             else { return UITableViewCell() }
-            let item = rootViewModel.fileCache.todoItems[indexPath.row]
+            
+            let todoList = filterTodoList(list: rootViewModel.todoListState, status: rootViewModel.showCompleted)
+            let item = todoList[indexPath.row]
             customCell.configureCell(with: item)
+            customCell.valueDidChange = { rootViewModel.toggleCompletion(with: item) }
             customCell.selectionStyle = .none
             return customCell
         }
     }
     
+    // MARK: table header
+    func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
+        tableHeaderView = TableViewHeaderCell()
+        tableHeaderView.valueDidChange = { /* тут или в функции не получиться вызвать redoad */}
+        return tableHeaderView
+    }
+    
+    // MARK: swipes lead
     func tableView(_ tableView: UITableView,leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Toggle action
         let toggle = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
-            let item  = rootViewModel.fileCache.todoItems[indexPath.row]
+            let item  = rootViewModel.todoListState[indexPath.row]
             rootViewModel.toggleCompletion(with: item)
             completionHandler(true)
         }
-        if rootViewModel.fileCache.todoItems[indexPath.row].isCompleted{
+        if rootViewModel.todoListState[indexPath.row].isCompleted{
             toggle.image = UIImage(systemName: "circle")
             toggle.backgroundColor = Colors.gray.color
         } else{
@@ -85,26 +99,35 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
         return UISwipeActionsConfiguration(actions: [toggle])
     }
     
+    // MARK: swipes trail
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Info action
         let info = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
-            let item  = rootViewModel.fileCache.todoItems[indexPath.row]
+            let item  = rootViewModel.todoListState[indexPath.row]
             rootViewModel.openToDo(with: item)
             completionHandler(true)
         }
-        info.backgroundColor = Colors.gray.color
+        info.backgroundColor = Colors.grayLight.color
         info.image = UIImage(systemName: "info.circle.fill")
         // Trash action
         let trash = UIContextualAction(style: .destructive, title: "") { (action, view, completionHandler) in
-            let item  = rootViewModel.fileCache.todoItems[indexPath.row]
+            let item  = rootViewModel.todoListState[indexPath.row]
             rootViewModel.deleteToDo(id: item.id)
             completionHandler(true)
         }
         trash.backgroundColor = Colors.red.color
-        trash.image = UIImage(systemName: "trash")
+        trash.image = UIImage(systemName: "trash.fill")
         
         let configuration = UISwipeActionsConfiguration(actions: [trash, info])
         return configuration
+    }
+    
+    func filterTodoList(list: [TodoItem], status: Bool) -> ([TodoItem]){
+        if status{
+            return rootViewModel.fileCache.todoItems
+        } else {
+            return rootViewModel.fileCache.todoItems.filter( {!$0.isCompleted} )
+        }
     }
 }
 
@@ -128,5 +151,4 @@ extension RootViewController {
     @objc func extraButtonTapped(){
         
     }
-    
 }

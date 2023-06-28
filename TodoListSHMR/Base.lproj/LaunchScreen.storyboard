@@ -22,8 +22,8 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-ph-gjj">
-                                <rect key="frame" x="146.66666666666666" y="288" width="100" height="94.666666666666686"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cale" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-ph-gjj">
+                                <rect key="frame" x="146.66666666666666" y="285.66666666666669" width="100" height="100"/>
                                 <color key="tintColor" name="blue"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="jyP-5L-zPf"/>
@@ -48,7 +48,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
+        <image name="cale" width="128" height="128"/>
         <namedColor name="blue">
             <color red="0.0" green="0.47999998927116394" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>

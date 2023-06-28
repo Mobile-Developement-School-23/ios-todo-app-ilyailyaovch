@@ -7,5 +7,9 @@ enum Icon: String {
     case PlusButton = "PlusButton"
     case Shevron = "Shevron"
     
+    case CircleCompleted = "CircleCompleted"
+    case CircleEmpty = "CircleEmpty"
+    case CircleImportant = "CircleImportant"
+    
     var image: UIImage? {return UIImage(named: rawValue)}
 }

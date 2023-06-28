@@ -7,6 +7,7 @@ extension RootViewController: RootViewControllerProtocol{
     func setupHeader(){
         title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
     }
     
     func setupLayout(){
@@ -17,7 +18,7 @@ extension RootViewController: RootViewControllerProtocol{
     
     func setupTableView(){
         tableView.backgroundColor = Colors.backPrimary.color
-        tableView.register(TableViewHeaderCell.self, forCellReuseIdentifier: TableViewHeaderCell.identifier)
+        tableView.register(TableViewHeaderCell.self, forHeaderFooterViewReuseIdentifier: TableViewHeaderCell.identifier)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
         tableView.register(TableViewAddCell.self, forCellReuseIdentifier: TableViewAddCell.identifier)
         tableView.delegate = self
