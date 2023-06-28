@@ -73,7 +73,6 @@ extension TableViewHeaderCell {
             buttonView.isSelected = false
             self.valueDidChange?()
             rootViewModel.addCompletedToPresentation()
-            rootViewModel.viewController?.updateData()
         } else {
             buttonView.isSelected = true
             self.valueDidChange?()
