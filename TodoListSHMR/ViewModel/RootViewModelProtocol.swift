@@ -15,5 +15,5 @@ protocol RootViewModelProtocol {
     func deleteToDo(id: String)
     
     /// Toggle todoItem
-    func toggleCompletion(with item: TodoItem)
+    func toggleCompletion(with item: TodoItem, at indexPath: IndexPath)
 }

@@ -68,7 +68,19 @@ extension RootViewModel: RootViewModelProtocol {
         }
     }
     
-    func toggleCompletion(with item: TodoItem){
+    func deleteRow(at indexPath: IndexPath){
+        let id = self.todoListState[indexPath.row].id
+        do{
+            try self.fileCache.remove(id: id)
+            try self.fileCache.saveItems(to: rootViewModel.fileName)
+            self.todoListState.remove(at: indexPath.row)
+            self.viewController?.deleteRow(at: indexPath)
+        } catch {
+            print("Error: deleteToDo()")
+        }
+    }
+    
+    func toggleCompletion(with item: TodoItem, at indexPath: IndexPath){
         let newItem = TodoItem(id: item.id,
                                text: item.text,
                                importancy: item.importancy,
@@ -77,13 +89,24 @@ extension RootViewModel: RootViewModelProtocol {
                                dateCreated: item.dateCreated,
                                dateModified: item.dateModified
         )
-        self.saveToDo(item: newItem)
+        switch self.status{
+        case Status.ShowAll:
+            self.fileCache.add(item: newItem)
+            try? self.fileCache.saveItems(to: rootViewModel.fileName)
+            self.todoListState = self.fileCache.todoItems
+            self.viewController?.reloadRow(at: indexPath)
+        case Status.ShowUncompleted:
+            self.fileCache.add(item: newItem)
+            try? self.fileCache.saveItems(to: rootViewModel.fileName)
+            self.todoListState.remove(at: indexPath.row)
+            self.viewController?.deleteRow(at: indexPath)
+        }
     }
     
     //MARK: - todoListState presentation
     
     func updateTodoListState(){
-        switch status{
+        switch self.status{
         case Status.ShowUncompleted:
             self.todoListState = self.fileCache.todoItems.filter( {!$0.isCompleted} )
         case Status.ShowAll:

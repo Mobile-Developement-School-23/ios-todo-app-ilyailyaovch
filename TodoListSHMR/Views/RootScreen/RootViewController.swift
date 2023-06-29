@@ -47,6 +47,15 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
         let item = rootViewModel.todoListState[indexPath.row]
         rootViewModel.openToDo(with: item)
     }
+    
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        cell.alpha = 0
+        UIView.animate(
+            withDuration: 0.2,
+            delay: 0.05 * Double(indexPath.row),
+            animations: { cell.alpha = 1 }
+        )
+    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == rootViewModel.todoListState.count {
@@ -67,7 +76,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
             let todoList = filterTodoList(list: rootViewModel.todoListState)
             let item = todoList[indexPath.row]
             customCell.configureCell(with: item)
-            customCell.valueDidChange = { rootViewModel.toggleCompletion(with: item) }
+            customCell.valueDidChange = { rootViewModel.toggleCompletion(with: item, at: indexPath) }
             customCell.selectionStyle = .none
             return customCell
         }
@@ -116,7 +125,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
         // Toggle action
         let toggle = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
             let item  = rootViewModel.todoListState[indexPath.row]
-            rootViewModel.toggleCompletion(with: item)
+            rootViewModel.toggleCompletion(with: item, at: indexPath)
             completionHandler(true)
         }
         if rootViewModel.todoListState[indexPath.row].isCompleted{
@@ -141,8 +150,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
         info.image = UIImage(systemName: "info.circle.fill")
         // Trash action
         let trash = UIContextualAction(style: .destructive, title: "") { (action, view, completionHandler) in
-            let item  = rootViewModel.todoListState[indexPath.row]
-            rootViewModel.deleteToDo(id: item.id)
+            rootViewModel.deleteRow(at: indexPath)
             completionHandler(true)
         }
         trash.backgroundColor = Colors.red.color
@@ -168,6 +176,14 @@ extension RootViewController{
     
     func updateData(){
         tableView.reloadData()
+    }
+    
+    func reloadRow(at indexPath: IndexPath) {
+        tableView.reloadRows(at: [indexPath], with: .none)
+    }
+    
+    func deleteRow(at indexPath: IndexPath) {
+        tableView.deleteRows(at: [indexPath], with: .fade)
     }
 }
 
