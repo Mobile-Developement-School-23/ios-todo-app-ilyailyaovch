@@ -181,7 +181,7 @@ extension UILabel {
         } else {
             let attributeString =  NSMutableAttributedString(string: text)
             attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
-                                         value: [],
+                                         value: [""],
                                          range: NSMakeRange(0,attributeString.length))
             self.attributedText = attributeString
         }

@@ -1,11 +1,11 @@
 import UIKit
 
-//MARK: - RootViewModel
-
 enum Status {
     case ShowAll
     case ShowUncompleted
 }
+
+//MARK: - RootViewModel
 
 final class RootViewModel: UIViewController {
     
