@@ -1,4 +1,5 @@
 import UIKit
+import CocoaLumberjackSwift
 
 /// Global variable which contains fileCache
 var rootViewModel: RootViewModel = RootViewModel()

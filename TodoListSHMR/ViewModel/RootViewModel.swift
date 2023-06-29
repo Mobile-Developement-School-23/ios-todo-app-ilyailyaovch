@@ -1,4 +1,5 @@
 import UIKit
+import CocoaLumberjackSwift
 
 enum Status {
     case ShowAll
@@ -36,7 +37,7 @@ extension RootViewModel: RootViewModelProtocol {
         do {
             try fileCache.loadItems(from: rootViewModel.fileName)
         } catch {
-            print("Error: fetchData()")
+            DDLogError("Error: fetchData()")
         }
     }
 
@@ -54,7 +55,7 @@ extension RootViewModel: RootViewModelProtocol {
             try self.fileCache.saveItems(to: rootViewModel.fileName)
             self.updateTodoListState()
         } catch {
-            print("Error: saveToDo()")
+            DDLogError("Error: saveToDo()")
         }
     }
 
@@ -64,7 +65,7 @@ extension RootViewModel: RootViewModelProtocol {
             try self.fileCache.saveItems(to: rootViewModel.fileName)
             self.updateTodoListState()
         } catch {
-            print("Error: deleteToDo()")
+            DDLogError("Error: deleteToDo()")
         }
     }
 
@@ -76,7 +77,7 @@ extension RootViewModel: RootViewModelProtocol {
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
         } catch {
-            print("Error: deleteToDo()")
+            DDLogError("Error: deleteToDo()")
         }
     }
 
