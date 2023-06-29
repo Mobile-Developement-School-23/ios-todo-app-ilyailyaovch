@@ -43,6 +43,7 @@ final class TableViewCell: UITableViewCell {
         
         textView.text = item.text
         textView.textColor = Colors.labelPrimary.color
+        textView.strikeThrough(item.isCompleted)
         
         if item.isCompleted == true{
             circleStatView.setImage(Icon.CircleCompleted.image, for: UIControl.State.normal)
@@ -168,22 +169,21 @@ extension TableViewCell {
 // MARK: - extension UILabel
 
 extension UILabel {
-    func strikeThrough(_ isStrikeThrough:Bool) {
+    func strikeThrough(_ isStrikeThrough: Bool = true) {
+        guard let text = self.text else {
+            return
+        }
+        
         if isStrikeThrough {
-            if let lblText = self.text {
-                let attributeString =  NSMutableAttributedString(string: lblText)
-                attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
-                                             value: NSUnderlineStyle.single.rawValue,
-                                             range: NSMakeRange(0,attributeString.length))
-                self.attributedText = attributeString
-            }
+            let attributeString =  NSMutableAttributedString(string: text)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle, value: NSUnderlineStyle.single.rawValue, range: NSMakeRange(0,attributeString.length))
+            self.attributedText = attributeString
         } else {
-            if let attributedStringText = self.attributedText {
-                let txt = attributedStringText.string
-                self.attributedText = nil
-                self.text = txt
-                return
-            }
+            let attributeString =  NSMutableAttributedString(string: text)
+            attributeString.addAttribute(NSAttributedString.Key.strikethroughStyle,
+                                         value: [],
+                                         range: NSMakeRange(0,attributeString.length))
+            self.attributedText = attributeString
         }
     }
 }
