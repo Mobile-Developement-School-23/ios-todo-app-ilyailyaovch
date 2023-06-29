@@ -1,22 +1,22 @@
 import UIKit
 
-extension RootViewController: RootViewControllerProtocol{
-    
+extension RootViewController: RootViewControllerProtocol {
+
     // MARK: - Setup RootView
-    
-    func setupHeader(){
+
+    func setupHeader() {
         title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
     }
-    
-    func setupLayout(){
+
+    func setupLayout() {
         view.backgroundColor = Colors.backPrimary.color
         view.addSubview(tableView)
         view.addSubview(addButtonView)
     }
-    
-    func setupTableView(){
+
+    func setupTableView() {
         tableView.backgroundColor = Colors.backPrimary.color
         tableView.register(TableViewHeaderCell.self, forHeaderFooterViewReuseIdentifier: TableViewHeaderCell.identifier)
         tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
@@ -24,22 +24,22 @@ extension RootViewController: RootViewControllerProtocol{
         tableView.delegate = self
         tableView.dataSource = self
     }
-    
-    func setupButton(){
-        addButtonView.addTarget(self, action: #selector(AddCellTapped), for: .touchUpInside)
+
+    func setupButton() {
+        addButtonView.addTarget(self, action: #selector(addCellTapped), for: .touchUpInside)
         addButtonView.setImage(Icon.PlusButton.image, for: .normal)
         addButtonView.layer.shadowColor = UIColor.blue.cgColor
         addButtonView.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
         addButtonView.layer.shadowRadius = 5.0
         addButtonView.layer.shadowOpacity = 0.3
     }
-    
+
     // MARK: - Constrains of RootViewController
-    
-    func setupConstraints(){
+
+    func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
         addButtonView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
             tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
@@ -52,5 +52,5 @@ extension RootViewController: RootViewControllerProtocol{
             addButtonView.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
-    
+
 }

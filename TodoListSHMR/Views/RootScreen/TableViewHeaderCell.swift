@@ -1,7 +1,7 @@
 import UIKit
 
 class TableViewHeaderCell: UITableViewHeaderFooterView {
-    
+
     var valueDidChange: (() -> Void)?
 
     static let identifier: String = "TableViewHeaderCell"
@@ -18,31 +18,31 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
-    func setupViews(){
+    func setupViews() {
         setupText()
         setupButton()
         setupContentView()
         setupContents()
     }
 
-    func setupText(){
+    func setupText() {
         textView.textColor = Colors.labelTertiary.color
-        textView.text = "Выполнено - \(rootViewModel.fileCache.todoItems.filter( {$0.isCompleted} ).count)"
+        textView.text = "Выполнено - \(rootViewModel.fileCache.todoItems.filter({$0.isCompleted}).count)"
     }
-    
-    func setupButton(){
+
+    func setupButton() {
         buttonView.setTitle("Показать", for: .normal)
         buttonView.setTitle("Скрыть", for: .selected)
         buttonView.setTitleColor(.systemBlue, for: .normal)
         buttonView.addTarget(self, action: #selector(pressedButtonHeader), for: .touchUpInside)
     }
-    
-    func setupContentView(){
+
+    func setupContentView() {
         contentView.backgroundColor = Colors.backPrimary.color
         contentView.addSubview(textView)
         contentView.addSubview(buttonView)
     }
-    
+
     func setupContents() {
         textView.translatesAutoresizingMaskIntoConstraints = false
         buttonView.translatesAutoresizingMaskIntoConstraints = false
@@ -60,13 +60,13 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
 }
 
 extension TableViewHeaderCell {
-    
+
     @objc func pressedButtonHeader(_ button: UIButton) {
         if button.isSelected {
             rootViewModel.changePresentationStatus(to: Status.ShowUncompleted)
             buttonView.isSelected = false
             self.valueDidChange?()
-            
+
         } else {
             rootViewModel.changePresentationStatus(to: Status.ShowAll)
             buttonView.isSelected = true
@@ -74,4 +74,3 @@ extension TableViewHeaderCell {
         }
     }
 }
-

@@ -1,5 +1,6 @@
 import UIKit
 import CoreData
+import CocoaLumberjack
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -38,4 +39,3 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 }
-

@@ -21,6 +21,8 @@
 		09CFD6A32A4049940037167C /* Colors.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6A22A4049940037167C /* Colors.swift */; };
 		09CFD6A62A404D650037167C /* TodoViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6A52A404D650037167C /* TodoViewController.swift */; };
 		09CFD6A82A4050160037167C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6A72A4050160037167C /* RootViewController.swift */; };
+		09DBEFCA2A4DFFEE0035B2F9 /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 09DBEFC92A4DFFEE0035B2F9 /* CocoaLumberjack */; };
+		09DBEFCC2A4DFFEE0035B2F9 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 09DBEFCB2A4DFFEE0035B2F9 /* CocoaLumberjackSwift */; };
 		09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */; };
 		09F612412A40F42A00CEEE1B /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612402A40F42A00CEEE1B /* RootViewModel.swift */; };
 		09F612432A4192FC00CEEE1B /* TodoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612422A4192FC00CEEE1B /* TodoViewModelProtocol.swift */; };
@@ -39,6 +41,9 @@
 		09FFF56D2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF56C2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift */; };
 		09FFF57D2A33A75F00CFDCD1 /* TodoItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF57C2A33A75F00CFDCD1 /* TodoItem.swift */; };
 		09FFF5992A34F91900CFDCD1 /* FileCache.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09FFF5982A34F91900CFDCD1 /* FileCache.swift */; };
+		11B0F1A885E3E0F1BE1872C7 /* Pods_TodoListSHMR.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 111F77DE1D1C4BE5B602156B /* Pods_TodoListSHMR.framework */; };
+		3F742C6CB7BD20B60D7C553A /* Pods_TodoListSHMRTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 6711812FEC092196739F4A36 /* Pods_TodoListSHMRTests.framework */; };
+		496EA408442A5CA720E09D5A /* Pods_TodoListSHMR_TodoListSHMRUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 656695B0D473CF07EA0AF164 /* Pods_TodoListSHMR_TodoListSHMRUITests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -95,6 +100,15 @@
 		09FFF56C2A33A4BC00CFDCD1 /* TodoListSHMRUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		09FFF57C2A33A75F00CFDCD1 /* TodoItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoItem.swift; sourceTree = "<group>"; };
 		09FFF5982A34F91900CFDCD1 /* FileCache.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; lineEnding = 0; path = FileCache.swift; sourceTree = "<group>"; };
+		111F77DE1D1C4BE5B602156B /* Pods_TodoListSHMR.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoListSHMR.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		656695B0D473CF07EA0AF164 /* Pods_TodoListSHMR_TodoListSHMRUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoListSHMR_TodoListSHMRUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6711812FEC092196739F4A36 /* Pods_TodoListSHMRTests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_TodoListSHMRTests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		6ACEFEAD14D392421F065EB8 /* Pods-TodoListSHMRTests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListSHMRTests.release.xcconfig"; path = "Target Support Files/Pods-TodoListSHMRTests/Pods-TodoListSHMRTests.release.xcconfig"; sourceTree = "<group>"; };
+		743889DC78A11247E6A0962E /* Pods-TodoListSHMR.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListSHMR.debug.xcconfig"; path = "Target Support Files/Pods-TodoListSHMR/Pods-TodoListSHMR.debug.xcconfig"; sourceTree = "<group>"; };
+		9E2E4048AE45141A281D3274 /* Pods-TodoListSHMR-TodoListSHMRUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListSHMR-TodoListSHMRUITests.debug.xcconfig"; path = "Target Support Files/Pods-TodoListSHMR-TodoListSHMRUITests/Pods-TodoListSHMR-TodoListSHMRUITests.debug.xcconfig"; sourceTree = "<group>"; };
+		C67C9631F36310ACCB671BF1 /* Pods-TodoListSHMR.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListSHMR.release.xcconfig"; path = "Target Support Files/Pods-TodoListSHMR/Pods-TodoListSHMR.release.xcconfig"; sourceTree = "<group>"; };
+		E807288BB519CFA73E218FF7 /* Pods-TodoListSHMR-TodoListSHMRUITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListSHMR-TodoListSHMRUITests.release.xcconfig"; path = "Target Support Files/Pods-TodoListSHMR-TodoListSHMRUITests/Pods-TodoListSHMR-TodoListSHMRUITests.release.xcconfig"; sourceTree = "<group>"; };
+		F75FE4D2BB1D89629B285224 /* Pods-TodoListSHMRTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-TodoListSHMRTests.debug.xcconfig"; path = "Target Support Files/Pods-TodoListSHMRTests/Pods-TodoListSHMRTests.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -102,6 +116,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09DBEFCA2A4DFFEE0035B2F9 /* CocoaLumberjack in Frameworks */,
+				11B0F1A885E3E0F1BE1872C7 /* Pods_TodoListSHMR.framework in Frameworks */,
+				09DBEFCC2A4DFFEE0035B2F9 /* CocoaLumberjackSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -109,6 +126,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F742C6CB7BD20B60D7C553A /* Pods_TodoListSHMRTests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -116,6 +134,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				496EA408442A5CA720E09D5A /* Pods_TodoListSHMR_TodoListSHMRUITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -186,6 +205,8 @@
 				09FFF55F2A33A4BC00CFDCD1 /* TodoListSHMRTests */,
 				09FFF5692A33A4BC00CFDCD1 /* TodoListSHMRUITests */,
 				09FFF5442A33A4BB00CFDCD1 /* Products */,
+				5171F42E250190D8663A04BB /* Pods */,
+				5CF5236288F940A062D7E289 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -244,6 +265,29 @@
 			path = Models;
 			sourceTree = "<group>";
 		};
+		5171F42E250190D8663A04BB /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				743889DC78A11247E6A0962E /* Pods-TodoListSHMR.debug.xcconfig */,
+				C67C9631F36310ACCB671BF1 /* Pods-TodoListSHMR.release.xcconfig */,
+				9E2E4048AE45141A281D3274 /* Pods-TodoListSHMR-TodoListSHMRUITests.debug.xcconfig */,
+				E807288BB519CFA73E218FF7 /* Pods-TodoListSHMR-TodoListSHMRUITests.release.xcconfig */,
+				F75FE4D2BB1D89629B285224 /* Pods-TodoListSHMRTests.debug.xcconfig */,
+				6ACEFEAD14D392421F065EB8 /* Pods-TodoListSHMRTests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		5CF5236288F940A062D7E289 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				111F77DE1D1C4BE5B602156B /* Pods_TodoListSHMR.framework */,
+				656695B0D473CF07EA0AF164 /* Pods_TodoListSHMR_TodoListSHMRUITests.framework */,
+				6711812FEC092196739F4A36 /* Pods_TodoListSHMRTests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -251,15 +295,21 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09FFF5702A33A4BC00CFDCD1 /* Build configuration list for PBXNativeTarget "TodoListSHMR" */;
 			buildPhases = (
+				13CCB9E4D5C4C93BB6A20C38 /* [CP] Check Pods Manifest.lock */,
 				09FFF53F2A33A4BB00CFDCD1 /* Sources */,
 				09FFF5402A33A4BB00CFDCD1 /* Frameworks */,
 				09FFF5412A33A4BB00CFDCD1 /* Resources */,
+				09DBEFC72A4DDAF70035B2F9 /* ShellScript */,
 			);
 			buildRules = (
 			);
 			dependencies = (
 			);
 			name = TodoListSHMR;
+			packageProductDependencies = (
+				09DBEFC92A4DFFEE0035B2F9 /* CocoaLumberjack */,
+				09DBEFCB2A4DFFEE0035B2F9 /* CocoaLumberjackSwift */,
+			);
 			productName = TodoListSHMR;
 			productReference = 09FFF5432A33A4BB00CFDCD1 /* TodoListSHMR.app */;
 			productType = "com.apple.product-type.application";
@@ -268,6 +318,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09FFF5732A33A4BC00CFDCD1 /* Build configuration list for PBXNativeTarget "TodoListSHMRTests" */;
 			buildPhases = (
+				96756B3C3D86F4898F636AB0 /* [CP] Check Pods Manifest.lock */,
 				09FFF5582A33A4BC00CFDCD1 /* Sources */,
 				09FFF5592A33A4BC00CFDCD1 /* Frameworks */,
 				09FFF55A2A33A4BC00CFDCD1 /* Resources */,
@@ -286,6 +337,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 09FFF5762A33A4BC00CFDCD1 /* Build configuration list for PBXNativeTarget "TodoListSHMRUITests" */;
 			buildPhases = (
+				C8D2D223BD474A45C884421C /* [CP] Check Pods Manifest.lock */,
 				09FFF5622A33A4BC00CFDCD1 /* Sources */,
 				09FFF5632A33A4BC00CFDCD1 /* Frameworks */,
 				09FFF5642A33A4BC00CFDCD1 /* Resources */,
@@ -332,6 +384,9 @@
 				Base,
 			);
 			mainGroup = 09FFF53A2A33A4BB00CFDCD1;
+			packageReferences = (
+				09DBEFC82A4DFFEE0035B2F9 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+			);
 			productRefGroup = 09FFF5442A33A4BB00CFDCD1 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -368,6 +423,92 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		09DBEFC72A4DDAF70035B2F9 /* ShellScript */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "SWIFT_LINT=/usr/local/bin/swiftlint\n${PODS_ROOT}/SwiftLint/swiftlint\n\nif [[ -e \"${SWIFT_LINT}\" ]]; then\n    echo \"[I] Found SwiftLint at ${SWIFT_LINT}\"\nelse\n    echo \"[!] Local SwiftLint not found at ${SWIFT_LINT}\"\n    export SWIFT_LINT=${PWD}/Pods/SwiftLint/swiftlint\n    echo \"[I] Try to using SwiftLint from cocoapods at ${SWIFT_LINT}\"\nfi\n\nif [[ ! -e \"${SWIFT_LINT}\" ]]; then\n    echo \"[!] SwifLint is not installed.\"\n    echo \"[!] Expected location is '${SWIFT_LINT}'\"\n    echo \"[!] Please install it. eg. 'brew install swiftlint'\"\n    exit 1\nfi\n\necho \"[I] SwiftLint version: $(${SWIFT_LINT} version)\"\n\ngit ls-files --other --modified --exclude-standard -- \"*.swift\" | while read filename; do\n    $SWIFT_LINT lint --path \"$filename\";\n    $SWIFT_LINT autocorrect --path \"$filename\";\ndone\n";
+		};
+		13CCB9E4D5C4C93BB6A20C38 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TodoListSHMR-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		96756B3C3D86F4898F636AB0 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TodoListSHMRTests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		C8D2D223BD474A45C884421C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-TodoListSHMR-TodoListSHMRUITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		09FFF53F2A33A4BB00CFDCD1 /* Sources */ = {
@@ -564,6 +705,7 @@
 		};
 		09FFF5712A33A4BC00CFDCD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 743889DC78A11247E6A0962E /* Pods-TodoListSHMR.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -591,6 +733,7 @@
 		};
 		09FFF5722A33A4BC00CFDCD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = C67C9631F36310ACCB671BF1 /* Pods-TodoListSHMR.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -618,6 +761,7 @@
 		};
 		09FFF5742A33A4BC00CFDCD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = F75FE4D2BB1D89629B285224 /* Pods-TodoListSHMRTests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -637,6 +781,7 @@
 		};
 		09FFF5752A33A4BC00CFDCD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 6ACEFEAD14D392421F065EB8 /* Pods-TodoListSHMRTests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -656,6 +801,7 @@
 		};
 		09FFF5772A33A4BC00CFDCD1 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 9E2E4048AE45141A281D3274 /* Pods-TodoListSHMR-TodoListSHMRUITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -673,6 +819,7 @@
 		};
 		09FFF5782A33A4BC00CFDCD1 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E807288BB519CFA73E218FF7 /* Pods-TodoListSHMR-TodoListSHMRUITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -728,6 +875,30 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		09DBEFC82A4DFFEE0035B2F9 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/CocoaLumberjack/CocoaLumberjack.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		09DBEFC92A4DFFEE0035B2F9 /* CocoaLumberjack */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09DBEFC82A4DFFEE0035B2F9 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjack;
+		};
+		09DBEFCB2A4DFFEE0035B2F9 /* CocoaLumberjackSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09DBEFC82A4DFFEE0035B2F9 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
+			productName = CocoaLumberjackSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = 09FFF53B2A33A4BB00CFDCD1 /* Project object */;
 }

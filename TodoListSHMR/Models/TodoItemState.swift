@@ -1,7 +1,7 @@
 import Foundation
 
 struct TodoItemState {
-    
+
     var id: String
     var text: String
     var importancy: Importancy
@@ -9,7 +9,7 @@ struct TodoItemState {
     var isCompleted: Bool
     var dateCreated: Date
     var dateModified: Date?
-    
+
     init(item: TodoItem) {
         id = item.id
         text = item.text

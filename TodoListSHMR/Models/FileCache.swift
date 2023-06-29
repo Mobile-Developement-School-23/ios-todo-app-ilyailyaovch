@@ -20,19 +20,19 @@ enum FileCacheErrors: Error {
 // MARK: - FileCache Json
 
 class FileCache {
-    
+
     // Коллекция TodoItems
     private (set) var todoItems: [TodoItem] = []
-    
+
     // Добавление новой задачи
     func add(item: TodoItem) {
-        if let index = todoItems.firstIndex(where: {$0.id == item.id}){
+        if let index = todoItems.firstIndex(where: {$0.id == item.id}) {
             todoItems[index] = item
         } else {
             todoItems.insert(item, at: 0)
         }
     }
-    
+
     // Удаление задачи (на основе id)
     func remove(id: String) throws {
         if let index = todoItems.firstIndex(where: {$0.id == id}) {
@@ -41,39 +41,39 @@ class FileCache {
             throw FileCacheErrors.itemDoesntExist
         }
     }
-    
+
     // Сохранение всех дел в файл
     func saveItems(to file: String) throws {
-        
+
         // формируем путь до файла
         guard
             let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent("\(file).json")
-        
+
         // создаем список json элементов
         let jsonItems = todoItems.map({ $0.json })
-        
+
         // записываем json элементы в файл
         let jsonData = try JSONSerialization.data(withJSONObject: jsonItems, options: [])
         try jsonData.write(to: pathWithFilename)
     }
-    
+
     // Загрузка всех дел из файла
     func loadItems(from file: String) throws {
-        
+
         // формируем путь до файла
         guard
             let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent("\(file).json")
-        
+
         // получаем data по заданному пути
         let textData = try String(contentsOf: pathWithFilename, encoding: .utf8)
         guard
             let jsonData = textData.data(using: .utf8)
         else { throw FileCacheErrors.incorrectJson }
-        
+
         // парсим data в массив
         guard
             let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options : []) as? [[String: Any]]
@@ -86,16 +86,16 @@ class FileCache {
 // MARK: - FileCache Csv
 
 extension FileCache {
-    
+
     // Загрузка всех дел из файла
     func loadItemsCSV(from file: String) throws {
-        
+
         // формируем путь до файла
         guard
             let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent("\(file).csv")
-        
+
         // получаем text по заданному пути
         let textData = try String(contentsOf: pathWithFilename, encoding: .utf8)
         var textArr = textData.split(separator: "\n")
@@ -103,16 +103,16 @@ extension FileCache {
 
         todoItems = textArr.compactMap { TodoItem.parse(csv: String($0))}
     }
-    
+
     // Сохранение всех дел в файл (applicationSupportDirectory)
     func saveItemsCSV(to file: String) throws {
-        
+
         // формируем путь до файла
         guard
             let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
         else { throw FileCacheErrors.wrongDirectory }
         let pathWithFilename = path.appendingPathComponent("\(file).csv")
-        
+
         // записываем построчно элементы
         var csvLine = "id;text;importancy;deadline;isCompleted;dateCreated;dateModified\n"
         do {
@@ -120,10 +120,10 @@ extension FileCache {
                 csvLine.append(item.csv + "\n")
             }
             try csvLine.write(to: pathWithFilename, atomically: true, encoding: .utf8)
-            
+
         } catch {
             print(FileCacheErrors.saveItemsError)
         }
-        
+
     }
 }

@@ -5,13 +5,13 @@ import UIKit
 final class TodoViewController: UIViewController, UIScrollViewDelegate {
 
     var viewModel: TodoViewModel
-    
+
     var cancelButton = UIButton(configuration: .plain(), primaryAction: nil)
     var saveButton = UIButton(configuration: .plain(), primaryAction: nil)
-    
+
     var scrollView = UIScrollView()
     var stackView = UIStackView()
-    
+
     var textView = UITextView()
     var detailsStack = UIStackView()
     var divider = UIView()
@@ -22,36 +22,35 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
 //    var colorDivider = UIView()
 //    var colorPickerView = ColorPickerView()
     var deleteButton = UIButton()
-    
-    
+
     // MARK: - Inits
-    
-    init(with item: TodoItem){
+
+    init(with item: TodoItem) {
         self.viewModel = TodoViewModel(item: item)
         super.init(nibName: nil, bundle: nil)
         self.viewModel.viewController = self
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     // MARK: - Override
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+
         // setup UI
         setupNavigationBar()
         setupBody()
         setupBodyConstrains()
-        
+
         // setup keyboard
         setupKeyboardObserver()
-        
+
         // check switches
         valuesDidChange()
-        
+
         viewModel.loadData()
     }
 }
@@ -59,18 +58,18 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
 // MARK: - UITextViewDelegate
 
 extension TodoViewController: UITextViewDelegate {
-    
+
     func textViewDidChange(_ textView: UITextView) {
         activateButtons()
     }
-    
+
     func textViewDidBeginEditing(_ textView: UITextView) {
         if textView.textColor == UIColor.lightGray {
             textView.textColor = Colors.labelPrimary.color
             textView.text = nil
         }
     }
-    
+
     override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
         self.textView.resignFirstResponder()
     }
@@ -100,32 +99,32 @@ extension TodoViewController {
             self.calendarDivider.isHidden = true
         }
     }
-    
-    func importancyDidChange(importancy: Importancy){
+
+    func importancyDidChange(importancy: Importancy) {
         activateButtons()
     }
-    
-    func deadlineDidChange(isEnabled: Bool){
+
+    func deadlineDidChange(isEnabled: Bool) {
         let defaultDeadline = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
         deadlineView.deadline = isEnabled ? deadlineView.deadline ?? defaultDeadline : nil
         isEnabled ? showCalendar(with: deadlineView.deadline ?? defaultDeadline) : dismissCalendar()
         activateButtons()
     }
-    
-    func deadlineSubTextDidClick(){
-        if deadlineView.deadline != nil{
+
+    func deadlineSubTextDidClick() {
+        if deadlineView.deadline != nil {
             let defaultDeadline = Calendar.current.date(byAdding: .day, value: 1, to: Date())!
             showCalendar(with: deadlineView.deadline ?? defaultDeadline)
         }
     }
-    
-    func deadlineDateDidChange(){
+
+    func deadlineDateDidChange() {
         deadlineView.deadline = calendarView.datePicker.date
         dismissCalendar()
     }
 
-    func activateButtons(){
-        if !textView.text.isEmpty && textView.text != constants.placeholder{
+    func activateButtons() {
+        if !textView.text.isEmpty && textView.text != constants.placeholder {
             saveButton.isEnabled = true
             deleteButton.isEnabled = true
             deleteButton.setTitleColor(Colors.red.color, for: .normal)
@@ -136,7 +135,7 @@ extension TodoViewController {
 // MARK: - @objc
 
 extension TodoViewController {
-    
+
     @objc func cancelButtonTap() {
         dismiss(animated: true)
     }
@@ -149,15 +148,15 @@ extension TodoViewController {
             deadline: deadlineView.deadline ?? nil)
         )
     }
-    
+
     @objc func deleteButtonTap() {
-        if saveButton.isEnabled{
+        if saveButton.isEnabled {
             viewModel.deleteItem(id: viewModel.state.id)
         } else {
             dismiss(animated: true)
         }
     }
-    
+
     @objc func keyboardWillShow(sender: NSNotification) {
         guard let userInfo = sender.userInfo,
               let keyboardFrame = userInfo[UIResponder.keyboardFrameEndUserInfoKey] as? NSValue else { return }

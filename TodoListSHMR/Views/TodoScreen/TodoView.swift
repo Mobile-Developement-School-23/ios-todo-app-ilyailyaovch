@@ -1,9 +1,9 @@
 import UIKit
 
-extension TodoViewController: TodoViewControllerProtocol{
-        
+extension TodoViewController: TodoViewControllerProtocol {
+
     // MARK: - Keyboard observer
-    
+
     func setupKeyboardObserver() {
 
         NotificationCenter.default.addObserver(
@@ -15,34 +15,34 @@ extension TodoViewController: TodoViewControllerProtocol{
             name: UIResponder.keyboardWillHideNotification, object: nil
         )
     }
-    
+
     // MARK: - Values Did Change
 
-    func valuesDidChange(){
-        
+    func valuesDidChange() {
+
         importancyView.valueDidChange = { [weak self] value in
             self?.importancyDidChange(importancy: value)
         }
-        
+
         deadlineView.valueDidChange = { [weak self] value in
             self?.deadlineDidChange(isEnabled: value)
         }
-        
+
         deadlineView.deadlineDidClick = { [weak self] in
             self?.deadlineSubTextDidClick()
         }
-        
+
         calendarView.valueDidChange = { [weak self] value in
             self?.deadlineDateDidChange()
         }
     }
-    
+
     // MARK: - Setup NavigationBar
 
     func setupNavigationBar() {
         cancelButton.setTitle("Отменить", for: .normal)
         cancelButton.addTarget(self, action: #selector(cancelButtonTap), for: .touchUpInside)
-        
+
         saveButton.setTitle("Сохранить", for: .normal)
         saveButton.addTarget(self, action: #selector(saveButtonTap), for: .touchUpInside)
 
@@ -51,40 +51,40 @@ extension TodoViewController: TodoViewControllerProtocol{
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
         saveButton.isEnabled = false
     }
-    
-    //  MARK: - Setup TodoView
-    
-    func setupBody(){
-        
+
+    // MARK: - Setup TodoView
+
+    func setupBody() {
+
         view.backgroundColor = Colors.backPrimary.color
         view.addSubview(scrollView)
-        
+
         setupStackView()
         scrollView.addSubview(stackView)
-        
+
         setupTextView()
         stackView.addArrangedSubview(textView)
-        
+
         setupDetailsStack()
         stackView.addArrangedSubview(detailsStack)
-        
+
         setupDeleteButton()
         stackView.addArrangedSubview(deleteButton)
     }
-    
-    func setupScrollView(){
+
+    func setupScrollView() {
         scrollView.delegate = self
         scrollView.contentSize.width = 1
     }
-    
-    func setupStackView(){
+
+    func setupStackView() {
         stackView.axis = .vertical
         stackView.distribution = .equalSpacing
         stackView.spacing = 16.0
         stackView.alignment = .fill
     }
-    
-    func setupTextView(){
+
+    func setupTextView() {
         textView.delegate = self
         textView.text = constants.placeholder
         textView.textColor = UIColor.lightGray
@@ -95,8 +95,8 @@ extension TodoViewController: TodoViewControllerProtocol{
         textView.isScrollEnabled = false
         textView.keyboardDismissMode = .interactive
     }
-    
-    func setupDivider(with div: UIView){
+
+    func setupDivider(with div: UIView) {
         let fill = UIView()
         div.addSubview(fill)
         fill.backgroundColor = Colors.supportSeparator.color
@@ -109,18 +109,18 @@ extension TodoViewController: TodoViewControllerProtocol{
             fill.heightAnchor.constraint(equalTo: div.heightAnchor)
         ])
     }
-    
-    func setupDetailsStack(){
+
+    func setupDetailsStack() {
         detailsStack.axis = .vertical
         detailsStack.alignment = .fill
         detailsStack.distribution = .equalSpacing
         detailsStack.layer.cornerRadius = constants.cornerRadius
         detailsStack.backgroundColor = Colors.backSecondary.color
-        
+
         setupDivider(with: divider)
         setupDivider(with: calendarDivider)
 //        setupDivider(with: colorDivider)
-                
+
         detailsStack.addArrangedSubview(importancyView)
         detailsStack.addArrangedSubview(divider)
         detailsStack.addArrangedSubview(deadlineView)
@@ -131,8 +131,8 @@ extension TodoViewController: TodoViewControllerProtocol{
         calendarDivider.isHidden = true
         calendarView.isHidden = true
     }
-    
-    func setupDeleteButton(){
+
+    func setupDeleteButton() {
         deleteButton.setTitle("Удалить", for: .normal)
         deleteButton.isEnabled = false
         deleteButton.setTitleColor(Colors.labelDisable.color, for: .normal)
@@ -142,13 +142,13 @@ extension TodoViewController: TodoViewControllerProtocol{
         deleteButton.layer.cornerRadius = constants.cornerRadius
         deleteButton.addTarget(self, action: #selector(deleteButtonTap), for: .touchUpInside)
     }
-    
+
     // MARK: - Constrains of TodoViewController
-    
-    func setupBodyConstrains(){
+
+    func setupBodyConstrains() {
         scrollView.translatesAutoresizingMaskIntoConstraints = false
         stackView.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
             scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),

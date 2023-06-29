@@ -9,9 +9,9 @@ import XCTest
 @testable import TodoListSHMR
 
 final class TodoListSHMRTests: XCTestCase {
-    
-    func testTodoItemInitWithAllAttributes(){
-        
+
+    func testTodoItemInitWithAllAttributes() {
+
         let item: TodoItem = TodoItem(
             id: "111111111122222",
             text: "text",
@@ -21,7 +21,7 @@ final class TodoListSHMRTests: XCTestCase {
             dateCreated: Date(timeIntervalSince1970: 2023.0),
             dateModified: Date(timeIntervalSince1970: 2023.0)
         )
-        
+
         let id = "111111111122222"
         let text = "text"
         let importancy = Importancy.important
@@ -29,7 +29,7 @@ final class TodoListSHMRTests: XCTestCase {
         let isCompleted = false
         let dateCreated = Date(timeIntervalSince1970: 2023.0)
         let dateModified = Date(timeIntervalSince1970: 2023.0)
-        
+
         XCTAssertEqual(item.id, id)
         XCTAssertEqual(item.text, text)
         XCTAssertEqual(item.importancy, importancy)
@@ -39,18 +39,18 @@ final class TodoListSHMRTests: XCTestCase {
         XCTAssertEqual(item.dateModified, dateModified)
     }
 
-    func testTodoItemInitWithoutAllAttributes(){
-        
+    func testTodoItemInitWithoutAllAttributes() {
+
         let item: TodoItem = TodoItem(
             text: "Lol",
             dateCreated: Date(timeIntervalSince1970: 2023.0)
         )
-        
+
         let text = "Lol"
         let importancy = Importancy.normal
         let isCompleted = false
         let dateCreated = Date(timeIntervalSince1970: 2023.0)
-        
+
         XCTAssertNotNil(item.id)
         XCTAssertEqual(item.text, text)
         XCTAssertEqual(item.importancy, importancy)
