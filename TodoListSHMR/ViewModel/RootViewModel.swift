@@ -22,6 +22,7 @@ final class RootViewModel: UIViewController {
         super.init(nibName: nil, bundle: nil)
         self.fileName = fileName
         self.fileCache = fileCache
+        DDLog.add(DDOSLogger.sharedInstance)
     }
 
     required init?(coder: NSCoder) {
