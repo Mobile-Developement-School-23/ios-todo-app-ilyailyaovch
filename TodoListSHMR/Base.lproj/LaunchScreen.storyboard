@@ -22,9 +22,9 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="cale" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-ph-gjj">
-                                <rect key="frame" x="146.66666666666666" y="285.66666666666669" width="100" height="100"/>
-                                <color key="tintColor" name="blue"/>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-ph-gjj">
+                                <rect key="frame" x="142" y="289" width="109" height="106"/>
+                                <color key="tintColor" red="0.98039215800000001" green="0.87450981139999995" blue="0.43921568989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="100" id="jyP-5L-zPf"/>
                                     <constraint firstAttribute="height" constant="100" id="rRf-70-3kP"/>
@@ -32,7 +32,7 @@
                             </imageView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" name="backPrimary"/>
                         <constraints>
                             <constraint firstItem="1eu-8l-kwz" firstAttribute="centerY" secondItem="Ze5-6b-2t3" secondAttribute="centerY" id="NJq-5A-peR"/>
                             <constraint firstItem="JK9-ph-gjj" firstAttribute="centerX" secondItem="Ze5-6b-2t3" secondAttribute="centerX" id="e2O-z8-BFv"/>
@@ -44,13 +44,13 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="iYj-Kq-Ea1" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="53" y="375"/>
+            <point key="canvasLocation" x="52.671755725190835" y="374.64788732394368"/>
         </scene>
     </scenes>
     <resources>
-        <image name="cale" width="128" height="128"/>
-        <namedColor name="blue">
-            <color red="0.0" green="0.47999998927116394" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
+        <namedColor name="backPrimary">
+            <color red="0.97000002861022949" green="0.97000002861022949" blue="0.94999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
     </resources>
 </document>

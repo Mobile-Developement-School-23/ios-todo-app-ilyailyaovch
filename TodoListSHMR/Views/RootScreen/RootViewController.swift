@@ -48,14 +48,14 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
         rootViewModel.openToDo(with: item)
     }
     
-    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-        cell.alpha = 0
-        UIView.animate(
-            withDuration: 0.2,
-            delay: 0.05 * Double(indexPath.row),
-            animations: { cell.alpha = 1 }
-        )
-    }
+//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+//        cell.alpha = 0
+//        UIView.animate(
+//            withDuration: 0.5,
+//            delay: 0.01 * Double(indexPath.row),
+//            animations: { cell.alpha = 1 }
+//        )
+//    }
 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == rootViewModel.todoListState.count {
@@ -174,16 +174,16 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
 
 extension RootViewController{
     
-    func updateData(){
+    func reloadData(){
         tableView.reloadData()
     }
     
     func reloadRow(at indexPath: IndexPath) {
-        tableView.reloadRows(at: [indexPath], with: .none)
+        tableView.reloadRows(at: [indexPath], with: .fade)
     }
     
     func deleteRow(at indexPath: IndexPath) {
-        tableView.deleteRows(at: [indexPath], with: .fade)
+        tableView.deleteRows(at: [indexPath], with: .right)
     }
 }
 

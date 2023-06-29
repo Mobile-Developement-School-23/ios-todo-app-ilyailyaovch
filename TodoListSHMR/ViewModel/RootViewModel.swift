@@ -100,6 +100,7 @@ extension RootViewModel: RootViewModelProtocol {
             try? self.fileCache.saveItems(to: rootViewModel.fileName)
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
+            self.viewController?.reloadData()
         }
         let counter = rootViewModel.fileCache.todoItems.filter{$0.isCompleted}.count
         self.viewController?.tableHeaderView.textView.text = "Выполнено - \(counter)"
@@ -114,7 +115,7 @@ extension RootViewModel: RootViewModelProtocol {
         case Status.ShowAll:
             self.todoListState = self.fileCache.todoItems
         }
-        self.viewController?.updateData()
+        self.viewController?.reloadData()
     }
 
     func changePresentationStatus(to newStatus: Status) {
