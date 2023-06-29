@@ -1,10 +1,3 @@
-//
-//  TodoViewModel.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 19.06.2023.
-//
-
 import Foundation
 
 final class TodoViewModel {
@@ -14,50 +7,28 @@ final class TodoViewModel {
     var item: TodoItem?
     var state: TodoItemState
     
-    init() {
-        self.state = TodoItemState(item: TodoItem(text: ""))
+    init(item: TodoItem) {
+        self.state = TodoItemState(item: item)
     }
 }
 
 extension TodoViewModel: TodoViewModelProtocol {
     
     func saveItem(item: TodoItem){
-        do{
-            rootViewModel.fileCache.add(item: item)
-            try rootViewModel.fileCache.saveItems(to: rootViewModel.fileName)
-            viewController?.dismiss(animated: true)
-        } catch {
-            print("Error: saveItem")
-        }
-        print(item)
+        rootViewModel.saveToDo(item: item)
+        viewController?.dismiss(animated: true)
     }
-    
+
     func deleteItem(id: String) {
-        do{
-            try rootViewModel.fileCache.remove(id: id)
-            try rootViewModel.fileCache.saveItems(to: rootViewModel.fileName)
-        } catch {
-            viewController?.dismiss(animated: true)
-        }
+        rootViewModel.deleteToDo(id: id)
+        viewController?.dismiss(animated: true)
     }
     
-    // Потом изменить
-    // Подавать № todoItem
     func loadData(){
-        do{
-            try rootViewModel.fileCache.loadItems(from: rootViewModel.fileName)
-            if !rootViewModel.fileCache.todoItems.isEmpty{
-                self.state = TodoItemState(item: rootViewModel.fileCache.todoItems[0])
-                setupView()
-            }
-        } catch {
-            print("Error: loadItem")
+        if !state.text.isEmpty{
+            viewController?.textView.text = state.text
+            viewController?.textView.textColor = Colors.labelPrimary.color
         }
-    }
-    
-    func setupView(){
-        viewController?.textView.text = state.text
-        viewController?.textView.textColor = Colors.labelPrimary.color
         viewController?.importancyView.importancy = state.importancy
         viewController?.deadlineView.deadline = state.deadline
         viewController?.activateButtons()

@@ -1,10 +1,3 @@
-//
-//  TodoItem.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 09.06.2023.
-//
-
 import Foundation
 
 /*  TodoItem

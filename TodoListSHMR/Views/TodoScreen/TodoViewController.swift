@@ -1,21 +1,10 @@
-//
-//  TodoViewController.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 19.06.2023.
-//
-
 import UIKit
 
 // MARK: - TodoViewController
 
 final class TodoViewController: UIViewController, UIScrollViewDelegate {
 
-    // Properties
-
-    // Потом изменить
-    // для конкретной модели
-    var viewModel: TodoViewModel = TodoViewModel()
+    var viewModel: TodoViewModel
     
     var cancelButton = UIButton(configuration: .plain(), primaryAction: nil)
     var saveButton = UIButton(configuration: .plain(), primaryAction: nil)
@@ -35,15 +24,35 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     var deleteButton = UIButton()
     
     
-    // Inits
+    // MARK: - Inits
     
-    init(){
+    init(with item: TodoItem){
+        self.viewModel = TodoViewModel(item: item)
         super.init(nibName: nil, bundle: nil)
         self.viewModel.viewController = self
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+    
+    // MARK: - Override
+
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        
+        // setup UI
+        setupNavigationBar()
+        setupBody()
+        setupBodyConstrains()
+        
+        // setup keyboard
+        setupKeyboardObserver()
+        
+        // check switches
+        valuesDidChange()
+        
+        viewModel.loadData()
     }
 }
 
@@ -125,6 +134,7 @@ extension TodoViewController {
 }
 
 // MARK: - @objc
+
 extension TodoViewController {
     
     @objc func cancelButtonTap() {

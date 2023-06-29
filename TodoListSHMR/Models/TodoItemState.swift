@@ -1,10 +1,3 @@
-//
-//  TodoItemState.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 22.06.2023.
-//
-
 import Foundation
 
 struct TodoItemState {

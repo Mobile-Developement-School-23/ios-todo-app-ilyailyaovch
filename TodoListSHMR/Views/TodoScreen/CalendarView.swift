@@ -1,10 +1,3 @@
-//
-//  CalendarView.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 21.06.2023.
-//
-
 import UIKit
 
 class CalendarView: UIView {
@@ -28,6 +21,7 @@ class CalendarView: UIView {
         datePicker.datePickerMode = .date
         datePicker.preferredDatePickerStyle = .inline
         datePicker.locale = Locale.autoupdatingCurrent
+        datePicker.minimumDate = .now
         datePicker.addTarget(self, action: #selector(datePickerChanged), for: .valueChanged)
     }
     

@@ -1,37 +1,7 @@
-//
-//  TodoView.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 22.06.2023.
-//
-
 import UIKit
 
 extension TodoViewController: TodoViewControllerProtocol{
-    
-    // MARK: - Override viewDidLoad
-    
-    override func viewDidLoad() {
-        super.viewDidLoad()
         
-        view.backgroundColor = Colors.backPrimary.color
-        
-        // setup UI
-        setupNavigationBar()
-        setupBody()
-        setupBodyConstrains()
-        
-        // setup keyboard
-        setupKeyboardObserver()
-        
-        // check switches
-        valuesDidChange()
-        
-        // Потом изменить Подавать № todoItem
-        // load data if exists
-        viewModel.loadData()
-    }
-    
     // MARK: - Keyboard observer
     
     func setupKeyboardObserver() {
@@ -86,6 +56,7 @@ extension TodoViewController: TodoViewControllerProtocol{
     
     func setupBody(){
         
+        view.backgroundColor = Colors.backPrimary.color
         view.addSubview(scrollView)
         
         setupStackView()
@@ -172,7 +143,7 @@ extension TodoViewController: TodoViewControllerProtocol{
         deleteButton.addTarget(self, action: #selector(deleteButtonTap), for: .touchUpInside)
     }
     
-    // MARK: - Constrains of TodoItemsViewController
+    // MARK: - Constrains of TodoViewController
     
     func setupBodyConstrains(){
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -191,7 +162,6 @@ extension TodoViewController: TodoViewControllerProtocol{
             stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 
             textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120),
-            
             importancyView.heightAnchor.constraint(greaterThanOrEqualToConstant: 56),
             deadlineView.heightAnchor.constraint(greaterThanOrEqualToConstant: 56),
             deleteButton.heightAnchor.constraint(equalToConstant: 56)

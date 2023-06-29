@@ -1,10 +1,3 @@
-//
-//  FileCache.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 10.06.2023.
-//
-
 import Foundation
 
 /*  FileCache
@@ -36,7 +29,7 @@ class FileCache {
         if let index = todoItems.firstIndex(where: {$0.id == item.id}){
             todoItems[index] = item
         } else {
-            todoItems.append(item)
+            todoItems.insert(item, at: 0)
         }
     }
     
