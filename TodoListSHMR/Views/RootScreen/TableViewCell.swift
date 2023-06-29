@@ -7,7 +7,7 @@ final class TableViewCell: UITableViewCell {
     static let identifier: String = "TableViewCell"
     
     let stackTextViews = UIStackView()
-    let textView = UILabel()
+    var textView = UILabel()
     var stackDeadline = UIStackView()
     let calendarImage = UIImageView(image: UIImage(systemName: "calendar"))
     var deadlineView = UILabel()

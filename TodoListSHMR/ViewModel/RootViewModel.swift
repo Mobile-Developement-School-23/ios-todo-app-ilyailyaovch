@@ -101,6 +101,8 @@ extension RootViewModel: RootViewModelProtocol {
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
         }
+        let counter = rootViewModel.fileCache.todoItems.filter{$0.isCompleted}.count
+        self.viewController?.tableHeaderView.textView.text = "Выполнено - \(counter)"
     }
     
     //MARK: - todoListState presentation
