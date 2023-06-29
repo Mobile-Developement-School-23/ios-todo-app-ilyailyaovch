@@ -6,9 +6,8 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
 
     static let identifier: String = "TableViewHeaderCell"
 
-    let textView = UILabel()
+    var textView = UILabel()
     let buttonView = UIButton()
-    var counter = 0
 
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
@@ -20,20 +19,15 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
     }
 
     func setupViews(){
-        setupCounter()
         setupText()
         setupButton()
         setupContentView()
         setupContents()
     }
 
-    func setupCounter(){
-        counter = rootViewModel.fileCache.todoItems.filter( {$0.isCompleted} ).count
-    }
-
     func setupText(){
         textView.textColor = Colors.labelTertiary.color
-        textView.text = "Выполнено - \(counter)"
+        textView.text = "Выполнено - \(rootViewModel.fileCache.todoItems.filter( {$0.isCompleted} ).count)"
     }
     
     func setupButton(){
@@ -68,15 +62,15 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
 extension TableViewHeaderCell {
     
     @objc func pressedButtonHeader(_ button: UIButton) {
-        print(button.isSelected)
         if button.isSelected {
+            rootViewModel.changePresentationStatus(to: Status.ShowUncompleted)
             buttonView.isSelected = false
             self.valueDidChange?()
-            rootViewModel.addCompletedToPresentation()
+            
         } else {
+            rootViewModel.changePresentationStatus(to: Status.ShowAll)
             buttonView.isSelected = true
             self.valueDidChange?()
-            rootViewModel.removeCompletedToPresentation()
         }
     }
 }

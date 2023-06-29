@@ -8,9 +8,9 @@ var rootViewModel: RootViewModel = RootViewModel()
 class RootViewController: UIViewController {
     
     let addButtonView = UIButton()
-    var tableView = UITableView(frame: .zero, style: .insetGrouped)
-    var tableHeaderView = TableViewHeaderCell()
-
+    let tableView = UITableView(frame: .zero, style: .insetGrouped)
+    let tableHeaderView = TableViewHeaderCell()
+    
     // MARK: - Override
     
     override func viewDidLoad() {
@@ -64,8 +64,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
             guard
                 let customCell = customCell as? TableViewCell
             else { return UITableViewCell() }
-            
-            let todoList = filterTodoList(list: rootViewModel.todoListState, status: rootViewModel.showCompleted)
+            let todoList = filterTodoList(list: rootViewModel.todoListState)
             let item = todoList[indexPath.row]
             customCell.configureCell(with: item)
             customCell.valueDidChange = { rootViewModel.toggleCompletion(with: item) }
@@ -76,9 +75,40 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
     
     // MARK: table header
     func tableView(_ tableView: UITableView, viewForHeaderInSection section: Int) -> UIView? {
-        tableHeaderView = TableViewHeaderCell()
-        tableHeaderView.valueDidChange = { /* тут или в функции не получиться вызвать redoad */}
+        tableHeaderView.textView.text = "Выполнено - \(rootViewModel.fileCache.todoItems.filter{$0.isCompleted}.count)"
+        tableHeaderView.valueDidChange = { rootViewModel.updateTodoListState() }
         return tableHeaderView
+    }
+    
+    // MARK: preview
+    func tableView(_ tableView: UITableView, contextMenuConfigurationForRowAt indexPath: IndexPath, point: CGPoint) -> UIContextMenuConfiguration? {
+        let actionProvider: UIContextMenuActionProvider = { _ in
+            return UIMenu(title: "Дело", children: [
+                UIAction(title: "Посмотреть") { _ in
+                    let item = rootViewModel.todoListState[indexPath.row]
+                    rootViewModel.openToDo(with: item)
+                },
+                UIAction(title: "Удалить") { _ in
+                    let item = rootViewModel.todoListState[indexPath.row]
+                    rootViewModel.deleteToDo(id: item.id)
+                }
+            ])
+        }
+        let config = UIContextMenuConfiguration(identifier: indexPath as NSIndexPath, previewProvider: {
+            let item = rootViewModel.todoListState[indexPath.row]
+            let controller = TodoViewController(with: item)
+            let navigationController = UINavigationController(rootViewController: controller)
+            return navigationController
+        }, actionProvider: actionProvider)
+        return config
+    }
+    
+    // MARK: preview perform
+    func tableView(_ tableView: UITableView, willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration, animator: UIContextMenuInteractionCommitAnimating) {
+        guard
+            let previewedController = animator.previewViewController
+        else { return }
+        animator.addCompletion { self.present(previewedController, animated: true) }
     }
     
     // MARK: swipes lead
@@ -122,8 +152,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
         return configuration
     }
     
-    func filterTodoList(list: [TodoItem], status: Bool) -> ([TodoItem]){
-        if status{
+    // MARK: filter todo
+    func filterTodoList(list: [TodoItem]) -> ([TodoItem]){
+        if rootViewModel.status == Status.ShowAll{
             return rootViewModel.fileCache.todoItems
         } else {
             return rootViewModel.fileCache.todoItems.filter( {!$0.isCompleted} )

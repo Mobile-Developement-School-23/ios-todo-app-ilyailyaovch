@@ -2,54 +2,41 @@ import UIKit
 
 //MARK: - RootViewModel
 
+enum Status {
+    case ShowAll
+    case ShowUncompleted
+}
+
 final class RootViewModel: UIViewController {
     
     var fileName = "TodoCache"
     var fileCache = FileCache()
     weak var viewController: RootViewController?
     
-    var fullTodoList = [TodoItem]()
-    var completedTodoList = [TodoItem]()
     var todoListState = [TodoItem]()
-    var showCompleted: Bool = false
+    public private(set) var status: Status = Status.ShowUncompleted
     
     init(fileName: String = "TodoCache",
-         fileCache: FileCache = FileCache(),
-         viewController: RootViewController? = nil){
+         fileCache: FileCache = FileCache()){
         super.init(nibName: nil, bundle: nil)
         self.fileName = fileName
         self.fileCache = fileCache
-        self.viewController = viewController
     }
     
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
 }
 
 extension RootViewModel: RootViewModelProtocol {
     
     //MARK: - CRUD functions
     
-    func updateData(){
-        viewController?.updateData()
-    }
-    
-    func updateTodoListState(){
-        if self.showCompleted{
-            self.todoListState = self.fileCache.todoItems
-        } else {
-            self.todoListState = self.fileCache.todoItems.filter( {!$0.isCompleted} )
-        }
-        self.viewController?.updateData()
-    }
-    
     func fetchData(){
         do{
             try fileCache.loadItems(from: rootViewModel.fileName)
         } catch {
-            print("Error: loadItem")
+            print("Error: fetchData()")
         }
     }
 
@@ -66,7 +53,6 @@ extension RootViewModel: RootViewModelProtocol {
             self.fileCache.add(item: item)
             try self.fileCache.saveItems(to: rootViewModel.fileName)
             self.updateTodoListState()
-            self.viewController?.updateData()
         } catch {
             print("Error: saveToDo()")
         }
@@ -77,7 +63,6 @@ extension RootViewModel: RootViewModelProtocol {
             try self.fileCache.remove(id: id)
             try self.fileCache.saveItems(to: rootViewModel.fileName)
             self.updateTodoListState()
-            self.viewController?.updateData()
         } catch {
             print("Error: deleteToDo()")
         }
@@ -95,19 +80,19 @@ extension RootViewModel: RootViewModelProtocol {
         self.saveToDo(item: newItem)
     }
     
-    //MARK: - List presentation
-
-    func addCompletedToPresentation(){
-        showCompleted = true
-
-    }
+    //MARK: - todoListState presentation
     
-    func removeCompletedToPresentation(){
-        showCompleted = false
+    func updateTodoListState(){
+        switch status{
+        case Status.ShowUncompleted:
+            self.todoListState = self.fileCache.todoItems.filter( {!$0.isCompleted} )
+        case Status.ShowAll:
+            self.todoListState = self.fileCache.todoItems
+        }
+        self.viewController?.updateData()
     }
-    
+
+    func changePresentationStatus(to newStatus: Status) {
+        self.status = newStatus
+    }
 }
-
-
-
-
