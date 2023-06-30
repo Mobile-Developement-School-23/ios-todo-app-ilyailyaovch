@@ -8,6 +8,15 @@ extension RootViewController: RootViewControllerProtocol{
         title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
+        
+        menuButtonView.setTitle("Сортировка", for: .normal)
+        menuButtonView.setTitleColor(Colors.blue.color, for: .normal)
+        menuButtonView.layer.cornerRadius = constants.cornerRadius
+                
+        menuButtonView.isUserInteractionEnabled = true
+        menuButtonView.addInteraction(UIContextMenuInteraction(delegate: self))
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonView)
     }
     
     func setupLayout(){
@@ -52,5 +61,35 @@ extension RootViewController: RootViewControllerProtocol{
             addButtonView.heightAnchor.constraint(equalToConstant: 44)
         ])
     }
-    
+}
+
+extension RootViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil,
+                                                       previewProvider: nil) { actions -> UIMenu? in
+            let alphaAscending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.up.right")) { action in
+                rootViewModel.changeSortMode(to: SortMode.alphaAscending)
+                self.reloadData()
+            }
+
+            let alphaDescending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.down.right")) { action in
+                rootViewModel.changeSortMode(to: SortMode.alphaDescending)
+                self.reloadData()
+            }
+
+            let createdAscending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.up.right")) { action in
+                rootViewModel.changeSortMode(to: SortMode.createdAscending)
+                self.reloadData()
+            }
+
+            let createdDescending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.down.right")) { action in
+                rootViewModel.changeSortMode(to: SortMode.createdDescending)
+                self.reloadData()
+            }
+
+            return UIMenu(title: "Сортировать", children: [alphaAscending, alphaDescending, createdAscending, createdDescending])
+        }
+        return configuration
+    }
 }

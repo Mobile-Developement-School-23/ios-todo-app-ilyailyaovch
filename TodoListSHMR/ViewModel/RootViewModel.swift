@@ -5,6 +5,13 @@ enum Status {
     case ShowUncompleted
 }
 
+enum SortMode {
+    case alphaAscending
+    case alphaDescending
+    case createdAscending
+    case createdDescending
+}
+
 //MARK: - RootViewModel
 
 final class RootViewModel: UIViewController {
@@ -15,6 +22,7 @@ final class RootViewModel: UIViewController {
     
     var todoListState = [TodoItem]()
     public private(set) var status: Status = Status.ShowUncompleted
+    public private(set) var sortMode: SortMode = SortMode.createdDescending
     
     init(fileName: String = "TodoCache",
          fileCache: FileCache = FileCache()){
@@ -120,5 +128,9 @@ extension RootViewModel: RootViewModelProtocol {
 
     func changePresentationStatus(to newStatus: Status) {
         self.status = newStatus
+    }
+    
+    func changeSortMode(to newMode: SortMode) {
+        self.sortMode = newMode
     }
 }

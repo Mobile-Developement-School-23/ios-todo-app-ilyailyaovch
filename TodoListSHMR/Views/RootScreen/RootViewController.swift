@@ -8,6 +8,7 @@ var rootViewModel: RootViewModel = RootViewModel()
 class RootViewController: UIViewController {
     
     let addButtonView = UIButton()
+    let menuButtonView = UIButton()
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let tableHeaderView = TableViewHeaderCell()
     
@@ -161,12 +162,26 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource{
     }
     
     // MARK: filter todo
-    func filterTodoList(list: [TodoItem]) -> ([TodoItem]){
-        if rootViewModel.status == Status.ShowAll{
-            return rootViewModel.fileCache.todoItems
-        } else {
-            return rootViewModel.fileCache.todoItems.filter( {!$0.isCompleted} )
+    func filterTodoList(list: [TodoItem]) -> ([TodoItem]) {
+        // check presentation status
+        switch rootViewModel.status {
+        case Status.ShowAll:
+            rootViewModel.todoListState = rootViewModel.fileCache.todoItems
+           case Status.ShowUncompleted:
+            rootViewModel.todoListState = rootViewModel.fileCache.todoItems.filter({ !$0.isCompleted })
         }
+        // check sorting mode
+        switch rootViewModel.sortMode {
+        case SortMode.alphaAscending:
+            rootViewModel.todoListState.sort { $0.text < $1.text }
+        case SortMode.alphaDescending:
+            rootViewModel.todoListState.sort { $0.text > $1.text }
+        case SortMode.createdAscending:
+            rootViewModel.todoListState.sort { $0.dateCreated < $1.dateCreated }
+        case SortMode.createdDescending:
+            rootViewModel.todoListState.sort { $0.dateCreated > $1.dateCreated }
+        }
+        return rootViewModel.todoListState
     }
 }
 
