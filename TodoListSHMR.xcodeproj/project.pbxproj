@@ -11,10 +11,7 @@
 		099AEDB52A4763FC007D57DB /* TableViewAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDB42A4763FC007D57DB /* TableViewAddCell.swift */; };
 		099AEDB72A476407007D57DB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDB62A476407007D57DB /* TableViewCell.swift */; };
 		099AEDB92A4764C1007D57DB /* TableViewHeaderCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDB82A4764C1007D57DB /* TableViewHeaderCell.swift */; };
-		099AEDF72A49AB71007D57DB /* RootViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDF62A49AB71007D57DB /* RootViewControllerProtocol.swift */; };
-		099AEDFB2A49E596007D57DB /* RootView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDFA2A49E596007D57DB /* RootView.swift */; };
 		099AEDFD2A49E7A8007D57DB /* RootViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDFC2A49E7A8007D57DB /* RootViewModelProtocol.swift */; };
-		09ACBA942A449963008C8876 /* TodoView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACBA932A449963008C8876 /* TodoView.swift */; };
 		09ACBA962A45045B008C8876 /* ColorPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09ACBA952A45045B008C8876 /* ColorPickerView.swift */; };
 		09CFD6192A3E10510037167C /* TodoListSHMRJsonTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */; };
 		09CFD61B2A3E10750037167C /* TodoListSHMRCsvTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD61A2A3E10750037167C /* TodoListSHMRCsvTest.swift */; };
@@ -26,7 +23,6 @@
 		09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */; };
 		09F612412A40F42A00CEEE1B /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612402A40F42A00CEEE1B /* RootViewModel.swift */; };
 		09F612432A4192FC00CEEE1B /* TodoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612422A4192FC00CEEE1B /* TodoViewModelProtocol.swift */; };
-		09F612452A41952F00CEEE1B /* TodoViewControllerProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612442A41952F00CEEE1B /* TodoViewControllerProtocol.swift */; };
 		09F612472A42196100CEEE1B /* ImportancyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612462A42196000CEEE1B /* ImportancyView.swift */; };
 		09F612492A4243C400CEEE1B /* Icons.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612482A4243C400CEEE1B /* Icons.swift */; };
 		09F6124B2A42573500CEEE1B /* DeadlineView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F6124A2A42573500CEEE1B /* DeadlineView.swift */; };
@@ -68,10 +64,7 @@
 		099AEDB42A4763FC007D57DB /* TableViewAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAddCell.swift; sourceTree = "<group>"; };
 		099AEDB62A476407007D57DB /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
 		099AEDB82A4764C1007D57DB /* TableViewHeaderCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewHeaderCell.swift; sourceTree = "<group>"; };
-		099AEDF62A49AB71007D57DB /* RootViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewControllerProtocol.swift; sourceTree = "<group>"; };
-		099AEDFA2A49E596007D57DB /* RootView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootView.swift; sourceTree = "<group>"; };
 		099AEDFC2A49E7A8007D57DB /* RootViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModelProtocol.swift; sourceTree = "<group>"; };
-		09ACBA932A449963008C8876 /* TodoView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoView.swift; sourceTree = "<group>"; };
 		09ACBA952A45045B008C8876 /* ColorPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorPickerView.swift; sourceTree = "<group>"; };
 		09CFD6182A3E10510037167C /* TodoListSHMRJsonTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRJsonTest.swift; sourceTree = "<group>"; };
 		09CFD61A2A3E10750037167C /* TodoListSHMRCsvTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoListSHMRCsvTest.swift; sourceTree = "<group>"; };
@@ -81,7 +74,6 @@
 		09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		09F612402A40F42A00CEEE1B /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		09F612422A4192FC00CEEE1B /* TodoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModelProtocol.swift; sourceTree = "<group>"; };
-		09F612442A41952F00CEEE1B /* TodoViewControllerProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewControllerProtocol.swift; sourceTree = "<group>"; };
 		09F612462A42196000CEEE1B /* ImportancyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImportancyView.swift; sourceTree = "<group>"; };
 		09F612482A4243C400CEEE1B /* Icons.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Icons.swift; sourceTree = "<group>"; };
 		09F6124A2A42573500CEEE1B /* DeadlineView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeadlineView.swift; sourceTree = "<group>"; };
@@ -144,9 +136,7 @@
 		093DFDE92A45CC530095145A /* TodoScreen */ = {
 			isa = PBXGroup;
 			children = (
-				09ACBA932A449963008C8876 /* TodoView.swift */,
 				09CFD6A52A404D650037167C /* TodoViewController.swift */,
-				09F612442A41952F00CEEE1B /* TodoViewControllerProtocol.swift */,
 				09F612462A42196000CEEE1B /* ImportancyView.swift */,
 				09F6124A2A42573500CEEE1B /* DeadlineView.swift */,
 				09F6124C2A42E8BC00CEEE1B /* CalendarView.swift */,
@@ -158,9 +148,7 @@
 		093DFDEA2A45CC7B0095145A /* RootScreen */ = {
 			isa = PBXGroup;
 			children = (
-				099AEDFA2A49E596007D57DB /* RootView.swift */,
 				09CFD6A72A4050160037167C /* RootViewController.swift */,
-				099AEDF62A49AB71007D57DB /* RootViewControllerProtocol.swift */,
 				099AEDB62A476407007D57DB /* TableViewCell.swift */,
 				099AEDB42A4763FC007D57DB /* TableViewAddCell.swift */,
 				099AEDB82A4764C1007D57DB /* TableViewHeaderCell.swift */,
@@ -522,10 +510,7 @@
 				09F6124D2A42E8BC00CEEE1B /* CalendarView.swift in Sources */,
 				09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */,
 				09837E122A4071850026EB9D /* Constants.swift in Sources */,
-				09ACBA942A449963008C8876 /* TodoView.swift in Sources */,
-				099AEDFB2A49E596007D57DB /* RootView.swift in Sources */,
 				09FFF57D2A33A75F00CFDCD1 /* TodoItem.swift in Sources */,
-				09F612452A41952F00CEEE1B /* TodoViewControllerProtocol.swift in Sources */,
 				09F6124B2A42573500CEEE1B /* DeadlineView.swift in Sources */,
 				09ACBA962A45045B008C8876 /* ColorPickerView.swift in Sources */,
 				099AEDB92A4764C1007D57DB /* TableViewHeaderCell.swift in Sources */,
@@ -538,7 +523,6 @@
 				099AEDB52A4763FC007D57DB /* TableViewAddCell.swift in Sources */,
 				09F612472A42196100CEEE1B /* ImportancyView.swift in Sources */,
 				09CFD6A82A4050160037167C /* RootViewController.swift in Sources */,
-				099AEDF72A49AB71007D57DB /* RootViewControllerProtocol.swift in Sources */,
 				09FFF5492A33A4BB00CFDCD1 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

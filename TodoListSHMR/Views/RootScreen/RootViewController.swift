@@ -32,17 +32,78 @@ class RootViewController: UIViewController {
         rootViewModel.fetchData()
         rootViewModel.updateTodoListState()
     }
+
+    // MARK: - Setup RootView
+
+    func setupHeader() {
+        navigationItem.title = "Мои дела"
+        navigationController?.navigationBar.prefersLargeTitles = true
+        navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
+
+        menuButtonView.setTitle("Сортировка", for: .normal)
+        menuButtonView.configuration = .plain()
+        menuButtonView.menu = makeMenu()
+        menuButtonView.showsMenuAsPrimaryAction = true
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonView)
+    }
+
+    func setupLayout() {
+        view.backgroundColor = Colors.backPrimary.color
+        view.addSubview(tableView)
+        view.addSubview(addButtonView)
+    }
+
+    func setupTableView() {
+        tableView.backgroundColor = Colors.backPrimary.color
+        tableView.register(TableViewHeaderCell.self, forHeaderFooterViewReuseIdentifier: TableViewHeaderCell.identifier)
+        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
+        tableView.register(TableViewAddCell.self, forCellReuseIdentifier: TableViewAddCell.identifier)
+        tableView.delegate = self
+        tableView.dataSource = self
+    }
+
+    func setupButton() {
+        addButtonView.addTarget(self, action: #selector(addCellTapped), for: .touchUpInside)
+        addButtonView.setImage(Icon.PlusButton.image, for: .normal)
+        addButtonView.layer.shadowColor = UIColor.blue.cgColor
+        addButtonView.layer.shadowOffset = CGSize(width: 0.0, height: 5.0)
+        addButtonView.layer.shadowRadius = 5.0
+        addButtonView.layer.shadowOpacity = 0.3
+    }
+
+    // MARK: - Constrains of RootViewController
+
+    func setupConstraints() {
+        tableView.translatesAutoresizingMaskIntoConstraints = false
+        menuButtonView.translatesAutoresizingMaskIntoConstraints = false
+        addButtonView.translatesAutoresizingMaskIntoConstraints = false
+
+        NSLayoutConstraint.activate([
+            tableView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor),
+            tableView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
+            tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
+            tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
+
+            addButtonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            addButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54),
+            addButtonView.widthAnchor.constraint(equalToConstant: 44),
+            addButtonView.heightAnchor.constraint(equalToConstant: 44)
+        ])
+    }
 }
 
 // MARK: - TableView
 
 extension RootViewController: UITableViewDelegate, UITableViewDataSource {
 
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+    func tableView(_ tableView: UITableView,
+                   numberOfRowsInSection section: Int) -> Int {
         return rootViewModel.todoListState.count + 1
     }
 
-    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+    func tableView(_ tableView: UITableView,
+                   didSelectRowAt indexPath: IndexPath) {
         guard
             tableView.cellForRow(at: indexPath) is TableViewCell
         else { return }
@@ -50,17 +111,9 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         rootViewModel.openToDo(with: item)
     }
 
-//    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
-//        cell.alpha = 0
-//        UIView.animate(
-//            withDuration: 0.5,
-//            delay: 0.01 * Double(indexPath.row),
-//            animations: { cell.alpha = 1 }
-//        )
-//    }
-
     // MARK: table cells
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+    func tableView(_ tableView: UITableView,
+                   cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == rootViewModel.todoListState.count {
             // Строка последнего элемента "Новое"
             let newCell = tableView.dequeueReusableCell(withIdentifier: TableViewAddCell.identifier, for: indexPath)
@@ -93,7 +146,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         return tableHeaderView
     }
 
-    // MARK: preview
+    // MARK: table preview
     func tableView(_ tableView: UITableView,
                    contextMenuConfigurationForRowAt indexPath: IndexPath,
                    point: CGPoint) -> UIContextMenuConfiguration? {
@@ -118,7 +171,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         return config
     }
 
-    // MARK: preview perform
+    // MARK: table preview perform
     func tableView(_ tableView: UITableView,
                    willPerformPreviewActionForMenuWith configuration: UIContextMenuConfiguration,
                    animator: UIContextMenuInteractionCommitAnimating) {
@@ -128,7 +181,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         animator.addCompletion { self.present(previewedController, animated: true) }
     }
 
-    // MARK: swipes lead
+    // MARK: table swipes lead
     func tableView(_ tableView: UITableView,
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Toggle action
@@ -147,7 +200,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         return UISwipeActionsConfiguration(actions: [toggle])
     }
 
-    // MARK: swipes trail
+    // MARK: table swipes trail
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Info action
@@ -208,6 +261,30 @@ extension RootViewController {
 
     func deleteRow(at indexPath: IndexPath) {
         tableView.deleteRows(at: [indexPath], with: .right)
+    }
+}
+
+// MARK: - Sort menu
+
+extension RootViewController {
+    func makeMenu() -> (UIMenu) {
+        let alphaAscending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.up.right")) { _ in
+            rootViewModel.changeSortMode(to: SortMode.alphaAscending)
+            self.reloadData()
+        }
+        let alphaDescending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.down.right")) { _ in
+            rootViewModel.changeSortMode(to: SortMode.alphaDescending)
+            self.reloadData()
+        }
+        let createdAscending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.up.right")) { _ in
+            rootViewModel.changeSortMode(to: SortMode.createdAscending)
+            self.reloadData()
+        }
+        let createdDescending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.down.right")) { _ in
+            rootViewModel.changeSortMode(to: SortMode.createdDescending)
+            self.reloadData()
+        }
+        return UIMenu(title: "Сортировать", children: [alphaAscending, alphaDescending, createdAscending, createdDescending])
     }
 }
 

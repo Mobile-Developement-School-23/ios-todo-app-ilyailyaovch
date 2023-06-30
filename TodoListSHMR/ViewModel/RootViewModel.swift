@@ -91,13 +91,14 @@ extension RootViewModel: RootViewModelProtocol {
     }
 
     func toggleCompletion(with item: TodoItem, at indexPath: IndexPath) {
-        let newItem = TodoItem(id: item.id,
-                               text: item.text,
-                               importancy: item.importancy,
-                               deadline: item.deadline,
-                               isCompleted: !item.isCompleted,
-                               dateCreated: item.dateCreated,
-                               dateModified: item.dateModified
+        let newItem = TodoItem(
+            id: item.id,
+            text: item.text,
+            importancy: item.importancy,
+            deadline: item.deadline,
+            isCompleted: !item.isCompleted,
+            dateCreated: item.dateCreated,
+            dateModified: item.dateModified
         )
         switch self.status {
         case Status.ShowAll:
