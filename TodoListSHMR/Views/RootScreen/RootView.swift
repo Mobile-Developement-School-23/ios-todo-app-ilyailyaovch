@@ -9,12 +9,11 @@ extension RootViewController: RootViewControllerProtocol{
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
         
+        // menuButtonView.setImage(Icon.Ellipsis.image, for: .normal)
         menuButtonView.setTitle("Сортировка", for: .normal)
-        menuButtonView.setTitleColor(Colors.blue.color, for: .normal)
-        menuButtonView.layer.cornerRadius = constants.cornerRadius
-                
-        menuButtonView.isUserInteractionEnabled = true
-        menuButtonView.addInteraction(UIContextMenuInteraction(delegate: self))
+        menuButtonView.configuration = .plain()
+        menuButtonView.menu = makeMenu()
+        menuButtonView.showsMenuAsPrimaryAction = true
 
         navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonView)
     }
@@ -63,33 +62,24 @@ extension RootViewController: RootViewControllerProtocol{
     }
 }
 
-extension RootViewController: UIContextMenuInteractionDelegate {
-    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
-                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
-        let configuration = UIContextMenuConfiguration(identifier: nil,
-                                                       previewProvider: nil) { actions -> UIMenu? in
-            let alphaAscending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.up.right")) { action in
-                rootViewModel.changeSortMode(to: SortMode.alphaAscending)
-                self.reloadData()
-            }
-
-            let alphaDescending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.down.right")) { action in
-                rootViewModel.changeSortMode(to: SortMode.alphaDescending)
-                self.reloadData()
-            }
-
-            let createdAscending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.up.right")) { action in
-                rootViewModel.changeSortMode(to: SortMode.createdAscending)
-                self.reloadData()
-            }
-
-            let createdDescending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.down.right")) { action in
-                rootViewModel.changeSortMode(to: SortMode.createdDescending)
-                self.reloadData()
-            }
-
-            return UIMenu(title: "Сортировать", children: [alphaAscending, alphaDescending, createdAscending, createdDescending])
+extension RootViewController {
+    func makeMenu() -> (UIMenu) {
+        let alphaAscending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.up.right")) { action in
+            rootViewModel.changeSortMode(to: SortMode.alphaAscending)
+            self.reloadData()
         }
-        return configuration
+        let alphaDescending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.down.right")) { action in
+            rootViewModel.changeSortMode(to: SortMode.alphaDescending)
+            self.reloadData()
+        }
+        let createdAscending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.up.right")) { action in
+            rootViewModel.changeSortMode(to: SortMode.createdAscending)
+            self.reloadData()
+        }
+        let createdDescending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.down.right")) { action in
+            rootViewModel.changeSortMode(to: SortMode.createdDescending)
+            self.reloadData()
+        }
+        return UIMenu(title: "Сортировать", children: [alphaAscending, alphaDescending, createdAscending, createdDescending])
     }
 }
