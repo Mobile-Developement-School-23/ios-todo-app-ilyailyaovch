@@ -9,6 +9,8 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
     var textView = UILabel()
     let buttonView = UIButton()
 
+    // MARK: - Override init
+
     override init(reuseIdentifier: String?) {
         super.init(reuseIdentifier: reuseIdentifier)
         setupViews()
@@ -18,11 +20,13 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
         fatalError("init(coder:) has not been implemented")
     }
 
+    // MARK: - setupViews
+
     func setupViews() {
         setupText()
         setupButton()
         setupContentView()
-        setupContents()
+        setupConstraints()
     }
 
     func setupText() {
@@ -43,7 +47,9 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
         contentView.addSubview(buttonView)
     }
 
-    func setupContents() {
+    // MARK: - setupConstraints
+
+    func setupConstraints() {
         textView.translatesAutoresizingMaskIntoConstraints = false
         buttonView.translatesAutoresizingMaskIntoConstraints = false
 
@@ -58,6 +64,8 @@ class TableViewHeaderCell: UITableViewHeaderFooterView {
         ])
     }
 }
+
+// MARK: - @objc
 
 extension TableViewHeaderCell {
 

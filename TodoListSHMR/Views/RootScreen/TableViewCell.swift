@@ -15,7 +15,6 @@ final class TableViewCell: UITableViewCell {
     var stackStatusViews = UIStackView()
     var circleStatView = UIButton()
     var importancyStatView = UIImageView()
-
     let shevronView = UIImageView(image: Icon.Shevron.image)
 
     let strikethroughStyle = NSAttributedString(
@@ -29,7 +28,6 @@ final class TableViewCell: UITableViewCell {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         setupViews()
         setupConstraints()
-        // addCellTapRecogniser()
     }
 
     required init?(coder: NSCoder) {
@@ -153,7 +151,6 @@ final class TableViewCell: UITableViewCell {
             shevronView.widthAnchor.constraint(equalToConstant: 7)
         ])
     }
-
 }
 
 // MARK: - @objc

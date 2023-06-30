@@ -53,7 +53,7 @@ final class TableViewAddCell: UITableViewCell, UITextFieldDelegate {
         let tap = UITapGestureRecognizer(target: self, action: #selector(clickAddCell))
         contentView.isUserInteractionEnabled = true
         contentView.addGestureRecognizer(tap)
-        }
+    }
 }
 
 // MARK: - @objc
