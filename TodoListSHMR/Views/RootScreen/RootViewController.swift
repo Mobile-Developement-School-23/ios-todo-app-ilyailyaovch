@@ -170,6 +170,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     // MARK: filter todo
+    
     func filterTodoList(list: [TodoItem]) -> ([TodoItem]) {
         // check presentation status
         switch rootViewModel.status {

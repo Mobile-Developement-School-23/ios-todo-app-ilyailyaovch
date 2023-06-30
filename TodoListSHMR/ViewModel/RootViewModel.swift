@@ -131,8 +131,8 @@ extension RootViewModel: RootViewModelProtocol {
     func changePresentationStatus(to newStatus: Status) {
         self.status = newStatus
     }
-    
-    func changeSortMode(to newMode: SortMode){
+
+    func changeSortMode(to newMode: SortMode) {
         self.sortMode = newMode
     }
 }
