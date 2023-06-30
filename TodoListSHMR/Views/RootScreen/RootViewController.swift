@@ -9,7 +9,7 @@ var rootViewModel: RootViewModel = RootViewModel()
 class RootViewController: UIViewController {
 
     let addButtonView = UIButton()
-    let menuButtonView = UIButton()
+    let menuButtonView = UIButton(type: .system)
     let tableView = UITableView(frame: .zero, style: .insetGrouped)
     let tableHeaderView = TableViewHeaderCell()
 
@@ -59,6 +59,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
 //        )
 //    }
 
+    // MARK: table cells
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if indexPath.row == rootViewModel.todoListState.count {
             // Строка последнего элемента "Новое"
@@ -170,7 +171,6 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     }
 
     // MARK: filter todo
-    
     func filterTodoList(list: [TodoItem]) -> ([TodoItem]) {
         // check presentation status
         switch rootViewModel.status {
