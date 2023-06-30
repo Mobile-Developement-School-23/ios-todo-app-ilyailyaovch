@@ -45,14 +45,14 @@ final class TableViewCell: UITableViewCell {
         textView.strikeThrough(item.isCompleted)
 
         if item.isCompleted == true {
-            circleStatView.setImage(Icon.CircleCompleted.image, for: UIControl.State.normal)
+            circleStatView.setImage(Icon.CircleCompleted.image, for: .normal)
             textView.textColor = Colors.labelTertiary.color
             importancyStatView.isHidden = true
         } else if item.importancy == .important {
-            circleStatView.setImage(Icon.CircleImportant.image, for: UIControl.State.normal)
+            circleStatView.setImage(Icon.CircleImportant.image, for: .normal)
             importancyStatView.isHidden = false
         } else {
-            circleStatView.setImage(Icon.CircleEmpty.image, for: UIControl.State.normal)
+            circleStatView.setImage(Icon.CircleEmpty.image, for: .normal)
             importancyStatView.isHidden = true
         }
 

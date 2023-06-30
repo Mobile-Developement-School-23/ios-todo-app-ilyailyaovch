@@ -5,9 +5,19 @@ extension RootViewController: RootViewControllerProtocol {
     // MARK: - Setup RootView
 
     func setupHeader() {
-        title = "Мои дела"
+        navigationItem.title = "Мои дела"
         navigationController?.navigationBar.prefersLargeTitles = true
         navigationController?.navigationBar.layoutMargins = UIEdgeInsets(top: 0, left: 34, bottom: 0, right: 0)
+
+        // menuButtonView.setImage(Icon.Ellipsis.image, for: .normal)
+        menuButtonView.setTitle("Сортировка", for: .normal)
+        menuButtonView.setTitleColor(Colors.blue.color, for: .normal)
+        menuButtonView.layer.cornerRadius = constants.cornerRadius
+        
+        menuButtonView.isUserInteractionEnabled = true
+        menuButtonView.addInteraction(UIContextMenuInteraction(delegate: self))
+
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: menuButtonView)
     }
 
     func setupLayout() {
@@ -38,6 +48,7 @@ extension RootViewController: RootViewControllerProtocol {
 
     func setupConstraints() {
         tableView.translatesAutoresizingMaskIntoConstraints = false
+        menuButtonView.translatesAutoresizingMaskIntoConstraints = false
         addButtonView.translatesAutoresizingMaskIntoConstraints = false
 
         NSLayoutConstraint.activate([
@@ -46,6 +57,9 @@ extension RootViewController: RootViewControllerProtocol {
             tableView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor),
             tableView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor),
 
+            // menuButtonView.widthAnchor.constraint(equalToConstant: 30),
+            // menuButtonView.heightAnchor.constraint(equalToConstant: 30),
+
             addButtonView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
             addButtonView.bottomAnchor.constraint(equalTo: view.bottomAnchor, constant: -54),
             addButtonView.widthAnchor.constraint(equalToConstant: 44),
@@ -53,4 +67,35 @@ extension RootViewController: RootViewControllerProtocol {
         ])
     }
 
+}
+
+extension RootViewController: UIContextMenuInteractionDelegate {
+    func contextMenuInteraction(_ interaction: UIContextMenuInteraction,
+                                configurationForMenuAtLocation location: CGPoint) -> UIContextMenuConfiguration? {
+        let configuration = UIContextMenuConfiguration(identifier: nil,
+                                                       previewProvider: nil) { actions -> UIMenu? in
+            let alphaAscending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.up.right")) { action in
+                rootViewModel.changeSortMode(to: SortMode.alphaAscending)
+                self.reloadData()
+            }
+
+            let alphaDescending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.down.right")) { action in
+                rootViewModel.changeSortMode(to: SortMode.alphaDescending)
+                self.reloadData()
+            }
+
+            let createdAscending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.up.right")) { action in
+                rootViewModel.changeSortMode(to: SortMode.createdAscending)
+                self.reloadData()
+            }
+
+            let createdDescending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.down.right")) { action in
+                rootViewModel.changeSortMode(to: SortMode.createdDescending)
+                self.reloadData()
+            }
+
+            return UIMenu(title: "Сортировать", children: [alphaAscending, alphaDescending, createdAscending, createdDescending])
+        }
+        return configuration
+    }
 }

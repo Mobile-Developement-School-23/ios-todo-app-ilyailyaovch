@@ -10,6 +10,8 @@ enum Icon: String {
     case CircleCompleted = "CircleCompleted"
     case CircleEmpty = "CircleEmpty"
     case CircleImportant = "CircleImportant"
+    case Ellipsis = "Ellipsis"
+    case EllipsisFade = "EllipsisFade"
 
     var image: UIImage? {return UIImage(named: rawValue)}
 }
