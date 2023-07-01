@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0934E6DA2A505B5600665E00 /* URLSession.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0934E6D92A505B5600665E00 /* URLSession.swift */; };
 		09837E122A4071850026EB9D /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09837E112A4071850026EB9D /* Constants.swift */; };
 		099AEDB52A4763FC007D57DB /* TableViewAddCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDB42A4763FC007D57DB /* TableViewAddCell.swift */; };
 		099AEDB72A476407007D57DB /* TableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 099AEDB62A476407007D57DB /* TableViewCell.swift */; };
@@ -60,6 +61,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0934E6D92A505B5600665E00 /* URLSession.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = URLSession.swift; sourceTree = "<group>"; };
 		09837E112A4071850026EB9D /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		099AEDB42A4763FC007D57DB /* TableViewAddCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewAddCell.swift; sourceTree = "<group>"; };
 		099AEDB62A476407007D57DB /* TableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewCell.swift; sourceTree = "<group>"; };
@@ -133,6 +135,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		0934E6D72A5058C900665E00 /* Extentions */ = {
+			isa = PBXGroup;
+			children = (
+				0934E6D92A505B5600665E00 /* URLSession.swift */,
+			);
+			path = Extentions;
+			sourceTree = "<group>";
+		};
 		093DFDE92A45CC530095145A /* TodoScreen */ = {
 			isa = PBXGroup;
 			children = (
@@ -218,6 +228,7 @@
 				09EABDCC2A38603200DDB531 /* Views */,
 				09CFD6A42A404B920037167C /* ViewModel */,
 				09CFD6A12A4049290037167C /* Style */,
+				0934E6D72A5058C900665E00 /* Extentions */,
 				09FFF5522A33A4BC00CFDCD1 /* Assets.xcassets */,
 				09FFF5542A33A4BC00CFDCD1 /* LaunchScreen.storyboard */,
 			);
@@ -505,6 +516,7 @@
 			files = (
 				09F612492A4243C400CEEE1B /* Icons.swift in Sources */,
 				099AEDB72A476407007D57DB /* TableViewCell.swift in Sources */,
+				0934E6DA2A505B5600665E00 /* URLSession.swift in Sources */,
 				09F612412A40F42A00CEEE1B /* RootViewModel.swift in Sources */,
 				09F6124F2A4424B600CEEE1B /* TodoItemState.swift in Sources */,
 				09F6124D2A42E8BC00CEEE1B /* CalendarView.swift in Sources */,
