@@ -1,4 +1,5 @@
 import UIKit
+import CocoaLumberjackSwift
 
 enum Status {
     case ShowAll
@@ -12,92 +13,94 @@ enum SortMode {
     case createdDescending
 }
 
-//MARK: - RootViewModel
+// MARK: - RootViewModel
 
 final class RootViewModel: UIViewController {
-    
+
     var fileName = "TodoCache"
     var fileCache = FileCache()
     weak var viewController: RootViewController?
-    
+
     var todoListState = [TodoItem]()
     public private(set) var status: Status = Status.ShowUncompleted
     public private(set) var sortMode: SortMode = SortMode.createdDescending
-    
+
     init(fileName: String = "TodoCache",
-         fileCache: FileCache = FileCache()){
+         fileCache: FileCache = FileCache()) {
         super.init(nibName: nil, bundle: nil)
         self.fileName = fileName
         self.fileCache = fileCache
+        DDLog.add(DDOSLogger.sharedInstance)
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
 }
 
 extension RootViewModel: RootViewModelProtocol {
-    
-    //MARK: - CRUD functions
-    
-    func fetchData(){
-        do{
+
+    // MARK: - CRUD functions
+
+    func fetchData() {
+        do {
             try fileCache.loadItems(from: rootViewModel.fileName)
         } catch {
-            print("Error: fetchData()")
+            DDLogError("Error: fetchData()")
         }
     }
 
-    func openToDo(with item: TodoItem? = nil){
+    func openToDo(with item: TodoItem? = nil) {
         let newItem = item ?? TodoItem(text: "")
         let newNavViewController = UINavigationController(rootViewController: TodoViewController(with: newItem))
         newNavViewController.modalTransitionStyle = .coverVertical
         newNavViewController.modalPresentationStyle = .formSheet
         viewController?.present(newNavViewController, animated: true)
     }
-    
-    func saveToDo(item: TodoItem){
-        do{
+
+    func saveToDo(item: TodoItem) {
+        do {
             self.fileCache.add(item: item)
             try self.fileCache.saveItems(to: rootViewModel.fileName)
             self.updateTodoListState()
         } catch {
-            print("Error: saveToDo()")
+            DDLogError("Error: saveToDo()")
         }
     }
-    
-    func deleteToDo(id: String){
-        do{
+
+    func deleteToDo(id: String) {
+        do {
             try self.fileCache.remove(id: id)
             try self.fileCache.saveItems(to: rootViewModel.fileName)
             self.updateTodoListState()
         } catch {
-            print("Error: deleteToDo()")
+            DDLogError("Error: deleteToDo()")
         }
     }
-    
-    func deleteRow(at indexPath: IndexPath){
+
+    func deleteRow(at indexPath: IndexPath) {
         let id = self.todoListState[indexPath.row].id
-        do{
+        do {
             try self.fileCache.remove(id: id)
             try self.fileCache.saveItems(to: rootViewModel.fileName)
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
         } catch {
-            print("Error: deleteToDo()")
+            DDLogError("Error: deleteToDo()")
         }
     }
-    
-    func toggleCompletion(with item: TodoItem, at indexPath: IndexPath){
-        let newItem = TodoItem(id: item.id,
-                               text: item.text,
-                               importancy: item.importancy,
-                               deadline: item.deadline,
-                               isCompleted: !item.isCompleted,
-                               dateCreated: item.dateCreated,
-                               dateModified: item.dateModified
+
+    func toggleCompletion(with item: TodoItem, at indexPath: IndexPath) {
+        let newItem = TodoItem(
+            id: item.id,
+            text: item.text,
+            importancy: item.importancy,
+            deadline: item.deadline,
+            isCompleted: !item.isCompleted,
+            dateCreated: item.dateCreated,
+            dateModified: item.dateModified
         )
-        switch self.status{
+        switch self.status {
         case Status.ShowAll:
             self.fileCache.add(item: newItem)
             try? self.fileCache.saveItems(to: rootViewModel.fileName)
@@ -110,16 +113,16 @@ extension RootViewModel: RootViewModelProtocol {
             self.viewController?.deleteRow(at: indexPath)
             self.viewController?.reloadData()
         }
-        let counter = rootViewModel.fileCache.todoItems.filter{$0.isCompleted}.count
+        let counter = rootViewModel.fileCache.todoItems.filter {$0.isCompleted}.count
         self.viewController?.tableHeaderView.textView.text = "Выполнено - \(counter)"
     }
-    
-    //MARK: - todoListState presentation
-    
-    func updateTodoListState(){
-        switch self.status{
+
+    // MARK: - todoListState presentation
+
+    func updateTodoListState() {
+        switch self.status {
         case Status.ShowUncompleted:
-            self.todoListState = self.fileCache.todoItems.filter( {!$0.isCompleted} )
+            self.todoListState = self.fileCache.todoItems.filter({!$0.isCompleted})
         case Status.ShowAll:
             self.todoListState = self.fileCache.todoItems
         }
@@ -129,7 +132,7 @@ extension RootViewModel: RootViewModelProtocol {
     func changePresentationStatus(to newStatus: Status) {
         self.status = newStatus
     }
-    
+
     func changeSortMode(to newMode: SortMode) {
         self.sortMode = newMode
     }

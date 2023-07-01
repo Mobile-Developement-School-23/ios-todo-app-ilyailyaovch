@@ -12,11 +12,11 @@ import UIKit
 func setupNavigationBar() {
     cancelButton.setTitle("Отменить", for: .normal)
     cancelButton.addTarget(self, action: #selector(tapCancel), for: .touchUpInside)
-    
+
     saveButton.setTitle("Сохранить", for: .normal)
     saveButton.addTarget(self, action: #selector(tapSave), for: .touchUpInside)
     saveButton.isEnabled = false
-    
+
     title = "Дело"
     navigationItem.leftBarButtonItem = UIBarButtonItem(customView: cancelButton)
     navigationItem.rightBarButtonItem = UIBarButtonItem(customView: saveButton)
@@ -24,42 +24,42 @@ func setupNavigationBar() {
 
 //  Setup elements of TodoItemsViewController
 
-func setupBody(){
-    
+func setupBody() {
+
     view.addSubview(scrollView)
-    
+
     setupStackView()
     scrollView.addSubview(stackView)
-    
+
     setupTextView()
     stackView.addArrangedSubview(textView)
-    
+
     setupDetailsStack()
     stackView.addArrangedSubview(detailsStack)
-    
+
     setupDeleteButton()
     stackView.addArrangedSubview(deleteButton)
-    
+
 }
 
-func setupStackView(){
+func setupStackView() {
     stackView.axis = .vertical
     stackView.distribution = .equalSpacing
     stackView.spacing = 16.0
     stackView.alignment = .fill
 }
 
-func setupTextView(){
+func setupTextView() {
     textView.layer.cornerRadius = constants.cornerRadius
     textView.backgroundColor = Colors.backSecondary.color
     textView.font = UIFont.systemFont(ofSize: constants.bodySize)
     textView.textContainerInset = UIEdgeInsets(top: 16, left: 16, bottom: 16, right: 16)
     textView.isScrollEnabled = false
     textView.keyboardDismissMode = .interactive
-    
+
 }
 
-func setupDivider(divider: UIView){
+func setupDivider(divider: UIView) {
     let fill = UIView()
     divider.addSubview(fill)
     fill.backgroundColor = Colors.supportSeparator.color
@@ -73,16 +73,16 @@ func setupDivider(divider: UIView){
     ])
 }
 
-func setupDetailsStack(){
+func setupDetailsStack() {
     detailsStack.axis = .vertical
     detailsStack.alignment = .fill
     detailsStack.distribution = .equalSpacing
     detailsStack.layer.cornerRadius = constants.cornerRadius
     detailsStack.backgroundColor = Colors.backSecondary.color
-    
+
     setupDivider(divider: divider)
     setupDivider(divider: calendarDivider)
-            
+
     detailsStack.addArrangedSubview(importancyView)
     detailsStack.addArrangedSubview(divider)
     detailsStack.addArrangedSubview(deadlineView)
@@ -90,10 +90,10 @@ func setupDetailsStack(){
     detailsStack.addArrangedSubview(calendarView)
     calendarDivider.isHidden = true
     calendarView.isHidden = true
-    
+
 }
 
-func setupDeleteButton(){
+func setupDeleteButton() {
     deleteButton.setTitle("Удалить", for: .normal)
     deleteButton.setTitleColor(Colors.red.color, for: .normal)
     deleteButton.titleLabel?.font = UIFont.systemFont(ofSize: constants.bodySize)
@@ -105,10 +105,10 @@ func setupDeleteButton(){
 
 // Setup constrains of TodoItemsViewController
 
-func setupBodyConstrains(){
+func setupBodyConstrains() {
     scrollView.translatesAutoresizingMaskIntoConstraints = false
     stackView.translatesAutoresizingMaskIntoConstraints = false
-    
+
     NSLayoutConstraint.activate([
         scrollView.leadingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.leadingAnchor, constant: 16),
         scrollView.trailingAnchor.constraint(equalTo: view.safeAreaLayoutGuide.trailingAnchor, constant: -16),
@@ -122,10 +122,10 @@ func setupBodyConstrains(){
         stackView.widthAnchor.constraint(equalTo: scrollView.widthAnchor),
 
         textView.heightAnchor.constraint(greaterThanOrEqualToConstant: 120),
-        
+
         importancyView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
         deadlineView.heightAnchor.constraint(greaterThanOrEqualToConstant: 54),
-        
+
         deleteButton.heightAnchor.constraint(equalToConstant: 56)
     ])
 }

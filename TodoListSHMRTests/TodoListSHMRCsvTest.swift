@@ -12,17 +12,17 @@ final class TodoListSHMRCSVTest: XCTestCase {
 
     func testToDoItemParseCSVWithAllAttributes() throws {
         let csv: String = "111222;Text here;important;2023.0;false;2023.0;2023.0"
-        
-        let id = "111222";
-        let text = "Text here";
-        let isCompleted = false;
+
+        let id = "111222"
+        let text = "Text here"
+        let isCompleted = false
         let importancy: Importancy = .important
         let deadline = Date(timeIntervalSince1970: 2023.0)
         let dateCreated = Date(timeIntervalSince1970: 2023.0)
         let dateModified = Date(timeIntervalSince1970: 2023.0)
-        
+
         let item: TodoItem = TodoItem.parse(csv: csv)!
-        
+
         XCTAssertEqual(item.id, id)
         XCTAssertEqual(item.text, text)
         XCTAssertEqual(item.importancy, importancy)
@@ -31,18 +31,18 @@ final class TodoListSHMRCSVTest: XCTestCase {
         XCTAssertEqual(item.dateCreated, dateCreated)
         XCTAssertEqual(item.dateModified, dateModified)
     }
-    
+
     func testToDoItemParseCSVWithoutOptioanalAttributes() throws {
         let csv: String = "111222;Text here;low;;false;2023.0;"
-        
-        let id = "111222";
-        let text = "Text here";
-        let isCompleted = false;
+
+        let id = "111222"
+        let text = "Text here"
+        let isCompleted = false
         let importancy: Importancy = .low
         let dateCreated = Date(timeIntervalSince1970: 2023.0)
-        
+
         let item: TodoItem = TodoItem.parse(csv: csv)!
-        
+
         XCTAssertEqual(item.id, id)
         XCTAssertEqual(item.text, text)
         XCTAssertEqual(item.importancy, importancy)
@@ -51,18 +51,18 @@ final class TodoListSHMRCSVTest: XCTestCase {
         XCTAssertEqual(item.dateCreated, dateCreated)
         XCTAssertNil(item.dateModified)
     }
-    
+
     func testToDoItemParseCSVWithRequiredAttributes() throws {
         let csv: String = "111222;Text here;;;;2023.0;"
-        
-        let id = "111222";
-        let text = "Text here";
-        let isCompleted = false;
+
+        let id = "111222"
+        let text = "Text here"
+        let isCompleted = false
         let importancy: Importancy = .normal
         let dateCreated = Date(timeIntervalSince1970: 2023.0)
-        
+
         let item: TodoItem = TodoItem.parse(csv: csv)!
-        
+
         XCTAssertEqual(item.id, id)
         XCTAssertEqual(item.text, text)
         XCTAssertEqual(item.importancy, importancy)
@@ -76,62 +76,62 @@ final class TodoListSHMRCSVTest: XCTestCase {
         let j: String = ";Text here;;;false;2023.0;"
 
         let item = TodoItem.parse(csv: j)
-    
+
         XCTAssertNil(item)
     }
-    
+
     func testToDoItemParseCSVWithBrokenText() throws {
         let csv: String = "111;;;;false;2023.0;"
 
         let item = TodoItem.parse(csv: csv)
-    
+
         XCTAssertNil(item)
     }
-    
+
     func testToDoItemParseCSVWithBrokenDateCreated() throws {
         let csv: String = "111;Text here;;;false;;"
 
         let item = TodoItem.parse(csv: csv)
-    
+
         XCTAssertNil(item)
     }
-    
+
     func testToDoItemFormCSVWithAllAttributes() throws {
         let csv: String = "111222;Text here;important;2023.0;false;2023.0;2023.0"
-        
+
         let item: TodoItem = TodoItem.parse(csv: csv)!
         let csvNew = item.csv
-        
+
         XCTAssertEqual(csv, csvNew)
     }
-    
+
     func testToDoItemFormCSVWithoutOptioanalAttributes() throws {
         let csv: String = "111222;Text here;important;;false;2023.0;"
-        
+
         let item: TodoItem = TodoItem.parse(csv: csv)!
         let csvNew = item.csv
-        
+
         XCTAssertEqual(csv, csvNew)
     }
-    
+
     func testToDoItemFormCSVWithoutImportancy() throws {
         let csv: String = "111222;Text here;;;false;2023.0;"
-        
+
         let item: TodoItem = TodoItem.parse(csv: csv)!
         let csvNew = item.csv
-        
+
         XCTAssertEqual(csv, csvNew)
     }
-    
+
     func testToDoItemFormCSVWithRequiredAttributes() throws {
         let csv: String = "111222;Text here;;;;2023.0;"
-        
+
         let item: TodoItem = TodoItem.parse(csv: csv)!
         let csvNew = item.csv
-        
+
         XCTAssertNotEqual(csv, csvNew) // isCompleted
     }
-    
+
     func testToDoItemSaveLoadCSV1() throws {
 
         let item1: TodoItem = TodoItem(
@@ -153,8 +153,8 @@ final class TodoListSHMRCSVTest: XCTestCase {
         let fileCash: FileCache = FileCache()
         let fileCash2: FileCache = FileCache()
 
-        try fileCash.add(item: item1)
-        try fileCash.add(item: item2)
+        fileCash.add(item: item1)
+        fileCash.add(item: item2)
         try fileCash.remove(id: item1.id)
 
         let fileName = "TestFileCSV"

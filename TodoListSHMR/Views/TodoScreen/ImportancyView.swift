@@ -1,9 +1,9 @@
 import UIKit
 
 class ImportancyView: UIView {
-    
+
     var valueDidChange: ((Importancy) -> Void)?
-    
+
     var importancy: Importancy? {
         didSet {
             guard
@@ -20,7 +20,7 @@ class ImportancyView: UIView {
             }
         }
     }
-    
+
     let titleLabel = UILabel()
     let segControl = UISegmentedControl()
 
@@ -31,16 +31,16 @@ class ImportancyView: UIView {
         addSubview(segControl)
         setupConstraints()
     }
-    
+
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
     }
-    
+
     func setupViews() {
         titleLabel.text = "Важность"
         titleLabel.font = UIFont.systemFont(ofSize: constants.bodySize)
         titleLabel.textColor = Colors.labelPrimary.color
-        
+
         segControl.insertSegment(with: Icon.Low.image, at: 0, animated: false)
         segControl.insertSegment(withTitle: "нет", at: 1, animated: false)
         segControl.insertSegment(with: Icon.Important.image, at: 2, animated: false)
@@ -50,19 +50,19 @@ class ImportancyView: UIView {
 
         segControl.addTarget(self, action: #selector(segControlValueChanged), for: .valueChanged)
         segControl.addTarget(self, action: #selector(segControlValueChanged), for: .touchUpInside)
-        
+
     }
-    
+
     func setupConstraints() {
-        
+
         titleLabel.translatesAutoresizingMaskIntoConstraints = false
         segControl.translatesAutoresizingMaskIntoConstraints = false
-        
+
         NSLayoutConstraint.activate([
             titleLabel.centerYAnchor.constraint(equalTo: centerYAnchor),
             titleLabel.leadingAnchor.constraint(equalTo: leadingAnchor, constant: 16),
             titleLabel.widthAnchor.constraint(equalTo: widthAnchor, multiplier: 0.5),
-            
+
             segControl.topAnchor.constraint(equalTo: topAnchor, constant: 10),
             segControl.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10),
             segControl.leadingAnchor.constraint(equalTo: titleLabel.trailingAnchor),
@@ -73,7 +73,7 @@ class ImportancyView: UIView {
 }
 
 extension ImportancyView {
-    
+
     @objc func segControlValueChanged(_ sender: UISegmentedControl) {
         switch sender.selectedSegmentIndex {
         case 0:

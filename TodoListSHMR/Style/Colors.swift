@@ -1,18 +1,18 @@
 import UIKit
 
 enum Colors: String {
-    
+
     //  Support colors
     case supportSeparator   = "supportSeparator"
     case supportOverlay     = "supportOverlay"
     case supportNavBarBlur  = "supportNavBarBlur"
-    
+
     //  Label colors
     case labelPrimary   = "labelPrimary"
     case labelSecondary = "labelSecondary"
     case labelTertiary  = "labelTertiary"
     case labelDisable   = "labelDisable"
-    
+
     //  Colors
     case red        = "red"
     case green      = "green"
@@ -26,6 +26,6 @@ enum Colors: String {
     case backPrimary    = "backPrimary"
     case backSecondary  = "backSecondary"
     case backElevated   = "backElevated"
-    
+
     var color: UIColor { return UIColor(named: rawValue) ?? .orange}
 }
