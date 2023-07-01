@@ -268,23 +268,38 @@ extension RootViewController {
 
 extension RootViewController {
     func makeMenu() -> (UIMenu) {
-        let alphaAscending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.up.right")) { _ in
+        let alphaAscending = UIAction(
+            title: "По алфавиту",
+            image: UIImage(systemName: "arrow.up.right")
+        ) { _ in
             rootViewModel.changeSortMode(to: SortMode.alphaAscending)
             self.reloadData()
         }
-        let alphaDescending = UIAction(title: "По алфавиту", image: UIImage(systemName: "arrow.down.right")) { _ in
+        let alphaDescending = UIAction(
+            title: "По алфавиту",
+            image: UIImage(systemName: "arrow.down.right")
+        ) { _ in
             rootViewModel.changeSortMode(to: SortMode.alphaDescending)
             self.reloadData()
         }
-        let createdAscending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.up.right")) { _ in
+        let createdAscending = UIAction(
+            title: "По дате создания",
+            image: UIImage(systemName: "arrow.up.right")
+        ) { _ in
             rootViewModel.changeSortMode(to: SortMode.createdAscending)
             self.reloadData()
         }
-        let createdDescending = UIAction(title: "По дате создания", image: UIImage(systemName: "arrow.down.right")) { _ in
+        let createdDescending = UIAction(
+            title: "По дате создания",
+            image: UIImage(systemName: "arrow.down.right")
+        ) { _ in
             rootViewModel.changeSortMode(to: SortMode.createdDescending)
             self.reloadData()
         }
-        return UIMenu(title: "Сортировать", children: [alphaAscending, alphaDescending, createdAscending, createdDescending])
+        return UIMenu(
+            title: "Сортировать",
+            children: [alphaAscending, alphaDescending, createdAscending, createdDescending]
+        )
     }
 }
 

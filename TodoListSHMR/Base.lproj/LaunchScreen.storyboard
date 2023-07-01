@@ -22,7 +22,7 @@
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
                             </label>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="as" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-ph-gjj">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" misplaced="YES" image="checkmark.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="JK9-ph-gjj">
                                 <rect key="frame" x="142" y="289" width="109" height="106"/>
                                 <color key="tintColor" red="0.98039215800000001" green="0.87450981139999995" blue="0.43921568989999998" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                 <constraints>
@@ -48,7 +48,7 @@
         </scene>
     </scenes>
     <resources>
-        <image name="as" width="128" height="128"/>
+        <image name="checkmark.circle.fill" catalog="system" width="128" height="123"/>
         <namedColor name="backPrimary">
             <color red="0.97000002861022949" green="0.97000002861022949" blue="0.94999998807907104" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </namedColor>
