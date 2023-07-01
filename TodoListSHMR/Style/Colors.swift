@@ -3,29 +3,29 @@ import UIKit
 enum Colors: String {
 
     //  Support colors
-    case supportSeparator = "supportSeparator"
-    case supportOverlay = "supportOverlay"
-    case supportNavBarBlur = "supportNavBarBlur"
+    case supportSeparator
+    case supportOverlay
+    case supportNavBarBlur
 
     //  Label colors
-    case labelPrimary = "labelPrimary"
-    case labelSecondary = "labelSecondary"
-    case labelTertiary = "labelTertiary"
-    case labelDisable = "labelDisable"
+    case labelPrimary
+    case labelSecondary
+    case labelTertiary
+    case labelDisable
 
     //  Colors
-    case red = "red"
-    case green = "green"
-    case blue = "blue"
-    case gray = "gray"
-    case grayLight = "grayLight"
-    case white = "white"
+    case red
+    case green
+    case blue
+    case gray
+    case grayLight
+    case white
 
     //  Background colors
-    case backIOSPrimary = "backIOSPrimary"
-    case backPrimary = "backPrimary"
-    case backSecondary = "backSecondary"
-    case backElevated = "backElevated"
+    case backIOSPrimary
+    case backPrimary
+    case backSecondary
+    case backElevated
 
     var color: UIColor { return UIColor(named: rawValue) ?? .orange}
 }

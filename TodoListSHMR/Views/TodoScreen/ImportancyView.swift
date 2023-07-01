@@ -24,6 +24,8 @@ class ImportancyView: UIView {
     let titleLabel = UILabel()
     let segControl = UISegmentedControl()
 
+    let constants = Constants()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

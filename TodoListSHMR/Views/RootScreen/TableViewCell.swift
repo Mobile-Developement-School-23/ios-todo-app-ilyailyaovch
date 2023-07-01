@@ -17,6 +17,8 @@ final class TableViewCell: UITableViewCell {
     var importancyStatView = UIImageView()
     let shevronView = UIImageView(image: Icon.Shevron.image)
 
+    let constants = Constants()
+
     let strikethroughStyle = NSAttributedString(
         string: "Text",
         attributes: [.strikethroughStyle: NSUnderlineStyle.single.rawValue]
