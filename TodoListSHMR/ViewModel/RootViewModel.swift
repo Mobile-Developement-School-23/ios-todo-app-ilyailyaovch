@@ -19,9 +19,12 @@ final class RootViewModel: UIViewController {
 
     var fileName = "TodoCache"
     var fileCache = FileCache()
+    var todoListState = [TodoItem]()
+
     weak var viewController: RootViewController?
 
-    var todoListState = [TodoItem]()
+    let network: NetworkingService = DefaultNetworkingService()
+
     public private(set) var status: Status = Status.ShowUncompleted
     public private(set) var sortMode: SortMode = SortMode.createdDescending
 
@@ -35,6 +38,13 @@ final class RootViewModel: UIViewController {
 
     required init?(coder: NSCoder) {
         fatalError("init(coder:) has not been implemented")
+    }
+}
+
+extension RootViewModel {
+
+    func fetchDataNetwork() {
+        network.get()
     }
 }
 

@@ -34,6 +34,8 @@ class DeadlineView: UIView {
     var stackView = UIStackView()
     var switchButton = UISwitch()
 
+    let constants = Constants()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupViews()

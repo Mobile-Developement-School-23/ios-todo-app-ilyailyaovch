@@ -31,6 +31,10 @@ class RootViewController: UIViewController {
         // fetch data
         rootViewModel.fetchData()
         rootViewModel.updateTodoListState()
+
+        // Пока это работает как проверка "extension URLSession"
+        rootViewModel.fetchDataNetwork()
+
     }
 
     // MARK: - Setup RootView
@@ -56,9 +60,18 @@ class RootViewController: UIViewController {
 
     func setupTableView() {
         tableView.backgroundColor = Colors.backPrimary.color
-        tableView.register(TableViewHeaderCell.self, forHeaderFooterViewReuseIdentifier: TableViewHeaderCell.identifier)
-        tableView.register(TableViewCell.self, forCellReuseIdentifier: TableViewCell.identifier)
-        tableView.register(TableViewAddCell.self, forCellReuseIdentifier: TableViewAddCell.identifier)
+        tableView.register(
+            TableViewHeaderCell.self,
+            forHeaderFooterViewReuseIdentifier: TableViewHeaderCell.identifier
+        )
+        tableView.register(
+            TableViewCell.self,
+            forCellReuseIdentifier: TableViewCell.identifier
+        )
+        tableView.register(
+            TableViewAddCell.self,
+            forCellReuseIdentifier: TableViewAddCell.identifier
+        )
         tableView.delegate = self
         tableView.dataSource = self
     }
@@ -141,7 +154,8 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     // MARK: table header
     func tableView(_ tableView: UITableView,
                    viewForHeaderInSection section: Int) -> UIView? {
-        tableHeaderView.textView.text = "Выполнено - \(rootViewModel.fileCache.todoItems.filter { $0.isCompleted }.count)"
+        let counter = rootViewModel.fileCache.todoItems.filter { $0.isCompleted }.count
+        tableHeaderView.textView.text = "Выполнено - \(counter)"
         tableHeaderView.valueDidChange = { rootViewModel.updateTodoListState() }
         return tableHeaderView
     }
@@ -185,7 +199,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    leadingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Toggle action
-        let toggle = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
+        let toggle = UIContextualAction(style: .normal, title: "") { ( _, _, completionHandler) in
             let item  = rootViewModel.todoListState[indexPath.row]
             rootViewModel.toggleCompletion(with: item, at: indexPath)
             completionHandler(true)
@@ -204,7 +218,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView,
                    trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         // Info action
-        let info = UIContextualAction(style: .normal, title: "") { (action, view, completionHandler) in
+        let info = UIContextualAction(style: .normal, title: "") { (_, _, completionHandler) in
             let item  = rootViewModel.todoListState[indexPath.row]
             rootViewModel.openToDo(with: item)
             completionHandler(true)
@@ -212,7 +226,7 @@ extension RootViewController: UITableViewDelegate, UITableViewDataSource {
         info.backgroundColor = Colors.grayLight.color
         info.image = UIImage(systemName: "info.circle.fill")
         // Trash action
-        let trash = UIContextualAction(style: .destructive, title: "") { (action, view, completionHandler) in
+        let trash = UIContextualAction(style: .destructive, title: "") { (_, _, completionHandler) in
             rootViewModel.deleteRow(at: indexPath)
             completionHandler(true)
         }

@@ -21,6 +21,9 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
     var calendarView = CalendarView()
     var deleteButton = UIButton()
 
+    let placeholder = "Что надо сделать?"
+    let constants = Constants()
+
     // MARK: - Inits
 
     init(with item: TodoItem) {
@@ -101,7 +104,7 @@ final class TodoViewController: UIViewController, UIScrollViewDelegate {
 
     func setupTextView() {
         textView.delegate = self
-        textView.text = constants.placeholder
+        textView.text = self.placeholder
         textView.textColor = UIColor.lightGray
         textView.layer.cornerRadius = constants.cornerRadius
         textView.backgroundColor = Colors.backSecondary.color
@@ -288,7 +291,7 @@ extension TodoViewController {
     }
 
     func activateButtons() {
-        if !textView.text.isEmpty && textView.text != constants.placeholder {
+        if !textView.text.isEmpty && textView.text != self.placeholder {
             saveButton.isEnabled = true
             deleteButton.isEnabled = true
             deleteButton.setTitleColor(Colors.red.color, for: .normal)

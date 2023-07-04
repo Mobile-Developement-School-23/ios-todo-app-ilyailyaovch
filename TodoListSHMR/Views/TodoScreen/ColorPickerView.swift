@@ -11,6 +11,8 @@ class ColorPickerView: UIView {
     var scrollView = UIScrollView()
     var colorPicker = UIView()
 
+    let constants = Constants()
+
     override init(frame: CGRect) {
         super.init(frame: frame)
         setupView()
