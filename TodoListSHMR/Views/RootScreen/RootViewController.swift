@@ -31,6 +31,10 @@ class RootViewController: UIViewController {
         // fetch data
         rootViewModel.fetchData()
         rootViewModel.updateTodoListState()
+
+        // Пока это работает как проверка "extension URLSession"
+        rootViewModel.fetchDataNetwork()
+
     }
 
     // MARK: - Setup RootView
