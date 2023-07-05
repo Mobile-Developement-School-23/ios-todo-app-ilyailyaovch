@@ -18,8 +18,11 @@ class DefaultNetworkingService: NetworkingService {
             request.httpMethod = "GET"
             request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
             let task = try await URLSession.shared.dataTask(for: request)
-
-            print(task)
+            let json = try JSONSerialization.jsonObject(
+                with: task.0,
+                options: JSONSerialization.ReadingOptions.mutableContainers
+            ) as! NSDictionary
+            print(json)
         }
 
 //        let task = URLSession.shared.dataTask(with: request as URLRequest) {(data,response,error) -> Void in
