@@ -44,7 +44,13 @@ final class RootViewModel: UIViewController {
 extension RootViewModel {
 
     func fetchDataNetwork() {
-        network.get()
+        Task {
+            // Need to use 'try'/'catch'
+            let parsedTodoItems = try await network.getList()
+            print(parsedTodoItems)
+            let patchedTodoItems = try await network.patchList(with: self.fileCache.todoItems)
+            print(patchedTodoItems)
+        }
     }
 }
 
