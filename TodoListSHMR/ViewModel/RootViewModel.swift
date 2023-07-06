@@ -20,6 +20,7 @@ final class RootViewModel: UIViewController {
     var fileName = "TodoCache"
     var fileCache = FileCache()
     var todoListState = [TodoItem]()
+    var isDirty = false
 
     weak var viewController: RootViewController?
 
@@ -45,12 +46,9 @@ extension RootViewModel {
 
     func fetchDataNetwork() {
         Task {
-            // Need to use 'try'/'catch'
-            let parsedTodoItems = try await network.getList()
-            print(parsedTodoItems)
-            let patchedTodoItems = try await network.patchList(with: self.fileCache.todoItems)
-            print(patchedTodoItems)
+            self.todoListState = try await network.getList()
         }
+
     }
 }
 

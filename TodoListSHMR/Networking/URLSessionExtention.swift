@@ -6,8 +6,7 @@ extension URLSession {
             let task = self.dataTask(with: urlRequest) { data, response, error in
                 if let error = error {
                     continuation.resume(throwing: error)
-                }
-                if let data = data, let response = response {
+                } else if let data = data, let response = response {
                     continuation.resume(returning: (data, response))
                 }
             }

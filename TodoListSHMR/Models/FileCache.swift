@@ -45,7 +45,7 @@ class FileCache {
         let jsonItems = todoItems.map({ $0.json })
 
         // записываем json элементы в файл
-        let jsonData = try JSONSerialization.data(withJSONObject: jsonItems, options: [])
+        let jsonData = try JSONSerialization.data(withJSONObject: jsonItems)
         try jsonData.write(to: pathWithFilename)
     }
 
@@ -66,7 +66,7 @@ class FileCache {
 
         // парсим data в массив
         guard
-            let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options : []) as? [[String: Any]]
+            let jsonArray = try JSONSerialization.jsonObject(with: jsonData) as? [[String: Any]]
         else { throw FileCacheErrors.incorrectJson }
 
         todoItems = jsonArray.compactMap { TodoItem.parse(json: $0)}

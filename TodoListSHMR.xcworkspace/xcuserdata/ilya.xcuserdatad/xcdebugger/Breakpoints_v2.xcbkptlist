@@ -7,351 +7,85 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8B6E889D-BFFB-4D61-AE8D-1A30004EA2C4"
+            uuid = "C3694AD5-D8E9-4214-B2FE-04FD224DF0FD"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "TodoListSHMR/Networking/NetworkingService.swift"
+            filePath = "TodoListSHMR/Networking/URLSessionExtention.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "50"
-            endingLineNumber = "50"
-            landmarkName = "patchList(with:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "8B6E889D-BFFB-4D61-AE8D-1A30004EA2C4 - 7d64e6c73ad47a57"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "1504">
-               </Location>
-               <Location
-                  uuid = "8B6E889D-BFFB-4D61-AE8D-1A30004EA2C4 - 7d64e6c73ad47ab6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "800">
-               </Location>
-               <Location
-                  uuid = "8B6E889D-BFFB-4D61-AE8D-1A30004EA2C4 - 7d64e6c73ad47ab6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "59"
-                  endingLineNumber = "59"
-                  offsetFromSymbolStart = "888">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "704FBCE9-B098-4A04-96F8-1BED209D075C"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoListSHMR/Networking/NetworkingService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "55"
-            endingLineNumber = "55"
-            landmarkName = "patchList(with:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "704FBCE9-B098-4A04-96F8-1BED209D075C - 7d64e6c73ad47a57"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "60"
-                  endingLineNumber = "60"
-                  offsetFromSymbolStart = "1572">
-               </Location>
-               <Location
-                  uuid = "704FBCE9-B098-4A04-96F8-1BED209D075C - 7d64e6c73ad47acb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "2052">
-               </Location>
-               <Location
-                  uuid = "704FBCE9-B098-4A04-96F8-1BED209D075C - 7d64e6c73ad47acb"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "56"
-                  endingLineNumber = "56"
-                  offsetFromSymbolStart = "2036">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoListSHMR/Networking/NetworkingService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "patchList(with:)"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022 - 7d64e6c73ad47d5f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "3124">
-               </Location>
-               <Location
-                  uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022 - 88805f4258970c65"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022 - 88805f4258970a75"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022 - bfa4756006d2731"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022 - bfa4756006d2121"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "136">
-               </Location>
-               <Location
-                  uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022 - 1d3af0ee95498130"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "52"
-                  endingLineNumber = "52"
-                  offsetFromSymbolStart = "24">
-               </Location>
-               <Location
-                  uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022 - 1d3af0ee95498720"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "76">
-               </Location>
-               <Location
-                  uuid = "80B87D7C-9010-471E-B2E5-3FB827ABD022 - 7d64e6c73ad47d5f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.patchList(with: Swift.Array&lt;TodoListSHMR.TodoItem&gt;) async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "68"
-                  endingLineNumber = "68"
-                  offsetFromSymbolStart = "3144">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "911DA322-D0DA-4D43-91AC-18AE5947AC98"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoListSHMR/Networking/NetworkingService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "63"
-            endingLineNumber = "63"
-            landmarkName = "patchList(with:)"
+            startingLineNumber = "10"
+            endingLineNumber = "10"
+            landmarkName = "dataTask(for:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "5D6E76D7-8BCD-41D8-810E-CA5DAF4A7DA3"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoListSHMR/Networking/NetworkingService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "75"
-            endingLineNumber = "75"
-            landmarkName = "parseTodoItems(data:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "9107E3C3-43B9-4C05-952F-897A4539C578"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoListSHMR/Networking/NetworkingService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "79"
-            endingLineNumber = "79"
-            landmarkName = "parseTodoItems(data:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "7C9B5A58-7385-41C3-9E5F-85EFDCD9C1D1"
+            uuid = "6A5E57A8-BDC0-4D21-BAC0-348233DDD69C"
             shouldBeEnabled = "No"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
             filePath = "TodoListSHMR/ViewModel/RootViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "51"
-            endingLineNumber = "51"
+            startingLineNumber = "47"
+            endingLineNumber = "47"
             landmarkName = "fetchDataNetwork()"
             landmarkType = "7">
             <Locations>
                <Location
-                  uuid = "7C9B5A58-7385-41C3-9E5F-85EFDCD9C1D1 - 1b3e8eea98b64cfa"
+                  uuid = "6A5E57A8-BDC0-4D21-BAC0-348233DDD69C - 8b0fc25d2f01de64"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
+                  symbolName = "TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
                   moduleName = "TodoListSHMR"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "428">
+                  startingLineNumber = "47"
+                  endingLineNumber = "47"
+                  offsetFromSymbolStart = "132">
                </Location>
                <Location
-                  uuid = "7C9B5A58-7385-41C3-9E5F-85EFDCD9C1D1 - c39ccdaf6f4fb2a3"
+                  uuid = "6A5E57A8-BDC0-4D21-BAC0-348233DDD69C - 22d71239b405c6c8"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(4) await resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
+                  symbolName = "closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
+                  moduleName = "TodoListSHMR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "6A5E57A8-BDC0-4D21-BAC0-348233DDD69C - a17f49c2c0558f5b"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(1) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
+                  moduleName = "TodoListSHMR"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "46"
+                  endingLineNumber = "46"
+                  offsetFromSymbolStart = "20">
+               </Location>
+               <Location
+                  uuid = "6A5E57A8-BDC0-4D21-BAC0-348233DDD69C - be53d3ff10c4cda1"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "(2) await resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
                   moduleName = "TodoListSHMR"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
@@ -362,26 +96,11 @@
                   offsetFromSymbolStart = "36">
                </Location>
                <Location
-                  uuid = "7C9B5A58-7385-41C3-9E5F-85EFDCD9C1D1 - c39ccdaf6f4fb104"
+                  uuid = "6A5E57A8-BDC0-4D21-BAC0-348233DDD69C - 1b3e8eea98b64f5d"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(4) await resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  uuid = "7C9B5A58-7385-41C3-9E5F-85EFDCD9C1D1 - defdc39231170f5f"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
+                  symbolName = "(3) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
                   moduleName = "TodoListSHMR"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
@@ -392,26 +111,11 @@
                   offsetFromSymbolStart = "20">
                </Location>
                <Location
-                  uuid = "7C9B5A58-7385-41C3-9E5F-85EFDCD9C1D1 - defdc39231170cf8"
+                  uuid = "6A5E57A8-BDC0-4D21-BAC0-348233DDD69C - b9dd6d7e4cc7ef5c"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
-                  symbolName = "(5) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "80">
-               </Location>
-               <Location
-                  uuid = "7C9B5A58-7385-41C3-9E5F-85EFDCD9C1D1 - 90bb00b9c971c8a1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
+                  symbolName = "(4) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
                   moduleName = "TodoListSHMR"
                   usesParentBreakpointCondition = "Yes"
                   urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
@@ -420,160 +124,6 @@
                   startingLineNumber = "46"
                   endingLineNumber = "46"
                   offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "7C9B5A58-7385-41C3-9E5F-85EFDCD9C1D1 - 90bb00b9c971cb06"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(7) suspend resume partial function for closure #1 @Sendable () async throws -&gt; () in TodoListSHMR.RootViewModel.fetchDataNetwork() -&gt; ()"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/ViewModel/RootViewModel.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "51"
-                  endingLineNumber = "51"
-                  offsetFromSymbolStart = "56">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "50F296BF-F0A5-4442-AD52-3807D9CAE469"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoListSHMR/ViewModel/RootViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "52"
-            endingLineNumber = "52"
-            landmarkName = "fetchDataNetwork()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "4B7299C5-2AFB-4AAF-A1B3-6D01BDB8623D"
-            shouldBeEnabled = "No"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "TodoListSHMR/Networking/NetworkingService.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "37"
-            endingLineNumber = "37"
-            landmarkName = "getList()"
-            landmarkType = "7">
-            <Locations>
-               <Location
-                  uuid = "4B7299C5-2AFB-4AAF-A1B3-6D01BDB8623D - 6176d722c6ade447"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(1) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "924">
-               </Location>
-               <Location
-                  uuid = "4B7299C5-2AFB-4AAF-A1B3-6D01BDB8623D - 6d2b68f83c9f4d6d"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for TodoListSHMR.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "44">
-               </Location>
-               <Location
-                  uuid = "4B7299C5-2AFB-4AAF-A1B3-6D01BDB8623D - 6d2b68f83c9f4cb6"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(2) await resume partial function for TodoListSHMR.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  uuid = "4B7299C5-2AFB-4AAF-A1B3-6D01BDB8623D - 9d4f5ebef3b6b99e"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "28">
-               </Location>
-               <Location
-                  uuid = "4B7299C5-2AFB-4AAF-A1B3-6D01BDB8623D - 9d4f5ebef3b6b845"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(3) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "104">
-               </Location>
-               <Location
-                  uuid = "4B7299C5-2AFB-4AAF-A1B3-6D01BDB8623D - 77ac8170f90b1ba1"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "36"
-                  endingLineNumber = "36"
-                  offsetFromSymbolStart = "20">
-               </Location>
-               <Location
-                  uuid = "4B7299C5-2AFB-4AAF-A1B3-6D01BDB8623D - 77ac8170f90b1a7a"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "(4) suspend resume partial function for TodoListSHMR.DefaultNetworkingService.getList() async throws -&gt; Swift.Array&lt;TodoListSHMR.TodoItem&gt;"
-                  moduleName = "TodoListSHMR"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/ilya/Developer/TodoListSHMR/TodoListSHMR/Networking/NetworkingService.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "45"
-                  endingLineNumber = "45"
-                  offsetFromSymbolStart = "48">
                </Location>
             </Locations>
          </BreakpointContent>
