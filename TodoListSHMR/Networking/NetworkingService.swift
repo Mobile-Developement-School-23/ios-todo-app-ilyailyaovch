@@ -9,7 +9,7 @@ enum ApiErrors: Error {
 protocol NetworkingService {
     func getList() async throws -> [TodoItem]
     func getElement(by id: String) async throws -> TodoItem
-    func putElement(by id: String) async throws -> TodoItem
+    func putElement(with todoItemClient: TodoItem) async throws -> TodoItem
     func patchList(with todoItemsClient: [TodoItem]) async throws -> [TodoItem]
     func postElem(with todoItemClient: TodoItem) async throws -> TodoItem
     func deleteElement(by id: String) async throws -> TodoItem
@@ -67,14 +67,19 @@ class DefaultNetworkingService: NetworkingService {
 
     // MARK: - PUT element
     /// Изменить элемент списка
-    func putElement(by id: String) async throws -> TodoItem {
+    func putElement(with todoItemClient: TodoItem) async throws -> TodoItem {
         // Cоздание URL
-        guard let url = createURL(id: id)
+        guard let url = createURL(id: todoItemClient.id)
         else { throw ApiErrors.badURL }
+        // Кодирование локального элемента
+        let element = todoItemClient.json
+        let body = try JSONSerialization.data(withJSONObject: ["element": element])
         // Настройка запроса
         var request = URLRequest(url: url)
         request.httpMethod = "PUT"
         request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        request.allHTTPHeaderFields = ["X-Last-Known-Revision": "\(self.revision)"]
+        request.httpBody = body
         // Получение данных по запросу
         let (data, _) = try await URLSession.shared.dataTask(for: request)
         // Декодирование данных по запросу

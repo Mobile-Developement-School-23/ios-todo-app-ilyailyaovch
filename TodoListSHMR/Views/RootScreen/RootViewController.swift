@@ -28,12 +28,11 @@ class RootViewController: UIViewController {
         // connect rootViewModel
         rootViewModel.viewController = self
 
-        // fetch data
+        // fetch data on client
         rootViewModel.fetchData()
-        rootViewModel.updateTodoListState()
 
         // fetch data from server
-         rootViewModel.fetchDataNetwork()
+        rootViewModel.fetchDataNetwork()
     }
 
     // MARK: - Setup RootView

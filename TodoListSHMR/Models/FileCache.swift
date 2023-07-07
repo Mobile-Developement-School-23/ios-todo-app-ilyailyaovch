@@ -7,6 +7,11 @@ enum FileCacheErrors: Error {
     case itemDoesntExist
 }
 
+enum AddedTast {
+    case new
+    case changed
+}
+
 // MARK: - FileCache Json
 
 class FileCache {
@@ -15,12 +20,19 @@ class FileCache {
     private (set) var todoItems: [TodoItem] = []
 
     // Добавление новой задачи
-    func add(item: TodoItem) {
+    func add(item: TodoItem) -> (AddedTast) {
         if let index = todoItems.firstIndex(where: {$0.id == item.id}) {
             todoItems[index] = item
+            return AddedTast.changed
         } else {
             todoItems.insert(item, at: 0)
+            return AddedTast.new
         }
+    }
+
+    // Изменение списка
+    func set(items: [TodoItem]) {
+        todoItems = items
     }
 
     // Удаление задачи (на основе id)
@@ -31,6 +43,8 @@ class FileCache {
             throw FileCacheErrors.itemDoesntExist
         }
     }
+
+// MARK: - FileCache json
 
     // Сохранение всех дел в файл
     func saveItems(to file: String) throws {
