@@ -1,19 +1,22 @@
 import Foundation
+import UIKit
 
 enum Importancy: String {
-    case important
-    case normal
-    case low
+    case important = "important"
+    case normal = "basic"
+    case low = "low"
 }
 
 private enum Keys {
     static let kId = "id"
     static let kText = "text"
-    static let kImportancy = "importancy"
+    static let kImportancy = "importance"
     static let kDeadline = "deadline"
-    static let kIsCompleted = "isCompleted"
-    static let kDateCreated = "dateCreated"
-    static let kDdateModified = "dateModified"
+    static let kIsCompleted = "done"
+    static let kColor = "color"
+    static let kDateCreated = "created_at"
+    static let kDdateModified = "changed_at"
+    static let kLastUpdatedBy = "last_updated_by"
 }
 
 // MARK: - TodoItem
@@ -90,11 +93,19 @@ extension TodoItem {
         var jsonDict: [String: Any] = [:]
         jsonDict[Keys.kId] = self.id
         jsonDict[Keys.kText] = self.text
-        if importancy != .normal { jsonDict[Keys.kImportancy] = importancy.rawValue }
-        if let deadline = self.deadline { jsonDict[Keys.kDeadline] = Int(deadline.timeIntervalSince1970)}
+        jsonDict[Keys.kImportancy] = importancy.rawValue
         jsonDict[Keys.kIsCompleted] = self.isCompleted
         jsonDict[Keys.kDateCreated] = Int(dateCreated.timeIntervalSince1970)
-        if let dateModified = self.dateModified { jsonDict[Keys.kDdateModified] = Int(dateModified.timeIntervalSince1970)}
+        jsonDict[Keys.kLastUpdatedBy] = UIDevice.current.identifierForVendor!.uuidString
+
+        if let deadline = self.deadline {
+            jsonDict[Keys.kDeadline] = Int(deadline.timeIntervalSince1970)
+        }
+        if let dateModified = self.dateModified {
+            jsonDict[Keys.kDdateModified] = Int(dateModified.timeIntervalSince1970)
+        } else {
+            jsonDict[Keys.kDdateModified] = Int(dateCreated.timeIntervalSince1970)
+        }
         return jsonDict
     }
 }

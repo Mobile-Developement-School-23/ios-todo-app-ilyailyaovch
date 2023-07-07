@@ -7,6 +7,11 @@ enum FileCacheErrors: Error {
     case itemDoesntExist
 }
 
+enum AddedTast {
+    case new
+    case changed
+}
+
 // MARK: - FileCache Json
 
 class FileCache {
@@ -15,12 +20,19 @@ class FileCache {
     private (set) var todoItems: [TodoItem] = []
 
     // Добавление новой задачи
-    func add(item: TodoItem) {
+    func add(item: TodoItem) -> (AddedTast) {
         if let index = todoItems.firstIndex(where: {$0.id == item.id}) {
             todoItems[index] = item
+            return AddedTast.changed
         } else {
             todoItems.insert(item, at: 0)
+            return AddedTast.new
         }
+    }
+
+    // Изменение списка
+    func set(items: [TodoItem]) {
+        todoItems = items
     }
 
     // Удаление задачи (на основе id)
@@ -31,6 +43,8 @@ class FileCache {
             throw FileCacheErrors.itemDoesntExist
         }
     }
+
+// MARK: - FileCache json
 
     // Сохранение всех дел в файл
     func saveItems(to file: String) throws {
@@ -45,7 +59,7 @@ class FileCache {
         let jsonItems = todoItems.map({ $0.json })
 
         // записываем json элементы в файл
-        let jsonData = try JSONSerialization.data(withJSONObject: jsonItems, options: [])
+        let jsonData = try JSONSerialization.data(withJSONObject: jsonItems)
         try jsonData.write(to: pathWithFilename)
     }
 
@@ -66,7 +80,7 @@ class FileCache {
 
         // парсим data в массив
         guard
-            let jsonArray = try JSONSerialization.jsonObject(with: jsonData, options : []) as? [[String: Any]]
+            let jsonArray = try JSONSerialization.jsonObject(with: jsonData) as? [[String: Any]]
         else { throw FileCacheErrors.incorrectJson }
 
         todoItems = jsonArray.compactMap { TodoItem.parse(json: $0)}

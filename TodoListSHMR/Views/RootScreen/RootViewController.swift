@@ -28,13 +28,11 @@ class RootViewController: UIViewController {
         // connect rootViewModel
         rootViewModel.viewController = self
 
-        // fetch data
+        // fetch data on client
         rootViewModel.fetchData()
-        rootViewModel.updateTodoListState()
 
-        // Пока это работает как проверка "extension URLSession"
+        // fetch data from server
         rootViewModel.fetchDataNetwork()
-
     }
 
     // MARK: - Setup RootView
