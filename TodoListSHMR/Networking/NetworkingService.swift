@@ -23,8 +23,8 @@ class DefaultNetworkingService: NetworkingService {
 
     private func createURL(id: String = "") -> URL? {
         let baseURL = "https://beta.mrdekk.ru/todobackend"
-        let endpoint = "/list"
-        let addressURL = baseURL + endpoint + id
+        let endpoint = id.isEmpty ? "/list" : "/list/\(id)"
+        let addressURL = baseURL + endpoint
         let url = URL(string: addressURL)
         return url
     }
@@ -83,7 +83,7 @@ class DefaultNetworkingService: NetworkingService {
         return todoItemOrigin
     }
 
-    // MARK: - PATCH
+    // MARK: - PATCH list
     /// Обновить список на сервере
     func patchList(with todoItemsClient: [TodoItem]) async throws -> [TodoItem] {
         // Cоздание URL
@@ -105,7 +105,7 @@ class DefaultNetworkingService: NetworkingService {
         return todoItemsServer
     }
 
-    // MARK: - POST
+    // MARK: - POST element
     /// Добавить элемент списка
     func postElem(with todoItemClient: TodoItem) async throws -> TodoItem {
         // Cоздание URL
@@ -113,7 +113,6 @@ class DefaultNetworkingService: NetworkingService {
         else { throw ApiErrors.badURL }
         // Кодирование локального элемента
         let element = todoItemClient.json
-        print("element = ", element)
         let body = try JSONSerialization.data(withJSONObject: ["element": element])
         // Настройка запроса
         var request = URLRequest(url: url)
@@ -138,6 +137,7 @@ class DefaultNetworkingService: NetworkingService {
         var request = URLRequest(url: url)
         request.httpMethod = "DELETE"
         request.addValue("Bearer " + token, forHTTPHeaderField: "Authorization")
+        request.allHTTPHeaderFields = ["X-Last-Known-Revision": "\(self.revision)"]
         // Получение данных по запросу
         let (data, _) = try await URLSession.shared.dataTask(for: request)
         // Декодирование данных по запросу
@@ -161,6 +161,7 @@ class DefaultNetworkingService: NetworkingService {
             todoItemsOrigin.append(todoItem)
         }
         self.revision = revision
+        DDLogInfo("revision = \(self.revision)")
         return todoItemsOrigin
     }
 
@@ -172,6 +173,7 @@ class DefaultNetworkingService: NetworkingService {
             let todoItem = TodoItem.parse(json: element)
         else { throw URLError(.cannotDecodeContentData) }
         self.revision = revision
+        DDLogInfo("revision = \(self.revision)")
         return todoItem
     }
 }

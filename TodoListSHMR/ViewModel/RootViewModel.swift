@@ -42,13 +42,18 @@ final class RootViewModel: UIViewController {
     }
 }
 
+// MARK: - CRUD Network
+
 extension RootViewModel {
 
     func fetchDataNetwork() {
         Task {
-            self.todoListState = try await network.getList()
+//            self.todoListState = try await network.getList()
+            let items = try await network.getList()
+            print(items)
+            let elem = try await network.deleteElement(by: items.first!.id)
+            print("Del: ", elem)
         }
-
     }
 }
 

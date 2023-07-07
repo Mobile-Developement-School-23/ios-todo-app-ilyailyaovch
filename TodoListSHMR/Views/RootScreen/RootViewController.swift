@@ -33,7 +33,7 @@ class RootViewController: UIViewController {
         rootViewModel.updateTodoListState()
 
         // fetch data from server
-        // rootViewModel.fetchDataNetwork()
+         rootViewModel.fetchDataNetwork()
     }
 
     // MARK: - Setup RootView
