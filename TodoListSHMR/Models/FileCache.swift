@@ -1,3 +1,4 @@
+import CocoaLumberjackSwift
 import Foundation
 import SQLite
 
@@ -6,6 +7,7 @@ enum FileCacheErrors: Error {
     case saveItemsError
     case wrongDirectory
     case itemDoesntExist
+    case connectionError
 }
 
 enum AddedTast {
@@ -13,14 +15,17 @@ enum AddedTast {
     case changed
 }
 
-// MARK: - FileCache Json
+// MARK: - FileCache
 
 class FileCache {
 
-    // Коллекция TodoItems
+    /// Коллекция TodoItems
     private (set) var todoItems: [TodoItem] = []
 
-    // Добавление новой задачи
+    /// База данных
+    private (set) var db = Database()
+
+    /// Добавление новой задачи
     func add(item: TodoItem) -> (AddedTast) {
         if let index = todoItems.firstIndex(where: {$0.id == item.id}) {
             todoItems[index] = item
@@ -31,12 +36,12 @@ class FileCache {
         }
     }
 
-    // Изменение списка
+    /// Изменение списка
     func set(items: [TodoItem]) {
         todoItems = items
     }
 
-    // Удаление задачи (на основе id)
+    /// Удаление задачи (на основе id)
     func remove(id: String) throws {
         if let index = todoItems.firstIndex(where: {$0.id == id}) {
             todoItems.remove(at: index)
@@ -45,92 +50,89 @@ class FileCache {
         }
     }
 
-// MARK: - FileCache SQLite
+    // MARK: - FileCache SQLite
 
-// MARK: - FileCache json
-
-    // Сохранение всех дел в файл
-    func saveItems(to file: String) throws {
-
-        // формируем путь до файла
-        guard
-            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        else { throw FileCacheErrors.wrongDirectory }
-        let pathWithFilename = path.appendingPathComponent("\(file).json")
-
-        // создаем список json элементов
-        let jsonItems = todoItems.map({ $0.json })
-
-        // записываем json элементы в файл
-        let jsonData = try JSONSerialization.data(withJSONObject: jsonItems)
-        try jsonData.write(to: pathWithFilename)
-    }
-
-    // Загрузка всех дел из файла
-    func loadItems(from file: String) throws {
-
-        // формируем путь до файла
-        guard
-            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        else { throw FileCacheErrors.wrongDirectory }
-        let pathWithFilename = path.appendingPathComponent("\(file).json")
-
-        // получаем data по заданному пути
-        let textData = try String(contentsOf: pathWithFilename, encoding: .utf8)
-        guard
-            let jsonData = textData.data(using: .utf8)
-        else { throw FileCacheErrors.incorrectJson }
-
-        // парсим data в массив
-        guard
-            let jsonArray = try JSONSerialization.jsonObject(with: jsonData) as? [[String: Any]]
-        else { throw FileCacheErrors.incorrectJson }
-
-        todoItems = jsonArray.compactMap { TodoItem.parse(json: $0)}
-        }
-}
-
-// MARK: - FileCache Csv
-
-extension FileCache {
-
-    // Загрузка всех дел из файла
-    func loadItemsCSV(from file: String) throws {
-
-        // формируем путь до файла
-        guard
-            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        else { throw FileCacheErrors.wrongDirectory }
-        let pathWithFilename = path.appendingPathComponent("\(file).csv")
-
-        // получаем text по заданному пути
-        let textData = try String(contentsOf: pathWithFilename, encoding: .utf8)
-        var textArr = textData.split(separator: "\n")
-        textArr.remove(at: 0)
-
-        todoItems = textArr.compactMap { TodoItem.parse(csv: String($0))}
-    }
-
-    // Сохранение всех дел в файл (applicationSupportDirectory)
-    func saveItemsCSV(to file: String) throws {
-
-        // формируем путь до файла
-        guard
-            let path = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-        else { throw FileCacheErrors.wrongDirectory }
-        let pathWithFilename = path.appendingPathComponent("\(file).csv")
-
-        // записываем построчно элементы
-        var csvLine = "id;text;importancy;deadline;isCompleted;dateCreated;dateModified\n"
+    /// Сохрание всех элементов в БД
+    func saveSQLite() throws {
+        guard let db = db.connection
+        else { throw FileCacheErrors.connectionError }
         do {
-            for item in todoItems {
-                csvLine.append(item.csv + "\n")
-            }
-            try csvLine.write(to: pathWithFilename, atomically: true, encoding: .utf8)
-
+            _ = try db.run(Database.table.insertMany(
+                self.todoItems.map { item in
+                    [
+                        Database.id <- item.id,
+                        Database.text <- item.text,
+                        Database.importancy <- item.importancy.rawValue,
+                        Database.deadline <- item.deadline,
+                        Database.isCompleted <- item.isCompleted,
+                        Database.dateCreated <- item.dateCreated,
+                        Database.dateModified <- item.dateModified
+                    ]
+                }
+            ))
         } catch {
-            print(FileCacheErrors.saveItemsError)
+            DDLogError("Error: saveSQLite()")
         }
+    }
 
+    /// Загрузка элементов из БД
+    func loadSQLite() throws {
+        guard let db = db.connection
+        else { throw FileCacheErrors.connectionError }
+        do {
+            let items = try db.prepare(Database.table)
+            self.todoItems = items.map { item in
+                TodoItem(
+                    id: item[Database.id],
+                    text: item[Database.text],
+                    importancy: Importancy(rawValue: item[Database.importancy]) ?? .normal,
+                    deadline: item[Database.deadline],
+                    isCompleted: item[Database.isCompleted],
+                    dateCreated: item[Database.dateCreated],
+                    dateModified: item[Database.dateModified]
+                )
+            }
+        } catch {
+            DDLogError("Error: loadSQLite()")
+        }
+    }
+
+    /// Добавление элемента в БД
+    func insert(item: TodoItem) throws {
+        guard let db = db.connection
+        else { throw FileCacheErrors.connectionError }
+        _ = try db.run(Database.table.insert(or: .replace,
+            Database.id <- item.id,
+            Database.text <- item.text,
+            Database.importancy <- item.importancy.rawValue,
+            Database.deadline <- item.deadline,
+            Database.isCompleted <- item.isCompleted,
+            Database.dateCreated <- item.dateCreated,
+            Database.dateModified <- item.dateModified
+        ))
+    }
+
+    /// Изменение элемента в БД
+    func update(item: TodoItem) throws {
+        guard let db = db.connection
+        else { throw FileCacheErrors.connectionError }
+        let itemInTable = Database.table.filter(Database.id == item.id)
+        try db.run(itemInTable.update(
+            Database.id <- item.id,
+            Database.text <- item.text,
+            Database.importancy <- item.importancy.rawValue,
+            Database.deadline <- item.deadline,
+            Database.isCompleted <- item.isCompleted,
+            Database.dateCreated <- item.dateCreated,
+            Database.dateModified <- item.dateModified
+        ))
+    }
+
+    /// Удаление элемента в БД
+    func delete(id: String) throws {
+        guard let db = db.connection
+        else { throw FileCacheErrors.connectionError }
+        let itemInTable = Database.table.filter(Database.id == id)
+        try db.run(itemInTable.delete())
     }
 }

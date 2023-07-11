@@ -23,6 +23,9 @@
 		09DBEFCA2A4DFFEE0035B2F9 /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 09DBEFC92A4DFFEE0035B2F9 /* CocoaLumberjack */; };
 		09DBEFCC2A4DFFEE0035B2F9 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 09DBEFCB2A4DFFEE0035B2F9 /* CocoaLumberjackSwift */; };
 		09E857BC2A5D46F100FC3FFC /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 09E857BB2A5D46F100FC3FFC /* SQLite */; };
+		09E857BE2A5D6D0300FC3FFC /* FileCacheJSON.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E857BD2A5D6D0300FC3FFC /* FileCacheJSON.swift */; };
+		09E857C22A5D6D2800FC3FFC /* FileCacheCSV.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E857C12A5D6D2800FC3FFC /* FileCacheCSV.swift */; };
+		09E857C42A5D7E2300FC3FFC /* DatabaseSQLite.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09E857C32A5D7E2300FC3FFC /* DatabaseSQLite.swift */; };
 		09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */; };
 		09F612412A40F42A00CEEE1B /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612402A40F42A00CEEE1B /* RootViewModel.swift */; };
 		09F612432A4192FC00CEEE1B /* TodoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612422A4192FC00CEEE1B /* TodoViewModelProtocol.swift */; };
@@ -76,6 +79,9 @@
 		09CFD6A22A4049940037167C /* Colors.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Colors.swift; sourceTree = "<group>"; };
 		09CFD6A52A404D650037167C /* TodoViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewController.swift; sourceTree = "<group>"; };
 		09CFD6A72A4050160037167C /* RootViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewController.swift; sourceTree = "<group>"; };
+		09E857BD2A5D6D0300FC3FFC /* FileCacheJSON.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheJSON.swift; sourceTree = "<group>"; };
+		09E857C12A5D6D2800FC3FFC /* FileCacheCSV.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FileCacheCSV.swift; sourceTree = "<group>"; };
+		09E857C32A5D7E2300FC3FFC /* DatabaseSQLite.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DatabaseSQLite.swift; sourceTree = "<group>"; };
 		09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModel.swift; sourceTree = "<group>"; };
 		09F612402A40F42A00CEEE1B /* RootViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootViewModel.swift; sourceTree = "<group>"; };
 		09F612422A4192FC00CEEE1B /* TodoViewModelProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TodoViewModelProtocol.swift; sourceTree = "<group>"; };
@@ -265,6 +271,9 @@
 				09FFF57C2A33A75F00CFDCD1 /* TodoItem.swift */,
 				09F6124E2A4424B600CEEE1B /* TodoItemState.swift */,
 				09FFF5982A34F91900CFDCD1 /* FileCache.swift */,
+				09E857BD2A5D6D0300FC3FFC /* FileCacheJSON.swift */,
+				09E857C12A5D6D2800FC3FFC /* FileCacheCSV.swift */,
+				09E857C32A5D7E2300FC3FFC /* DatabaseSQLite.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -529,10 +538,13 @@
 				090C141B2A53425200C1DC68 /* NetworkingService.swift in Sources */,
 				09F6124D2A42E8BC00CEEE1B /* CalendarView.swift in Sources */,
 				09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */,
+				09E857C42A5D7E2300FC3FFC /* DatabaseSQLite.swift in Sources */,
+				09E857C22A5D6D2800FC3FFC /* FileCacheCSV.swift in Sources */,
 				09837E122A4071850026EB9D /* Constants.swift in Sources */,
 				09FFF57D2A33A75F00CFDCD1 /* TodoItem.swift in Sources */,
 				09F6124B2A42573500CEEE1B /* DeadlineView.swift in Sources */,
 				09ACBA962A45045B008C8876 /* ColorPickerView.swift in Sources */,
+				09E857BE2A5D6D0300FC3FFC /* FileCacheJSON.swift in Sources */,
 				099AEDB92A4764C1007D57DB /* TableViewHeaderCell.swift in Sources */,
 				09F612432A4192FC00CEEE1B /* TodoViewModelProtocol.swift in Sources */,
 				09CFD6A32A4049940037167C /* Colors.swift in Sources */,

@@ -13,9 +13,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window?.windowScene = windowScene
         window?.rootViewController = navigationController
         window?.makeKeyAndVisible()
-
-        DDLog.add(DDOSLogger.sharedInstance)
-        DDLogInfo("SceneDelegate 👌")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {}

@@ -17,8 +17,8 @@ enum SortMode {
 
 final class RootViewModel: UIViewController {
 
-    var fileName = "TodoCache"
-    var fileCache = FileCache()
+    var fileName: String
+    var fileCache: FileCache
     var todoListState = [TodoItem]()
     var isDirty = true
 
@@ -31,9 +31,9 @@ final class RootViewModel: UIViewController {
 
     init(fileName: String = "TodoCache",
          fileCache: FileCache = FileCache()) {
-        super.init(nibName: nil, bundle: nil)
-        self.fileName = fileName
         self.fileCache = fileCache
+        self.fileName = fileName
+        super.init(nibName: nil, bundle: nil)
         DDLog.add(DDOSLogger.sharedInstance)
     }
 
@@ -46,6 +46,8 @@ final class RootViewModel: UIViewController {
 
 extension RootViewModel {
 
+    /// Загрузка с сервера
+    /// Перетирает локальные данные
     func fetchDataNetwork() {
         Task {
             do {
@@ -58,12 +60,10 @@ extension RootViewModel {
         }
     }
 
+    /// Удаление на сервере
     func deleteToDoNetwork(id: String) {
-
-        if self.isDirty {
-            fetchDataNetwork()
-        }
-
+        // Проверка на неактуальность
+        if self.isDirty { fetchDataNetwork() }
         Task {
             do {
                 _ = try await network.deleteElement(by: id)
@@ -74,12 +74,10 @@ extension RootViewModel {
         }
     }
 
+    /// Добавление на сервере
     func addToDoNetwork(item: TodoItem) {
-
-        if self.isDirty {
-            fetchDataNetwork()
-        }
-
+        // Проверка на неактуальность
+        if self.isDirty { fetchDataNetwork() }
         Task {
             do {
                 _ = try await network.postElem(with: item)
@@ -90,12 +88,10 @@ extension RootViewModel {
         }
     }
 
+    /// Изменение на сервере
     func changeToDoNetwork(item: TodoItem) {
-
-        if self.isDirty {
-            fetchDataNetwork()
-        }
-
+        // Проверка на неактуальность
+        if self.isDirty { fetchDataNetwork() }
         Task {
             do {
                 _ = try await network.putElement(with: item)
@@ -109,7 +105,7 @@ extension RootViewModel {
     @MainActor
     func fetchDataClient(with items: [TodoItem]) {
         self.fileCache.set(items: items)
-        self.saveData()
+        self.saveTodoItems()
         self.updateTodoListState()
     }
 }
@@ -118,23 +114,7 @@ extension RootViewModel: RootViewModelProtocol {
 
     // MARK: - CRUD functions
 
-    func saveData() {
-        do {
-            try fileCache.saveItems(to: self.fileName)
-        } catch {
-            DDLogError("Error: saveData()")
-        }
-    }
-
-    func fetchData() {
-        do {
-            try fileCache.loadItems(from: self.fileName)
-            self.updateTodoListState()
-        } catch {
-            DDLogError("Error: fetchData()")
-        }
-    }
-
+    /// Открытие модального окна редактирования TodoItem
     func openToDo(with item: TodoItem? = nil) {
         let newItem = item ?? TodoItem(text: "")
         let newNavViewController = UINavigationController(rootViewController: TodoViewController(with: newItem))
@@ -143,50 +123,92 @@ extension RootViewModel: RootViewModelProtocol {
         viewController?.present(newNavViewController, animated: true)
     }
 
-    func saveToDo(item: TodoItem, reload: Bool) {
+    /// Сохранение данных в локальное хранилище
+    func saveTodoItems() {
         do {
-            // добавить или изменить элемент в локальном файле
+            // сохранение в локальный json
+            // try fileCache.saveItems(to: self.fileName)
+            // сохренение в локальную БД
+            try fileCache.saveSQLite()
+        } catch {
+            DDLogError("Error: saveTodoItems()")
+        }
+    }
+
+    /// Загрузка данных из локального хранилища
+    func fetchData() {
+        do {
+            // загрузка из локального json
+            // try fileCache.loadItems(from: self.fileName)
+            // загрузка из локальной БД
+            try fileCache.loadSQLite()
+            // обновление списка показа
+            self.updateTodoListState()
+        } catch {
+            DDLogError("Error: fetchData()")
+        }
+    }
+
+    /// Добавление или изменение элемента с возможностью обновить таблицу
+    func saveToDo(item: TodoItem, reload: Bool = false) {
+        do {
+            // добавить или изменить в коллекции
             let addedTaskType = self.fileCache.add(item: item)
-            try self.fileCache.saveItems(to: rootViewModel.fileName)
+            // сохранить в локальный json
+            // try self.fileCache.saveItems(to: rootViewModel.fileName)
             // обновить список показа
             if reload { self.updateTodoListState() }
-            // добавить или изменить на сервере
-//            switch addedTaskType {
-//            case .new:
-//                addToDoNetwork(item: item)
-//            case .changed:
-//                changeToDoNetwork(item: item)
-//            }
+            // изменения в хранилищах
+            switch addedTaskType {
+            case .new:
+                // добавить в БД
+                try self.fileCache.insert(item: item)
+                // добавить на сервер
+                // addToDoNetwork(item: item)
+            case .changed:
+                // изменить в БД
+                try self.fileCache.update(item: item)
+                // изменить на сервере
+                // changeToDoNetwork(item: item)
+            }
         } catch {
             DDLogError("Error: saveToDo()")
         }
     }
 
+    /// Удаление элемента с обновлением таблицы
     func deleteToDo(id: String) {
         do {
-            // удалить в локальном файле
+            // удалить в коллекции
             try self.fileCache.remove(id: id)
-            try self.fileCache.saveItems(to: rootViewModel.fileName)
+            // изменения в локальном json
+            // try self.fileCache.saveItems(to: rootViewModel.fileName)
+            // удалить из локальной БД
+            try self.fileCache.delete(id: id)
             // обновить список показа
             self.updateTodoListState()
             // удалить на сервере
-//            self.deleteToDoNetwork(id: id)
+            // self.deleteToDoNetwork(id: id)
         } catch {
             DDLogError("Error: deleteToDo()")
         }
     }
 
+    /// Удаление элемента без обновления таблицы
     func deleteRow(at indexPath: IndexPath) {
         let id = self.todoListState[indexPath.row].id
         do {
-            // удалить в локальном файле
+            // удалить в коллекции
             try self.fileCache.remove(id: id)
-            try self.fileCache.saveItems(to: rootViewModel.fileName)
+            // изменения в локальном json
+            // try self.fileCache.saveItems(to: rootViewModel.fileName)
+            // удалить из локальной БД
+            try self.fileCache.delete(id: id)
             // обновить показ списка
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
             // удалить на сервере
-//            self.deleteToDoNetwork(id: id)
+            // self.deleteToDoNetwork(id: id)
         } catch {
             DDLogError("Error: deleteToDo()")
         }
@@ -204,7 +226,7 @@ extension RootViewModel: RootViewModelProtocol {
             dateModified: item.dateModified
         )
         // сохранение изменения в хранилищах
-        self.saveToDo(item: newItem, reload: false)
+        self.saveToDo(item: newItem)
         // обновить показ списка
         switch self.status {
         case Status.ShowAll:
