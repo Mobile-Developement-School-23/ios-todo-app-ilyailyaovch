@@ -15,7 +15,7 @@ final class TodoViewModel {
 extension TodoViewModel: TodoViewModelProtocol {
 
     func saveItem(item: TodoItem) {
-        rootViewModel.saveToDo(item: item)
+        rootViewModel.saveToDo(item: item, reload: true)
         viewController?.dismiss(animated: true)
     }
 

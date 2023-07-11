@@ -22,6 +22,7 @@
 		09CFD6A82A4050160037167C /* RootViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09CFD6A72A4050160037167C /* RootViewController.swift */; };
 		09DBEFCA2A4DFFEE0035B2F9 /* CocoaLumberjack in Frameworks */ = {isa = PBXBuildFile; productRef = 09DBEFC92A4DFFEE0035B2F9 /* CocoaLumberjack */; };
 		09DBEFCC2A4DFFEE0035B2F9 /* CocoaLumberjackSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 09DBEFCB2A4DFFEE0035B2F9 /* CocoaLumberjackSwift */; };
+		09E857BC2A5D46F100FC3FFC /* SQLite in Frameworks */ = {isa = PBXBuildFile; productRef = 09E857BB2A5D46F100FC3FFC /* SQLite */; };
 		09F6123F2A40CF5D00CEEE1B /* TodoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F6123E2A40CF5D00CEEE1B /* TodoViewModel.swift */; };
 		09F612412A40F42A00CEEE1B /* RootViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612402A40F42A00CEEE1B /* RootViewModel.swift */; };
 		09F612432A4192FC00CEEE1B /* TodoViewModelProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 09F612422A4192FC00CEEE1B /* TodoViewModelProtocol.swift */; };
@@ -112,6 +113,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				09E857BC2A5D46F100FC3FFC /* SQLite in Frameworks */,
 				09DBEFCA2A4DFFEE0035B2F9 /* CocoaLumberjack in Frameworks */,
 				11B0F1A885E3E0F1BE1872C7 /* Pods_TodoListSHMR.framework in Frameworks */,
 				09DBEFCC2A4DFFEE0035B2F9 /* CocoaLumberjackSwift in Frameworks */,
@@ -311,6 +313,7 @@
 			packageProductDependencies = (
 				09DBEFC92A4DFFEE0035B2F9 /* CocoaLumberjack */,
 				09DBEFCB2A4DFFEE0035B2F9 /* CocoaLumberjackSwift */,
+				09E857BB2A5D46F100FC3FFC /* SQLite */,
 			);
 			productName = TodoListSHMR;
 			productReference = 09FFF5432A33A4BB00CFDCD1 /* TodoListSHMR.app */;
@@ -388,6 +391,7 @@
 			mainGroup = 09FFF53A2A33A4BB00CFDCD1;
 			packageReferences = (
 				09DBEFC82A4DFFEE0035B2F9 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */,
+				09E857BA2A5D46F100FC3FFC /* XCRemoteSwiftPackageReference "SQLite" */,
 			);
 			productRefGroup = 09FFF5442A33A4BB00CFDCD1 /* Products */;
 			projectDirPath = "";
@@ -887,6 +891,14 @@
 				minimumVersion = 3.0.0;
 			};
 		};
+		09E857BA2A5D46F100FC3FFC /* XCRemoteSwiftPackageReference "SQLite" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/stephencelis/SQLite.swift";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.14.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -899,6 +911,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 09DBEFC82A4DFFEE0035B2F9 /* XCRemoteSwiftPackageReference "CocoaLumberjack" */;
 			productName = CocoaLumberjackSwift;
+		};
+		09E857BB2A5D46F100FC3FFC /* SQLite */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 09E857BA2A5D46F100FC3FFC /* XCRemoteSwiftPackageReference "SQLite" */;
+			productName = SQLite;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};

@@ -9,7 +9,7 @@ protocol RootViewModelProtocol {
     func openToDo(with item: TodoItem?)
 
     /// Save todoItem
-    func saveToDo(item: TodoItem)
+    func saveToDo(item: TodoItem, reload: Bool)
 
     /// Delete todoItem
     func deleteToDo(id: String)

@@ -129,6 +129,7 @@ extension RootViewModel: RootViewModelProtocol {
     func fetchData() {
         do {
             try fileCache.loadItems(from: self.fileName)
+            self.updateTodoListState()
         } catch {
             DDLogError("Error: fetchData()")
         }
@@ -142,20 +143,20 @@ extension RootViewModel: RootViewModelProtocol {
         viewController?.present(newNavViewController, animated: true)
     }
 
-    func saveToDo(item: TodoItem) {
+    func saveToDo(item: TodoItem, reload: Bool) {
         do {
             // добавить или изменить элемент в локальном файле
             let addedTaskType = self.fileCache.add(item: item)
             try self.fileCache.saveItems(to: rootViewModel.fileName)
             // обновить список показа
-            self.updateTodoListState()
+            if reload { self.updateTodoListState() }
             // добавить или изменить на сервере
-            switch addedTaskType {
-            case .new:
-                addToDoNetwork(item: item)
-            case .changed:
-                changeToDoNetwork(item: item)
-            }
+//            switch addedTaskType {
+//            case .new:
+//                addToDoNetwork(item: item)
+//            case .changed:
+//                changeToDoNetwork(item: item)
+//            }
         } catch {
             DDLogError("Error: saveToDo()")
         }
@@ -169,7 +170,7 @@ extension RootViewModel: RootViewModelProtocol {
             // обновить список показа
             self.updateTodoListState()
             // удалить на сервере
-            self.deleteToDoNetwork(id: id)
+//            self.deleteToDoNetwork(id: id)
         } catch {
             DDLogError("Error: deleteToDo()")
         }
@@ -185,7 +186,7 @@ extension RootViewModel: RootViewModelProtocol {
             self.todoListState.remove(at: indexPath.row)
             self.viewController?.deleteRow(at: indexPath)
             // удалить на сервере
-            self.deleteToDoNetwork(id: id)
+//            self.deleteToDoNetwork(id: id)
         } catch {
             DDLogError("Error: deleteToDo()")
         }
@@ -203,7 +204,7 @@ extension RootViewModel: RootViewModelProtocol {
             dateModified: item.dateModified
         )
         // сохранение изменения в хранилищах
-        self.saveToDo(item: newItem)
+        self.saveToDo(item: newItem, reload: false)
         // обновить показ списка
         switch self.status {
         case Status.ShowAll:

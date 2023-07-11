@@ -1,4 +1,5 @@
 import Foundation
+import SQLite
 
 enum FileCacheErrors: Error {
     case incorrectJson
@@ -43,6 +44,8 @@ class FileCache {
             throw FileCacheErrors.itemDoesntExist
         }
     }
+
+// MARK: - FileCache SQLite
 
 // MARK: - FileCache json
 
