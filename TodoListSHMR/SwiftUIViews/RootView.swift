@@ -1,10 +1,3 @@
-//
-//  RootView.swift
-//  TodoListSHMR
-//
-//  Created by Ilya Ovchinnikov on 17.07.2023.
-//
-
 import SwiftUI
 
 struct RootView: View {
