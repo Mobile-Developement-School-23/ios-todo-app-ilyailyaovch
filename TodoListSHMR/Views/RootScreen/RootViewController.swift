@@ -32,7 +32,7 @@ class RootViewController: UIViewController {
         rootViewModel.fetchData()
 
         // fetch data from server
-//         rootViewModel.fetchDataNetwork()
+        // rootViewModel.fetchDataNetwork()
     }
 
     // MARK: - Setup RootView
