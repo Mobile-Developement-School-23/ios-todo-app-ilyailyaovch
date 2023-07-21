@@ -70,6 +70,7 @@ final class TableViewCell: UITableViewCell {
 
     func setupViews() {
         contentView.backgroundColor = Colors.backSecondary.color
+
         setupStackStatusViews()
         setupTextView()
         setupDeadlineView()

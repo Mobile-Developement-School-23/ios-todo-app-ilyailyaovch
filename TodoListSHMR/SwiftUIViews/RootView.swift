@@ -8,7 +8,7 @@ struct RootView: View {
     var body: some View {
         NavigationView {
             ZStack(alignment: .bottom) {
-                // Список дел
+                // MARK: Список дел
                 List {
                     Section {
                         // Элементы списка
@@ -16,10 +16,10 @@ struct RootView: View {
                             ItemView(item: item)
                         }
                         // Поледний элемент
-                        Text("Новое")
+                        Text("Новое").foregroundColor(.gray)
                     } header: {
                         HStack(alignment: .bottom) {
-                            Text("Выполнено — \(items.filter({ $0.isCompleted }).count)")
+                            Text("Выполнено — \(mockData.filter({ $0.isCompleted }).count)")
                             Spacer()
                             Button {
                                 showAll.toggle()
@@ -32,9 +32,9 @@ struct RootView: View {
                     }
                 }
                 .listStyle(.insetGrouped)
-                // Кнопка добавления
+                // MARK: Кнопка добавления
                 Button {
-                    
+
                 } label: {
                     Image(uiImage: Icon.PlusButton.image!)
                 }

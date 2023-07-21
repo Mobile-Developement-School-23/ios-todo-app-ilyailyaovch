@@ -7,21 +7,56 @@ struct ItemView: View {
     var body: some View {
         HStack {
             CircleStatView
-            Text(item.text)
+            TextStackView
             Spacer()
             Image(uiImage: Icon.Shevron.image!)
         }
 
     }
 
-     private var CircleStatView: some View {
+    // MARK: CircleStatView
+    @ViewBuilder
+    private var CircleStatView: some View {
          if item.isCompleted {
-             return Image(uiImage: Icon.CircleCompleted.image!)
+            Image(uiImage: Icon.CircleCompleted.image!)
          } else if item.importancy == .important {
-             return Image(uiImage: Icon.CircleImportant.image!)
+            HStack {
+                 Image(uiImage: Icon.CircleImportant.image!)
+                 Image(uiImage: Icon.Important.image!)
+            }
          } else {
-             return Image(uiImage: Icon.CircleEmpty.image!)
+             Image(uiImage: Icon.CircleEmpty.image!)
          }
+    }
+
+    // MARK: TextStackView
+    @ViewBuilder
+    private var TextStackView: some View {
+        if item.isCompleted {
+            Text(item.text).strikethrough().foregroundColor(Color.gray)
+        } else if item.deadline != nil {
+            VStack(alignment: .leading, spacing: 3) {
+                Text(item.text).font(.body)
+                CalendarView
+            }
+        } else {
+            Text(item.text)
+        }
+    }
+
+    // MARK: CalendarView
+    private var CalendarView: some View {
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "d MMMM"
+        return HStack(alignment: .bottom) {
+            Image(systemName: "calendar")
+                .resizable()
+                .frame(width: 14, height: 14)
+                .foregroundColor(.gray)
+            Text(dateFormatter.string(from: item.deadline!))
+                .font(.footnote)
+                .foregroundColor(.gray)
+        }
     }
 }
 
