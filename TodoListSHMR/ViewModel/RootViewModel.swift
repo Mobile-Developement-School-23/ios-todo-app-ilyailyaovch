@@ -128,7 +128,7 @@ extension RootViewModel: RootViewModelProtocol {
         do {
             // сохранение в локальный json
             // try fileCache.saveItems(to: self.fileName)
-            // сохренение в локальную БД
+            // сохранение в локальную БД
             try fileCache.saveSQLite()
         } catch {
             DDLogError("Error: saveTodoItems()")
